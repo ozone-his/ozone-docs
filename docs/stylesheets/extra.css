@@ -1,0 +1,29 @@
+.md-typeset {
+  font-size: medium;
+}
+
+.md-typeset h2 {
+  font-size: 140%;
+}
+
+.md-typeset h3 {
+  font-size: 120%;
+}
+
+.md-typeset h4 {
+  font-size: 120%;
+}
+
+.md-typeset h5 {
+  font-size: 120%;
+}
+
+.md-typeset h6 {
+  font-size: 120%;
+}
+
+:root {
+  --md-primary-fg-color:        #007d79;
+  --md-primary-fg-color--light: #007d79;
+  --md-primary-fg-color--dark:  #007d79;
+}

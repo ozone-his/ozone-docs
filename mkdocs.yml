@@ -1,0 +1,45 @@
+site_name: Docs
+repo_url: https://github.com/ozone-his/ozone-distro
+repo_name: ozone-his/ozone
+nav:
+  - Implementers:
+    - Quick Start: 'index.md'
+    - Manual Setup: 'manual-setup.md'
+  - Users:
+    - Users Guide: 'users/index.md'
+  - Developers:
+    - Developers Guide: 'devs/index.md'
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.footer
+    - content.code.copy
+  font:
+    text: Poppins
+  palette:
+    primary: custom
+  logo: assets/logo.png
+  favicon: assets/images/favicon.png
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ozone-his
+    - icon: fontawesome/brands/discourse
+      link: https://talk.openmrs.org/c/software/ozone-his/70
+    - icon: fontawesome/brands/slack
+      link: https://openmrs.slack.com/archives/C02PYQD5D0A
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/mekom-solutions
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/mekomsolutions
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/mekomsolutions/
+extra_css:
+  - stylesheets/extra.css
+markdown_extensions:
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji 
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
