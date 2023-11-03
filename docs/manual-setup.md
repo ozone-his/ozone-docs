@@ -119,7 +119,7 @@ To make things easier for development purposes, you can use a pre-configured Tra
 
 It is better to use domains with Traefik and we will rely on the special domain `traefik.me` for this purpose.
 
-!!! warning
+!!! info
 
     The special domain `traefik.me` requires access to the Internet.
 

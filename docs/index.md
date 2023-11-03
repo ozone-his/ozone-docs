@@ -11,7 +11,7 @@ Running Ozone in Gitpod is a button click away:
     When ready Gitpod will launch the browser tab for OpenMRS 3.
 
 
-## Run Ozone Locally
+## Run Ozone locally
 Type in the following in a terminal:
 
 ```bash
@@ -36,4 +36,6 @@ Then, start browsing Ozone. This requires you to log into each component separat
 
 !!! tip "**Did you know?**"
 
-    Ozone **Pro** comes with single sign-on (SSO) and all its integration layer is secured with OAuth2.
+    Ozone **Pro** :star2: comes with SSO[^sso] and all its integration layer is secured with OAuth2.
+
+[^sso]: Single sign-on

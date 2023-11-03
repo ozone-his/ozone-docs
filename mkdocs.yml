@@ -6,7 +6,7 @@ nav:
     - Quick Start: 'index.md'
     - Manual Setup: 'manual-setup.md'
   - Users:
-    - Users Guide: 'users/index.md'
+    - Overview: 'users/overview.md'
   - Developers:
     - Developers Guide: 'devs/index.md'
 theme:
@@ -22,6 +22,7 @@ theme:
   logo: assets/logo.png
   favicon: assets/images/favicon.png
 extra:
+  homepage: https://www.ozone-his.com
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ozone-his
@@ -43,3 +44,13 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji 
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.details
+  - attr_list
+  - md_in_html
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
