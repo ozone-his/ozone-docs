@@ -4,47 +4,42 @@
 
     Install Git, Maven and Docker Compose
 
-!!! warning "Linux"
+## 1. Set up your working directory
 
-    Create the `docker` user group and add your user to it. Checkout the guide [here](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
-
-!!! warning "Linux"
-
-    If Docker is run as `sudo` (which is not recommended) make sure to either export your environment variables as `su` as well, or use `sudo -E docker` to preserve the user's environment variables as `su`.
-
-
-## 1. Create your working directory
-
-Move to the location of your choice, e.g., your home folder:
-
+Navigate to your preferred location, such as the home directory:
 ```bash
 cd ~/
 ```
 
-Then create the Ozone working directory and save the path:
+Create the Ozone working directory and store its path:
 ```bash
-export OZONE_DIR=$PWD/ozone && \
-mkdir -p $OZONE_DIR && cd $OZONE_DIR
+export OZONE_DIR=$PWD/ozone
+mkdir -p $OZONE_DIR
+cd $OZONE_DIR
 ```
-## 2. Clone the ozone-docker project
+
+## 2. Clone the Ozone project
 
 ```bash
 git clone https://github.com/ozone-his/ozone-docker
-```
-
-```bash
 cd ozone-docker
 ```
 
 ## 3. Create the public Docker network
+!!! warning "Linux"
+
+    Create the `docker` user group and add your user to it. Checkout the guide [here](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
 ```bash
 docker network create web
 ```
 
-## 4. Destroy the running instance containers
-!!! warning
+??? warning "Linux - Docker as `sudo`"
 
-    If you have already set up Ozone before you may need to clean up your local environment first:<br/>
+    If Docker is run as `sudo` (which is not recommended) make sure to either export your environment variables as `su` as well, or use `sudo -E docker` to preserve the user's environment variables as `su`.
+
+## 4. Clean up existing instances (optional)
+
+If Ozone has been previously installed, you might need to clear your existing setup:
 
 ```bash
 ./destroy-demo.sh
@@ -53,15 +48,14 @@ docker network create web
 ## 5. Download and extract the distribution
 
 ```bash
-export VERSION=1.0.0-alpha.7&& \
+export VERSION=1.0.0-alpha.7 && \
 ./mvnw org.apache.maven.plugins:maven-dependency-plugin:3.2.0:get -DremoteRepositories=https://nexus.mekomsolutions.net/repository/maven-public -Dartifact=com.ozonehis:ozone-distro:$VERSION:zip -Dtransitive=false --legacy-local-repository && \
 ./mvnw org.apache.maven.plugins:maven-dependency-plugin:3.2.0:unpack -Dproject.basedir=$OZONE_DIR -Dartifact=com.ozonehis:ozone-distro:$VERSION:zip -DoutputDirectory=$OZONE_DIR/ozone-distro-$VERSION
 ```
 
-## 6. Export all needed environment variables
+## 6. Set required environment variables
 
-The Ozone Docker project relies on a number of environment variables (env vars) to document where the distro assets are expected to be found.
-For the sample demo you can export the following env vars:
+Ozone's Docker setup necessitates several environment variables to locate distribution assets. For the demo, export the necessary environment variables as shown:
 ```bash
 export DISTRO_GROUP=ozone-demo; \
 
@@ -83,92 +77,98 @@ export ODOO_CONFIG_FILE_PATH=$DISTRO_PATH/odoo_config/config/odoo.conf;  \
 export O3_FRONTEND_TAG=3.0.0-beta.13;  \
 export O3_BACKEND_TAG=3.0.0-beta.13;
 ```
-### How to activate demo data generation
 
-The generation of demo data is handled by a separate service that can be opted in or out. This service is configured with an EIP route that takes care of generating demo data 10 minutes after Ozone has started.
+### Enabling Demo Data Service (optional)
+
+The demo data service is optional and generates OpenMRS demo data 10 minutes post-Ozone startup, if enabled.
 
 !!! info
+    
+    This service currently supports generating OpenMRS demo data only.
 
-    The demo data service currently only handles _OpenMRS_ demo data.
-
-To set the number of demo patients to be generated:
+Activate the service and set the desired number of demo patients:
 ```bash
 export NUMBER_OF_DEMO_PATIENTS=50
 ```
-### For developers: Override of `DISTRO_PATH`
 
-If you are doing development on Ozone and are building the Ozone distro in your local environment, then you would need to override `DISTRO_PATH` to point to your distro build folder. For example if your working folder is `/your/path/to/ozone-distro` for the distro then you would want to do something like this:
+### Developer Note: Setting `DISTRO_PATH` (optional)
+
+For Ozone developers working on local builds, `DISTRO_PATH` must point to your local distro directory:
+
 ```bash
 export DISTRO_PATH=/your/path/to/ozone-distro/target/ozone-distro-$VERSION
 ```
 
-## 7. Set up Traefik
+## 7. Configure :simple-traefikproxy: Traefik Proxy (optional)
 
-This step is optional but recommended since Traefik brings many benefits as a reverse proxy for your Ozone project. 
-
-Traefik solves a known URL redirection issue that will show up when using Apache 2. Incorrect `/spahome` redirections occur (instead of of the correct `/spa/home` path), leading to disrupting 404 errors that need to be corrected manually by changing the incorrect URL in the browser's address bar.
+While optional, integrating Traefik as a reverse proxy is highly recommended for Ozone setups.
 
 !!! warning
 
     Traefik will not work in Gitpod.
 
-### Using Traefik proxy
+### Implementing Traefik Proxy
 
-When you select to use Traefik as the proxy for this project, it requires a properly configured Traefik reverse proxy that is already running in the `web` Docker network that was created earlier.
-To make things easier for development purposes, you can use a pre-configured Traefik reverse proxy that is provided at [mekomsolutions/traefik-docker-compose-dev](https://github.com/mekomsolutions/traefik-docker-compose-dev). This saves you the time and effort required to set up and configure a new Traefik reverse proxy from scratch.
+To utilize Traefik proxy with this project, ensure you have a running Traefik instance configured on the previously established `web` Docker network.
 
-It is better to use domains with Traefik and we will rely on the special domain `traefik.me` for this purpose.
+For convenience, use the ready-to-go Traefik setup available at [mekomsolutions/traefik-docker-compose-dev](https://github.com/mekomsolutions/traefik-docker-compose-dev) to bypass the configuration process.
+
+Domains are recommended for Traefik. We employ the domain `traefik.me` specifically for this setup.
 
 !!! info
 
-    The special domain `traefik.me` requires access to the Internet.
+    The `traefik.me` domain necessitates internet connectivity.
 
-### Traefik hostnames on macOS
+### Traefik hostnames
 
-In Linux, the domain `app-172-17-0-1.traefik.me` will resolve the Docker host IP `172.17.0.1` without any special considerations. However, Docker desktop for macOS does not provide a static IP address, which makes it challenging to use the `traefik.me` domain in the same way.
+On Linux, `app-172-17-0-1.traefik.me` directly maps to Docker's host IP `172.17.0.1`. For macOS, Docker's dynamic IP requires using the host's current IP instead of `traefik.me` for configurations.
 
-The only way to use the `traefik.me` domain with Docker on macOS is to use the IP address assigned to the host. This means that instead of using `app-172-17-0-1.traefik.me`, you would need to use the IP address of the Docker host machine in your configuration.
+=== ":simple-linux: Linux"
 
-The default hostnames below will only work on Linux:
-```bash
-export O3_HOSTNAME=emr-172-17-0-1.traefik.me; \
-export ODOO_HOSTNAME=erp-172-17-0-1.traefik.me; \
-export SENAITE_HOSTNAME=lims-172-17-0-1.traefik.me; \
-export SUPERSET_HOSTNAME=analytics-172-17-0-1.traefik.me;
-```
-On macOS you need the extra step to set the IP to your ethernet IP like this:
-```bash
-export IP="${$(ipconfig getifaddr en0)//./-}"; \
-export O3_HOSTNAME=emr-"${IP}.traefik.me"; \
-export ODOO_HOSTNAME=erp-"${IP}.traefik.me";  \
-export SENAITE_HOSTNAME=lims-"${IP}.traefik.me";  \
-export SUPERSET_HOSTNAME=analytics-"${IP}.traefik.me";  
-```
+    ```bash
+    export O3_HOSTNAME=emr-172-17-0-1.traefik.me; \
+    export ODOO_HOSTNAME=erp-172-17-0-1.traefik.me; \
+    export SENAITE_HOSTNAME=lims-172-17-0-1.traefik.me; \
+    export SUPERSET_HOSTNAME=analytics-172-17-0-1.traefik.me;
+    ```
+
+=== ":simple-apple: macOS"
+
+    ```bash
+    export IP="${$(ipconfig getifaddr en0)//./-}"; \
+    export O3_HOSTNAME=emr-"${IP}.traefik.me"; \
+    export ODOO_HOSTNAME=erp-"${IP}.traefik.me";  \
+    export SENAITE_HOSTNAME=lims-"${IP}.traefik.me";  \
+    export SUPERSET_HOSTNAME=analytics-"${IP}.traefik.me";  
+    ```
+
+??? bug "Apache 2 and the OpenMRS `/spahome` bug"
+
+    Traefik addresses a common issue with Apache 2 where improper redirects to `/spahome` instead of `/spa/home` result in persistent 404 errors, which otherwise require manual URL adjustments in the browser.
 
 ## 8. Start Ozone
-### With Apache 2
 
-```bash
-docker compose -f docker-compose.yml -f docker-compose-proxy.yml -f docker-compose-senaite.yml -f docker-compose-odoo.yml -f docker-compose-demo.yml -p $DISTRO_GROUP up
-```
-### With Traefik
+=== ":simple-apache: Apache 2"
 
-```bash
-docker compose -f docker-compose.yml -f docker-compose-senaite.yml -f docker-compose-odoo.yml -f docker-compose-demo.yml -p $DISTRO_GROUP up
-```
+    ```bash
+    docker compose -f docker-compose.yml \ 
+      -f docker-compose-proxy.yml \ 
+      -f docker-compose-senaite.yml \ 
+      -f docker-compose-odoo.yml \ 
+      -f docker-compose-demo.yml \ 
+      -p $DISTRO_GROUP up
+    ```
+
+=== ":simple-traefikproxy: Traefik"
+
+    ```bash
+    docker compose -f docker-compose.yml \ 
+      -f docker-compose-senaite.yml \ 
+      -f docker-compose-odoo.yml \ 
+      -f docker-compose-demo.yml \ 
+      -p $DISTRO_GROUP up
+    ```
 
 ## 9. Browse Ozone
-Ozone FOSS requires you to log into each component separately:
 
-| HIS Component     | Apache 2 URL                  | Traefik (Linux) URL                       | Username | Password |
-|-------------------|-------------------------------|-------------------------------------------|----------|----------|
-| OpenMRS 3         | http://localhost/openmrs/spa  | https://emr-172-17-0-1.traefik.me         | admin    | Admin123 |
-| OpenMRS Legacy UI | http://localhost/openmrs      | https://emr-172-17-0-1.traefik.me/openmrs | admin    | Admin123 |
-| SENAITE           | http://localhost:8081/senaite | https://lims-172-17-0-1.traefik.me        | admin    | password |
-| Odoo              | http://localhost:8069         | https://erp-172-17-0-1.traefik.me         | admin    | admin    |
-| Superset          | http://localhost:8088         | https://analytics-172-17-0-1.traefik.me   | admin    | password |
-
-??? warning "Traefik on macOS"
-
-    With Traefik on macOS the IP coordinates of Ozone's components will be different and you will have to replace "`172-17-0-1`" with your host IP.
-    <br/>For example if your host IP is `192.168.200.197`, then `https://emr-172-17-0-1.traefik.me` will have to become `https://emr-192-168-200-197.traefik.me`.
+When all services are up and running, [start browsing Ozone](/#browse).

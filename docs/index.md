@@ -1,38 +1,53 @@
 # Quick Start
 
-## Run Ozone in Gitpod
+## Run Ozone
 
-Running Ozone in Gitpod is a button click away:
+=== ":fontawesome-solid-location-dot: locally"
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-docker)
+    Three lines in a terminal:
 
-!!! info ""
+    ```bash
+    git clone https://github.com/ozone-his/ozone-docker
+    cd ozone-docker
+    ./start-demo.sh
+    ```
 
-    When ready Gitpod will launch the browser tab for OpenMRS 3.
+    !!! warning ""
+
+        :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
+
+=== ":simple-gitpod: Gitpod"
+
+    One click here:
+
+    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-docker)
+
+    !!! info ""
+
+        When ready Gitpod will launch the browser tab for OpenMRS 3.
 
 
-## Run Ozone locally
-Type in the following in a terminal:
-
-```bash
-git clone https://github.com/ozone-his/ozone-docker
-cd ozone-docker
-./start-demo.sh
-```
-
-!!! warning ""
-
-    It may take some time to download and setup Ozone for the first time.
+## <a href="#browse">Browse Ozone</a>
 
 Then, start browsing Ozone. This requires you to log into each component separately:
 
-| HIS Component     | URL                            | Username | Password |
-|-------------------|--------------------------------|----------|----------|
-| OpenMRS 3         | http://localhost/openmrs/spa  | admin    | Admin123 |
-| OpenMRS Legacy UI | http://localhost/openmrs      | admin    | Admin123 |
-| SENAITE           | http://localhost:8081/senaite | admin    | password |
-| Odoo              | http://localhost:8069         | admin    | admin    |
-| Superset          | http://localhost:8088         | admin    | password |
+=== ":simple-apache: Apache 2 (default)"
+
+    | HIS Component     | URL                            | Username | Password |
+    |-------------------|--------------------------------|----------|----------|
+    | OpenMRS 3         | http://localhost/openmrs/spa  | admin    | Admin123 |
+    | SENAITE           | http://localhost:8081/senaite | admin    | password |
+    | Odoo              | http://localhost:8069         | admin    | admin    |
+    | Superset          | http://localhost:8088         | admin    | password |
+
+=== ":simple-traefikproxy: Traefik"
+
+    | HIS Component     | URL                                       | Username | Password |
+    |-------------------|-------------------------------------------|----------|----------|
+    | OpenMRS 3         | https://emr-172-17-0-1.traefik.me         | admin    | Admin123 |
+    | SENAITE           | https://lims-172-17-0-1.traefik.me        | admin    | password |
+    | Odoo              | https://erp-172-17-0-1.traefik.me         | admin    | admin    |
+    | Superset          | https://analytics-172-17-0-1.traefik.me   | admin    | password |
 
 !!! tip "**Did you know?**"
 
