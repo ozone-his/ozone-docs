@@ -35,10 +35,10 @@ Then, start browsing Ozone. This requires you to log into each component separat
 
     | HIS Component     | URL                            | Username | Password |
     |-------------------|--------------------------------|----------|----------|
-    | OpenMRS 3         | http://localhost/openmrs/spa  | admin    | Admin123 |
-    | SENAITE           | http://localhost:8081/senaite | admin    | password |
-    | Odoo              | http://localhost:8069         | admin    | admin    |
-    | Superset          | http://localhost:8088         | admin    | password |
+    | OpenMRS 3         | http://localhost/openmrs/spa   | admin    | Admin123 |
+    | SENAITE           | http://localhost:8081/senaite  | admin    | password |
+    | Odoo              | http://localhost:8069          | admin    | admin    |
+    | Superset          | http://localhost:8088          | admin    | password |
 
 === ":simple-traefikproxy: Traefik"
 
@@ -51,6 +51,4 @@ Then, start browsing Ozone. This requires you to log into each component separat
 
 !!! tip "**Did you know?**"
 
-    Ozone **Pro** :star2: comes with SSO[^sso] and all its integration layer is secured with OAuth2.
-
-[^sso]: Single sign-on
+    Ozone Pro comes with [single sign-on and](/users/sso) all its interoperability layer is secured with OAuth2.

@@ -7,13 +7,21 @@ nav:
     - Manual Setup: 'manual-setup.md'
   - Users:
     - Overview: 'users/overview.md'
+    - Single Sign-on: 'users/sso.md'
+    - Data Flows Guide: 'users/dataflows.md'
+    - EMR-ERP Flows: 'users/emr-erp.md'
+    - EMR-LIMS Flows: 'users/emr-lims.md'
+    - IdP Flows: 'users/all-idp.md'
+    - Ozone Analytics: 'users/analytics.md'
   - Developers:
     - Developers Guide: 'devs/index.md'
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.footer
+    - navigation.sections
     - content.code.copy
   font:
     text: Poppins
@@ -40,11 +48,14 @@ extra_css:
   - stylesheets/extra.css
 markdown_extensions:
   - admonition
+  - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji 
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
   - pymdownx.details
-  - attr_list
   - md_in_html
   - footnotes
   - pymdownx.critic

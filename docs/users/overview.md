@@ -1,38 +1,44 @@
 # Overview
 
-Ozone is an {==expanding suite of health information systems==},
-<br/>seamlessly integrated through a {==scalable interoperability framework==}.
+Ozone is an easy-to-install {==growing suite of digital health software==},
+<br/>integrated by a {==scalable interoperability framework==}
+<br/>delivering a complete health information system experience.
 
 ``` mermaid
 stateDiagram-v2
     state "Ozone HIS" as ozone
+    state "digital health software" as state1
     state "interoperability framework" as state2
-    state "health information systems" as state1
 
-    ozone --> state1: suite of
-    ozone --> state2: run by
+    state1 --> ozone
+    state2 --> ozone
 ```
 
-## A suite of opt in/out interoperable systems
+## 1) A suite of opt in/out digital health software
 
-Ozone is a ready-to-use solution, providing a pre-selected array of FOSS[^1] components that function seamlessly together.
+Ozone is a ready-to-use solution, providing a pre-selected array of FOSS[^foss] components that function seamlessly together.
 
-It is a complete health information system distribution, allowing users to customize by choosing which supported components to include or exclude.
+It is a complete health information system allowing users to customize it by choosing which supported digital health software to include or exclude.
 
-[^1]:  Free and open-source software
+[^foss]:  Free and open-source software
 
 ### Current Ozone HIS suite
 
-| **HIS type** | **Component**            | **Version**       |
-|----------|-----------------|---------------|
-| EMR      | OpenMRS         | `3.0.0-beta.13` |
-| LIMS     | SENAITE         | `2.1.0`             |
-| ERP      | Odoo            | `14`            |
-| BI       | Apache Superset | `1.5.1`         |
+| **HIS type** | **Component**   | **Version**     |                |
+|--------------|-----------------|-----------------|----------------|
+| EMR          | OpenMRS         | `3.0.0-beta.13` |                |
+| LIMS         | SENAITE         | `2.1.0`         |                |
+| ERP          | Odoo            | `14.0`          |                |
+| BI           | Apache Superset | `1.5.1`         |                |
+| IdP          | JBoss Keycloak  | `22.0.0`        | {==:oz: Pro==} |
 
-## An interoperability framework
+!!! tip "Ozone Pro markers"
 
-Ozone brings an interoperability EIP[^eip] framework, _Ozone Platform_, that orchestrates seamless data flows between health information system components — EMR, LIMS, pharmacy, accounting, BI, and more.
+    Features and sections exclusive to Ozone Pro are marked with &nbsp;&nbsp;{==:oz: Pro==}.
+
+## 2) An interoperability framework
+
+Ozone is powered by an interoperability EIP[^eip] framework that orchestrates seamless data flows between health information system components — EMR, LIMS, pharmacy, accounting, BI, and more.
 
 [^eip]: Entreprise integration patterns
 
@@ -44,7 +50,7 @@ Ozone brings an interoperability EIP[^eip] framework, _Ozone Platform_, that orc
     
     Lab results entered into the LIMS by lab staff are immediately visible to clinicians in the EMR system.
 
-!!! example
+!!! example "Example &nbsp;&nbsp; {==:oz: Pro==}"
 
     Data analysts can perform real-time cross-analysis of clinical and billing data on the BI platform.
 

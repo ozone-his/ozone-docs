@@ -1,18 +1,31 @@
+.oz-green {
+  color: #007d79;
+}
+
 .md-typeset {
   font-size: medium;
 }
 
+.md-typeset .small-title {
+  font-size: 50%;
+  font-weight: 500;
+}
+
 .md-typeset h2 {
-  font-size: 140%;
+  font-size: 155%;
   font-weight: 500;
 }
 
 .md-typeset h3 {
   font-size: 120%;
+  font-weight: 600;
 }
 
 .md-typeset h4 {
-  font-size: 120%;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 100%;
+  color: #007d79;
 }
 
 .md-typeset h5 {
