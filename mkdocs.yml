@@ -14,7 +14,9 @@ nav:
     - IdP Flows: 'users/all-idp.md'
     - Ozone Analytics: 'users/analytics.md'
   - Developers:
-    - Developers Guide: 'devs/index.md'
+    - Architecture Overview: 'devs/index.md'
+    - Default Architecture: 'devs/default-archi.md'
+    - EIP Client: 'devs/eip-client.md'
 theme:
   name: material
   custom_dir: overrides
