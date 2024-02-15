@@ -6,9 +6,14 @@
 
     Three lines in a terminal:
 
+    Download and install Ozone 1.0.0-alpha.9.
     ```bash
-    git clone https://github.com/ozone-his/ozone-docker
-    cd ozone-docker
+    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install.sh | bash /dev/stdin 1.0.0-alpha.9
+    ```
+
+    Run
+    ```
+    cd ozone/run/docker/scripts/
     ./start-demo.sh
     ```
 
@@ -20,7 +25,7 @@
 
     One click here:
 
-    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone-docker)
+    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone/)
 
     !!! info ""
 
