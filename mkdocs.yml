@@ -5,6 +5,7 @@ nav:
   - Implementers:
     - Quick Start: 'index.md'
     - Manual Setup: 'manual-setup.md'
+    - Custom Implementation: 'custom-implementation.md'
   - Users:
     - Overview: 'users/overview.md'
     - Single Sign-on: 'users/sso.md'
