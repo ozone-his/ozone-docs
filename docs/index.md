@@ -6,9 +6,9 @@
 
     Three lines in a terminal:
 
-    Download and install Ozone 1.0.0-SNAPSHOT.
+    Download and install Ozone
     ```bash
-    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install.sh | bash /dev/stdin 1.0.0-SNAPSHOT
+    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install-latest.sh | bash /dev/stdin
     ```
 
     Run
@@ -36,7 +36,7 @@
 
 Then, start browsing Ozone. This requires you to log into each component separately:
 
-=== ":simple-apache: Apache 2 (default)"
+=== ":simple-apache: Nginx (default)"
 
     | HIS Component     | URL                            | Username | Password |
     |-------------------|--------------------------------|----------|----------|
