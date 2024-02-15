@@ -6,9 +6,9 @@
 
     Three lines in a terminal:
 
-    Download and install Ozone 1.0.0-alpha.9.
+    Download and install Ozone 1.0.0-SNAPSHOT.
     ```bash
-    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install.sh | bash /dev/stdin 1.0.0-alpha.9
+    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install.sh | bash /dev/stdin 1.0.0-SNAPSHOT
     ```
 
     Run
