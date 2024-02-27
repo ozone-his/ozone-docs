@@ -11,7 +11,7 @@ HIS systems, like Ozone, often need to be heavily customized based on local need
 To get started, use Maven's archetype tools to generate a new Ozone implementation project. The command for doing this is:
 
 ```bash
- mvn archetype:generate -DarchetypeArtifactId=ozone-distro-archetype -DarchetypeGroupId=com.ozonehis
+ mvn archetype:generate -DarchetypeArtifactId=maven-archetype -DarchetypeGroupId=com.ozonehis
 ```
 
 This will prompt you for several key variables for your implementation:
