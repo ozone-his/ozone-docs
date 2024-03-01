@@ -4,7 +4,7 @@ repo_name: ozone-his/ozone
 nav:
   - Implementers:
     - Quick Start: 'index.md'
-    - Manual Setup: 'manual-setup.md'
+    - Implementer Guide: 'impl-guide.md'
   - Users:
     - Overview: 'users/overview.md'
     - Single Sign-on: 'users/sso.md'
