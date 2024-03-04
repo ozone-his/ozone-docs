@@ -40,9 +40,9 @@
 
 === ":simple-gitpod: Browse in Gitpod"
 
-    Gitpod will automatically launch a new tab for OpenMRS 3.
+    Gitpod will automatically launch a new browser window for OpenMRS 3.
 
-    You can navigate to other Ozone HIS components via the PORTS tab of the Gitpod window:
+    You can navigate to other Ozone HIS components via the PORTS tab of the Gitpod browser window:
 
     ![Ozone services started](assets/images/gitpod-list-services.png)
 
