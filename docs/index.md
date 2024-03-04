@@ -1,8 +1,12 @@
-# Ozone HIS Quick Start
+??? question "Wait, have you checked the online demo of Ozone Pro? :thinking:"
 
-=== ":fontawesome-solid-location-dot: Run locally"
+    Before diving into the Quick Start or implementer guides, visit <a href="https://www.ozone-his.com">our website</a> and click **Try Demo** to explore the official Ozone Pro online demo.
 
-    Three commands:
+# Quick Start
+
+=== ":fontawesome-solid-location-dot: Locally"
+
+    Only three commands in a terminal:
 
     ```bash
     curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install-latest.sh | bash /dev/stdin
@@ -16,39 +20,37 @@
     ./start-demo.sh
     ```
 
-=== ":simple-gitpod: Run in Gitpod"
+    !!! warning ""
 
-    One click:
-    
-    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone/)
-
-
-!!! warning ""
-
-    :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
-
-=== ":fontawesome-solid-location-dot: Browse locally"
+        :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
 
     Then, start browsing Ozone. This requires you to log into each component separately:
 
-    | **HIS Component** | **URL**                                                        |
-    |-------------------|----------------------------------------------------------------|
-    | OpenMRS 3         | [http://localhost/openmrs/spa](http://localhost/openmrs/spa)   |
-    | SENAITE           | [http://localhost:8081/senaite](http://localhost:8081/senaite) |
-    | Odoo              | [http://localhost:8069](http://localhost:8069)                 |
-    | Superset          | [http://localhost:8088](http://localhost:8088)                 |
+    | **HIS Component** | **URL**                                                                                   |
+    |-------------------|-------------------------------------------------------------------------------------------|
+    | OpenMRS 3         | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>   |
+    | SENAITE           | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a> |
+    | Odoo              | <a href="http://localhost:8069" target="_blank">http://localhost:8069</a>                 |
+    | Superset          | <a href="http://localhost:8088" target="_blank">http://localhost:8088</a>                 |
 
-=== ":simple-gitpod: Browse in Gitpod"
 
-    Gitpod will automatically launch a new browser window for OpenMRS 3.
+=== ":simple-gitpod: Gitpod"
 
-    You can navigate to other Ozone HIS components via the PORTS tab of the Gitpod browser window:
+    Just one click:
+    
+    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone/)
+
+    !!! warning ""
+
+        :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
+
+    Gitpod will automatically launch a new tab for OpenMRS 3.
+
+    You can navigate to other Ozone HIS components via the PORTS tab of the Gitpod window:
 
     ![Ozone services started](assets/images/gitpod-list-services.png)
 
-**Default Credentials**
-
-Each component will require you to log in separately:
+Each component will require you to log in separately with their own credentials:
 
 | **HIS Component** | **Username** | **Password** |
 |-------------------|--------------|--------------|
