@@ -14,6 +14,9 @@
 
     ```bash
     cd ozone/run/docker/scripts/
+    ```
+
+    ```bash
     ./start-demo.sh
     ```
 
