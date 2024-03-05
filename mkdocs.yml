@@ -4,8 +4,8 @@ repo_name: ozone-his/ozone
 nav:
   - Implementers:
     - Quick Start: 'index.md'
-    - Manual Setup: 'manual-setup.md'
-    - Custom Implementation: 'custom-implementation.md'
+    - Create Your Own Distribution: 'create-distro.md'
+    - Override Inherited Configs: 'override-configs.md'
   - Users:
     - Overview: 'users/overview.md'
     - Single Sign-on: 'users/sso.md'

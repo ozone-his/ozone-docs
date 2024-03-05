@@ -1,18 +1,18 @@
+??? question "Wait, have you checked the online demo of Ozone Pro? :thinking:"
+
+    Before diving into the Quick Start or implementer guides, visit <a href="https://www.ozone-his.com">our website</a> and click **Try Demo** to explore the official Ozone Pro online demo.
+
 # Quick Start
 
-## Run Ozone
+=== ":fontawesome-solid-location-dot: Locally"
 
-=== ":fontawesome-solid-location-dot: locally"
+    Only three commands in a terminal:
 
-    Three lines in a terminal:
-
-    Download and install Ozone
     ```bash
     curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install-latest.sh | bash /dev/stdin
     ```
 
-    Run
-    ```
+    ```bash
     cd ozone/run/docker/scripts/
     ./start-demo.sh
     ```
@@ -21,39 +21,41 @@
 
         :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
 
+    Then, start browsing Ozone. This requires you to log into each component separately:
+
+    | **HIS Component** | **URL**                                                                                   |
+    |-------------------|-------------------------------------------------------------------------------------------|
+    | OpenMRS 3         | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>   |
+    | SENAITE           | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a> |
+    | Odoo              | <a href="http://localhost:8069" target="_blank">http://localhost:8069</a>                 |
+    | Superset          | <a href="http://localhost:8088" target="_blank">http://localhost:8088</a>                 |
+
+
 === ":simple-gitpod: Gitpod"
 
-    One click here:
-
+    Just one click:
+    
     [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone/)
 
-    !!! info ""
+    !!! warning ""
 
-        When ready Gitpod will launch the browser tab for OpenMRS 3.
+        :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
 
+    Gitpod will automatically launch a new tab for OpenMRS 3.
 
-## <a href="#browse">Browse Ozone</a>
+    You can navigate to other Ozone HIS components via the PORTS tab of the Gitpod window:
 
-Then, start browsing Ozone. This requires you to log into each component separately:
+    ![Ozone services started](assets/images/gitpod-list-services.png)
 
-=== ":simple-apache: Nginx (default)"
+Each component will require you to log in separately with their own credentials:
 
-    | HIS Component     | URL                            | Username | Password |
-    |-------------------|--------------------------------|----------|----------|
-    | OpenMRS 3         | http://localhost/openmrs/spa   | admin    | Admin123 |
-    | SENAITE           | http://localhost:8081/senaite  | admin    | password |
-    | Odoo              | http://localhost:8069          | admin    | admin    |
-    | Superset          | http://localhost:8088          | admin    | password |
-
-=== ":simple-traefikproxy: Traefik"
-
-    | HIS Component     | URL                                       | Username | Password |
-    |-------------------|-------------------------------------------|----------|----------|
-    | OpenMRS 3         | https://emr-172-17-0-1.traefik.me         | admin    | Admin123 |
-    | SENAITE           | https://lims-172-17-0-1.traefik.me        | admin    | password |
-    | Odoo              | https://erp-172-17-0-1.traefik.me         | admin    | admin    |
-    | Superset          | https://analytics-172-17-0-1.traefik.me   | admin    | password |
+| **HIS Component** | **Username** | **Password** |
+|-------------------|--------------|--------------|
+| OpenMRS 3         | admin        | Admin123     |
+| SENAITE           | admin        | password     |
+| Odoo              | admin        | admin        |
+| Superset          | admin        | password     |
 
 !!! tip "**Did you know?**"
 
-    Ozone Pro comes with [single sign-on and](/users/sso) all its interoperability layer is secured with OAuth2.
+    Ozone Pro comes with [single sign-on](/users/sso) and all its interoperability layer is secured with OAuth2.
