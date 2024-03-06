@@ -1,99 +1,92 @@
-# Create Your Own Distribution
+# Create Your Own Distribution of Ozone HIS
 
-!!! tip
+## Why your own distribution?
 
-    Install Git, Maven and Docker Compose
+Beyond experimenting with the Quick Start guide, implementers and integrators of Ozone HIS will soon discover the need to provide their own configurations and possibly bespoke customizations to Ozone HIS. We recommend to do so through creating and managing your own distribution of Ozone HIS.
 
-HIS systems, like Ozone, often need to be heavily customized based on local needs. Ozone facilitates implementer's work by providing custom implementation configurations via a series of tools built on Apache Maven. The starting-point for a custom implementation is the Ozone Maven Archetype which creates a skeleton project that serves as a base for any particular customizations an implementation needs.
+Ozone provides a series Apache Maven-based tools to facilitate the assembly of your own tailored HIS distribution. This starts with the _Ozone Maven Archetype_.
 
-## Maven Archetype
+## The Ozone Maven Archetype
 
+!!! tip "Prequisites"
 
-#### Configure Maven
+    Install [Git](https://github.com/git-guides/install-git), [Maven](https://www.baeldung.com/install-maven-on-windows-linux-mac) Maven and [Docker Compose](https://docs.docker.com/compose/install/)
 
-Edit your Maven `settings.xml` file (often located in `~/.m2/settings.xml`) and add the following block to it:
+The Ozone Maven Archetype generates a foundational skeleton project, providing a customizable base for any specific implementation requirements.
+
+### 1) Configure Maven
+
+Edit your Maven `settings.xml` file (usually located at `~/.m2/settings.xml`) and add the following block to it:
 ```xml
-  <profiles>
-    <profile>
-      <id>ozone</id>
-      <repositories>
-        <repository>
-          <id>archetype</id>
-          <url>https://nexus.mekomsolutions.net/repository/maven-public</url>
-          <releases>
-            <enabled>true</enabled>
-            <checksumPolicy>fail</checksumPolicy>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-            <checksumPolicy>warn</checksumPolicy>
-          </snapshots>
-        </repository>
-      </repositories>
-    </profile>
-  </profiles>
+<profiles>
+  <profile>
+    <id>ozone</id>
+    <repositories>
+      <repository>
+        <id>archetype</id>
+        <url>https://nexus.mekomsolutions.net/repository/maven-public</url>
+        <releases>
+          <enabled>true</enabled>
+          <checksumPolicy>fail</checksumPolicy>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+          <checksumPolicy>warn</checksumPolicy>
+        </snapshots>
+      </repository>
+    </repositories>
+  </profile>
+</profiles>
 
-  <activeProfiles>
-    <activeProfile>ozone</activeProfile>
-  </activeProfiles>
+<activeProfiles>
+  <activeProfile>ozone</activeProfile>
+</activeProfiles>
 ```
 
+### 2) Generate the archetype
 
-#### Generate the Archetype
-
-To get started, use Maven's archetype tools to generate a new Ozone implementation project. The command for doing this is:
+Use Maven's archetype tools to generate a new Ozone implementation project structure:
 
 ```bash
- mvn archetype:generate -DarchetypeArtifactId=maven-archetype -DarchetypeGroupId=com.ozonehis
+mvn org.apache.maven.plugins:maven-archetype-plugin:3.2.1:generate -DarchetypeArtifactId=maven-archetype -DarchetypeGroupId=com.ozonehis 
 ```
 
-This will prompt you for several key variables for your implementation:
+This will prompt you for several key variables for your Maven project:
 
-* **distributionName:** A user-friendly name for your distribution. For example, an Ozone implementation for the country of Gruzinia might use "Gruzinia" as the distribution name.
-* **groupId:** This is the [Maven groupId](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia", this might be: `gz.moh`.
-* **artifactId:** This is the [Maven artifactId](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia", this might be: `ozone-grunzia`.
-* **package:** This is a required property, but not used. Just accept the default value, which should be the same as the **groupId**.
-* **version:** This is the version number for the distribution, which defaults to `1.0.0-SNAPSHOT`.
+| Prompt variable    | Sample value     | Explanation                                                                                                                                                                                             |
+|--------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `distributionName` | `Ozone Gruzinia` | A name for your distribution. For example, a reference Ozone implementation for the imaginary country of Gruzinia could be named "Ozone Gruzinia".                                                      |
+| `groupId`          | `gz.moh`         | The [Maven group ID](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia" this might be something like `gz.moh`. |
+| `artifactId`       | `ozone-gruzinia` | The [Maven artifact ID](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia" this might be `ozone-gruzinia`.     |
+| `package`          | `gz.moh`         | A required property, but not used. To make it easy just accept the default value, which should default to be the same as the `groupId`.                                                                 |
+| `version`          | `1.0.0-SNAPSHOT` | The version number for the distribution, it starts by default at `1.0.0-SNAPSHOT`.                                                                                                                      |
 
-This will create a bare-bones Ozone implementation project, which should look like this:
 
-```
-<project root>
-  |
-  |--configs
-  |    |
-  |    |--openmrs
-  |    |    |
-  |    |    |--frontend_config
-  |    |    |--initializer_config
-  |--readme
-  |    |--impl-guide.md
-  |--scripts
-  |--.gitignore
-  |--.gitpod.yml
-  |--pom.xml
-  |--README.md
-```
-
-From this point on, your can run your new Ozone distribution with the following commands:
-
-## Build & Run
+This will create a bare-bones Ozone implementation project that should look like this:
 ```bash
-./scripts/mvnw clean package
+ozone-gruzinia/
+├── README.md
+├── config
+│     └── openmrs
+│         ├── frontend_config
+│         └── initializer_config
+├── pom.xml
+├── readme
+│     └── impl-guide.md
+└── scripts
+    ├── mvnw
+    ├── mvnw.cmd
+    ├── mvnwDebug
+    └── mvnwDebug.cmd
 ```
 
-```bash
-source target/go-to-scripts-dir.sh
-./start-demo.sh
-```
+## Available commands
 
-## (optional) Stop & Destroy
-```bash
-./stop-demo.sh
-```
+|Action|Command|
+|:----|:----|
+|Build the distribution|<pre>./scripts/mvnw clean package</pre>|
+|Run the distribution|<pre>source target/go-to-scripts-dir.sh<br/><br/>./start-demo.sh</pre>|
+|Stop the distribution|<pre>./stop-demo.sh</pre>|
+|Destroy the distribution|<pre>./destroy-demo.sh</pre>|
 
-```bash
-./destroy-demo.sh
-```
-
-Next is to customize Ozone to your needs. Check out to next page to override inherited configurations.
+You are now ready to tailor Ozone to fit your specific requirements. Proceed to the following page for guidance on how to override default configurations.
