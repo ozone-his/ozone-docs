@@ -1,6 +1,5 @@
-# Implementer Guide
-
 !!! info "🚧 Work In Progress"
+
 Coming soon:  
  - Using the Ozone Maven archetype  
  - Using the Maven parent  
