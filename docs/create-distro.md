@@ -10,7 +10,7 @@ Ozone provides a series Apache Maven-based tools to facilitate the assembly of y
 
 !!! tip "Prequisites"
 
-    Install [Git](https://github.com/git-guides/install-git), [Maven](https://www.baeldung.com/install-maven-on-windows-linux-mac) Maven and [Docker Compose](https://docs.docker.com/compose/install/)
+    Install [Git](https://github.com/git-guides/install-git), [Maven](https://www.baeldung.com/install-maven-on-windows-linux-mac) and [Docker Compose](https://docs.docker.com/compose/install/)
 
 The Ozone Maven Archetype generates a foundational skeleton project, providing a customizable base for any specific implementation requirements.
 
@@ -82,11 +82,12 @@ ozone-gruzinia/
 
 ## Available commands
 
-|Action|Command|
-|:----|:----|
-|Build the distribution|<pre>./scripts/mvnw clean package</pre>|
-|Run the distribution|<pre>source target/go-to-scripts-dir.sh<br/><br/>./start-demo.sh</pre>|
-|Stop the distribution|<pre>./stop-demo.sh</pre>|
-|Destroy the distribution|<pre>./destroy-demo.sh</pre>|
+|Goal|Command|Explanation|
+|:----|:----|:----|
+|**Build** the distribution|<pre>./scripts/mvnw clean package</pre>|Assembles and packages your distribution, incorporating any configurations and customizations you've applied.|
+|Access start/stop/destroy commands|<pre>source target/go-to-scripts-dir.sh</pre>|Navigates to the directory containing the scripts for starting, stopping, and destroying the distribution, making these commands readily accessible.|
+|**Start** the distribution|<pre>./start-demo.sh</pre>|Initiates and launches all components of the Ozone HIS, bringing up the system.|
+|**Stop** the distribution|<pre>./stop-demo.sh</pre>|Gracefully halts all Ozone HIS services, effectively shutting down the system.|
+|**Destroy** the distribution|<pre>./destroy-demo.sh</pre>|Completely removes the distribution, clearing all its components and data, ideal for resetting the system or rectifying persistent issues ahead of a restart or a rebuild and restart.|
 
 You are now ready to tailor Ozone to fit your specific requirements. Proceed to the following page for guidance on how to override default configurations.
