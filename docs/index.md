@@ -1,6 +1,6 @@
-??? question "Wait, have you checked the online demo of Ozone Pro? :thinking:"
+??? question "Wait, did you check the online demo? :thinking:"
 
-    Before diving into the Quick Start or implementer guides, visit <a href="https://www.ozone-his.com">our website</a> and click **Try Demo** to explore the official Ozone Pro online demo.
+    Before diving into the Quick Start or implementer guides, visit [our website]({{ homepage }}) and click **Try Demo** to explore the official Ozone Pro online demo.
 
 # Quick Start
 
