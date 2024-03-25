@@ -9,7 +9,7 @@
     Only three commands in a terminal:
 
     ```bash
-    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install-latest.sh | bash /dev/stdin
+    curl -s https://raw.githubusercontent.com/ozone-his/ozone/main/scripts/install-stable.sh | bash /dev/stdin
     ```
 
     ```bash
