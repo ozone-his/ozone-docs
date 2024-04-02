@@ -15,14 +15,14 @@ Before running Ozone E2E tests, ensure the following are installed:
 
 ## Test Suite Structure
 The test suite is organized as follows:
-	```
-	e2e
-	├── tests
-	|   ^ Contains test cases.
-	└── utils
-	    ^ Contains utilities needed to set up and tear down tests,
-	      as well as methods required by the tests to run.
-	```
+```
+e2e
+├── tests
+|   ^ Contains test cases.
+└── utils
+    ^ Contains utilities needed to set up and tear down tests,
+      as well as methods required by the tests to run.
+```
 
 ## Configuration Options
 
@@ -48,43 +48,43 @@ The test suite is organized as follows:
 
 **Test Purpose**: Verify that a patient with a lab order is synced as a client with analysis request in SENAITE.
 
-	```javascript
-	import { test, expect } from '@playwright/test';
-	import { HomePage } from '../utils/functions/testBase';
-	import { patientName } from '../utils/functions/testBase';
-	import { E2E_BASE_URL, E2E_SENAITE_URL } from '../utils/configs/globalSetup';
+```javascript
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../utils/functions/testBase';
+import { patientName } from '../utils/functions/testBase';
+import { E2E_BASE_URL, E2E_SENAITE_URL } from '../utils/configs/globalSetup';
 
-	test.beforeEach(async ({ page }) => {
-	  const homePage = new HomePage(page);
-	  await homePage.initiateLogin();
-	  await expect(page).toHaveURL(/.*home/);
-	  await homePage.createPatient();
-	  await homePage.startPatientVisit();
-	});
+test.beforeEach(async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.initiateLogin();
+  await expect(page).toHaveURL(/.*home/);
+  await homePage.createPatient();
+  await homePage.startPatientVisit();
+});
 
-	test('Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
-	  const homePage = new HomePage(page);
-	  // Set up
-	  await homePage.goToLabOrderForm();
-	  await page.click('button:has-text("Add")');
-	  await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-	  await homePage.saveLabOrder();
-	  // Replay
-	  await homePage.goToSENAITE();
-	  await expect(page).toHaveURL(/.*senaite/);
-	  // Verify
-	  await homePage.searchClientInSENAITE();
-	  const clientName = `${patientName.firstName} ${patientName.givenName}`;
-	  const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
-	  await expect(client).toBeVisible();
-	});
+test('Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
+  const homePage = new HomePage(page);
+  // Set up
+  await homePage.goToLabOrderForm();
+  await page.click('button:has-text("Add")');
+  await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  await homePage.saveLabOrder();
+  // Replay
+  await homePage.goToSENAITE();
+  await expect(page).toHaveURL(/.*senaite/);
+  // Verify
+  await homePage.searchClientInSENAITE();
+  const clientName = `${patientName.firstName} ${patientName.givenName}`;
+  const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
+  await expect(client).toBeVisible();
+});
 
-	test.afterEach(async ({ page }) => {
-	  const homePage = new HomePage(page);
-	  await homePage.deletePatient();
-	  await page.close();
-	});
-	```
+test.afterEach(async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.deletePatient();
+  await page.close();
+});
+```
 
 **Simplified Explanation**:
 
