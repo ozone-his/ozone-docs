@@ -106,4 +106,3 @@ test.afterEach(async ({ page }) => {
 
 ## References and Resources
 - [Playwright Testing Framework](https://playwright.dev)
-- [Ozone Community Forum](https://talk.openmrs.org/c/software/ozone-his)
