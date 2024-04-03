@@ -64,19 +64,18 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
+  // setup
   homePage = new HomePage(page);
-
-  // Set up
   await homePage.goToLabOrderForm();
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
   await homePage.saveLabOrder();
 
-  // Reply
+  // replay
   await homePage.goToSENAITE();
   await expect(page).toHaveURL(/.*senaite/);
 
-  // Verify
+  // verify
   await homePage.searchClientInSENAITE();
   const clientName = `${patientName.firstName} ${patientName.givenName}`;
   const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
@@ -84,7 +83,7 @@ test('Patient with lab order becomes client with analysis request in SENAITE', a
 });
 
 test.afterEach(async ({ page }) => {
-  const homePage = new HomePage(page);
+  homePage = new HomePage(page);
   await homePage.deletePatient();
   await page.close();
 });
@@ -96,7 +95,7 @@ test.afterEach(async ({ page }) => {
 
 **Test Case**:
 - **Setup**: Navigate to the lab order form, add a new lab order, and save it.
-- **Reply**: Go to the SENAITE application and search for the client.
+- **Replay**: Go to the SENAITE application and search for the client.
 - **Verification**: Verify that the client's name is visible in the clients list.
 
 **Cleanup**: After each test, delete the patient created during the test run and close the browser page.
