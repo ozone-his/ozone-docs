@@ -52,10 +52,11 @@ e2e
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../utils/functions/testBase';
 import { patientName } from '../utils/functions/testBase';
-import { E2E_BASE_URL, E2E_SENAITE_URL } from '../utils/configs/globalSetup';
+
+let homePage: HomePage;
 
 test.beforeEach(async ({ page }) => {
-  const homePage = new HomePage(page);
+  homePage = new HomePage(page);
   await homePage.initiateLogin();
   await expect(page).toHaveURL(/.*home/);
   await homePage.createPatient();
@@ -63,15 +64,18 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
-  const homePage = new HomePage(page);
+  homePage = new HomePage(page);
+
   // Set up
   await homePage.goToLabOrderForm();
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
   await homePage.saveLabOrder();
-  // Replay
+
+  // Reply
   await homePage.goToSENAITE();
   await expect(page).toHaveURL(/.*senaite/);
+
   // Verify
   await homePage.searchClientInSENAITE();
   const clientName = `${patientName.firstName} ${patientName.givenName}`;
@@ -86,13 +90,13 @@ test.afterEach(async ({ page }) => {
 });
 ```
 
-**Simplified Explanation**:
+**Simplified Explanation**
 
 **Test Setup**: Before each test, login to O3, create a new patient, and start a visit.
 
 **Test Case**:
 - **Setup**: Navigate to the lab order form, add a new lab order, and save it.
-- **Replay**: Go to the SENAITE application and search for the client.
+- **Reply**: Go to the SENAITE application and search for the client.
 - **Verification**: Verify that the client's name is visible in the clients list.
 
 **Cleanup**: After each test, delete the patient created during the test run and close the browser page.
