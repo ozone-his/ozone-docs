@@ -27,7 +27,7 @@ It is a complete health information system allowing users to customize it by cho
 | **HIS type** | **Component**   | **Version**     |                |
 |--------------|-----------------|-----------------|----------------|
 | EMR          | OpenMRS         | `3.0.0-beta.18` |                |
-| LIMS         | SENAITE         | `2.1.0`         |                |
+| LIMS         | SENAITE         | `2.3.0`         |                |
 | ERP          | Odoo            | `14.0`          |                |
 | BI           | Apache Superset | `3.1.0`         |                |
 | IdP          | JBoss Keycloak  | `22.0.0`        | {==:oz: Pro==} |
