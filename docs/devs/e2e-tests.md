@@ -1,31 +1,40 @@
-# End-to-End (E2E) Testing Documentation
+# Automated End-to-End Tests
 
-## Introduction
-E2E testing is a crucial aspect of Ozone HIS, ensuring that all system workflows function as intended.
+All data flows within Ozone and the actions performed on its HIS components are rigorously validated using a comprehensive suite of automated end-to-end (E2E) tests.
 
-## Prerequisites
-Before running Ozone E2E tests, ensure the following are installed:
+This section is designed to help Ozone developers familiarize themselves with `ozone-e2e`, the repository where all end-to-end (E2E) tests for Ozone are maintained. It will guide you through the architecture of a typical E2E test case and provide the necessary knowledge and practical steps to develop your own test cases.
 
-- Node.js version 18 or higher
-- npm version 10 or higher
+!!! question "Which automation testing framework?"
 
-## Setup Instructions
-1. Clone the Ozone E2E repository: `git clone https://github.com/ozone-his/ozone-e2e`
-2. Navigate to the project directory: `cd ozone-e2e`
-3. Install dependencies: `npm install`
+    `ozone-e2e` uses [Playwright <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://playwright.dev/)
 
-## Test Suite Structure
-The test suite is organized as follows:
-```
+
+!!! tip "Prequisites"
+
+    Install **Node.js** version 18 or higher and **npm** version 10 or higher, see [here <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+## Setting up `ozone-e2e`
+1. Clone the Ozone E2E Repository: Execute the command<br/>
+`git clone https://github.com/ozone-his/ozone-e2e`
+
+2. Navigate to the Project Directory: Change into the directory with<br/>
+`cd ozone-e2e`
+
+3. Install Dependencies: Install the required packages:<br/>
+`npm install`
+
+### Project structure
+The actual E2E tests live in the `e2e` subfolder that is organised as follows:
+```bash
 e2e
-├── tests
-|   ^ Contains test cases.
-└── utils
+ ├── tests
+ |   ^ Contains test cases.
+ └── utils
     ^ Contains utilities needed to set up and tear down tests,
       as well as methods required by the tests to run.
 ```
 
-## Configuration Options
+### Configuration Options
 
 - **Environment Settings**: Use the `.env` file to configure test environment variables (e.g., E2E_BASE_URL).
 - **Browser Selection**: Utilize the `--browser` flag to specify the browser (e.g., chrome, firefox).
@@ -40,14 +49,14 @@ e2e
 - **Failed**: One or more tests have failed during test execution.
 - **Skipped**: Test was skipped due to a conditional directive or configuration.
 
-## Developing New Test Scripts
+## Developing New Test Cases
 1. Create a `fileName.spec.js` file in the `e2e/tests` folder.
 2. Write test scenarios using Playwright's API.
 3. Utilize Playwright's API to interact with the browser, navigate to pages, interact with elements, perform actions, and make assertions.
 
-## Example of a Test Script
+### Example
 
-**Test Purpose**: Verify that a patient with a lab order is synced as a client with analysis request in SENAITE.
+**Test Purpose**: Verify that an OpenMRS patient with a lab order is synced as a client with analysis request in SENAITE.
 
 ```javascript
 import { test, expect } from '@playwright/test';
@@ -64,7 +73,7 @@ test.beforeEach(async ({ page }) => {
   await homePage.startPatientVisit();
 });
 
-test('Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
+test('OpenMRS Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
   // setup
   homePage = new HomePage(page);
   await homePage.goToLabOrderForm();
@@ -90,7 +99,7 @@ test.afterEach(async ({ page }) => {
 });
 ```
 
-## Simplified Explanation
+#### Simplified Explanation
 
 **Test Setup**: Before the test, login to O3, create a new patient, and start a visit.
 
@@ -105,6 +114,3 @@ test.afterEach(async ({ page }) => {
 ## Best Practices
 - Write clear and descriptive test cases.
 - Utilize page objects to encapsulate page-specific logic and interactions for better maintainability.
-
-## Resource
-- [Playwright Testing Framework](https://playwright.dev)
