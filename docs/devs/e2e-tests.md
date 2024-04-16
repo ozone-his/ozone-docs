@@ -105,6 +105,8 @@ test.afterEach(async ({ page }) => {
 
 **Test Case**:
 
+The core of each test case follows the Given-When-Then format (delineated here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test environment (Setup), the actions performed (Replay), and the verification of outcomes (Verification).
+
 - **Setup**: Navigate to the lab order form, add a new lab order, and save it.
 - **Replay**: Go to the SENAITE and search for the client.
 - **Verification**: Verify that the client's name is visible in the clients list.
