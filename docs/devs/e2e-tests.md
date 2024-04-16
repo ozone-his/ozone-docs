@@ -56,7 +56,7 @@ e2e
 
 ### Example
 
-**Test Purpose**: Verify that an OpenMRS patient with a lab order is synced as a client with analysis request in SENAITE.
+**Test Purpose**: Verify that ordering lab test for an OpenMRS patient creates the corresponding SENAITE client with analysis request.
 
 ```javascript
 import { test, expect } from '@playwright/test';
@@ -73,7 +73,7 @@ test.beforeEach(async ({ page }) => {
   await homePage.startPatientVisit();
 });
 
-test('OpenMRS Patient with lab order becomes client with analysis request in SENAITE', async ({ page }) => {
+test('Ordering lab test for an OpenMRS patient creates the corresponding SENAITE client with analysis request', async ({ page }) => {
   // setup
   homePage = new HomePage(page);
   await homePage.goToLabOrderForm();
@@ -106,7 +106,7 @@ test.afterEach(async ({ page }) => {
 **Test Case**:
 
 - **Setup**: Navigate to the lab order form, add a new lab order, and save it.
-- **Replay**: Go to the SENAITE application and search for the client.
+- **Replay**: Go to the SENAITE and search for the client.
 - **Verification**: Verify that the client's name is visible in the clients list.
 
 **Cleanup**: After the test, delete the patient created during the test run and close the browser page.
