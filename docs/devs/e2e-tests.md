@@ -36,8 +36,21 @@ e2e
 
 ### Configuration Options
 
-- **Environment Settings**: Use the `.env` file to configure test environment variables (e.g., E2E_BASE_URL).
-- **Browser Selection**: Utilize the `--browser` flag to specify the browser (e.g., chrome, firefox).
+ **Environment Settings**:
+
+The configuration in the [.env](https://github.com/ozone-his/ozone-e2e/blob/main/.env) file provides different URLs and credentials used for accessing various environments and components of Ozone. Developers can configure their development, testing, and deployment environments correctly to ensure seamless interaction with Ozone. Here's a breakdown of the environment variables:
+
+ URLs:
+
+- There are separate URLs provided for different environments, such as demo, development (Dev), and quality assurance (QA).
+- Each component of the system, such as O3, Odoo, SENAITE, Keycloak, and Analytics, has its own URL for each environment. These URLs are used for accessing the respective components during development, testing, and demonstration.
+
+Credentials:
+
+- The credentials are used for authentication when accessing the respective components.
+- There are different sets of credentials provided for accessing the system components. For example, there are credentials for O3 (OpenMRS), Odoo, and SENAITE components.
+
+
 
 ## Running Tests
 - Run all tests: `npx playwright test`
