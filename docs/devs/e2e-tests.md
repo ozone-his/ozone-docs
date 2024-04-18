@@ -54,14 +54,30 @@ All configuration variables are set to the desired values by editing and saving 
 Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS components in each test environment, as well as the credentials needed to execute the test cases.
 
 ## Running Tests
-- Run all tests: `npx playwright test`
-- Run tests in a specific file: `npx playwright test <file name>`
-- Run tests with custom configuration: `npx playwright test --project=<browser name>`
+- Run all tests: Execute all tests available in your test suite using the following command:
 
-## Interpreting Test Results
-- **Passed**: All tests passed without any errors.
-- **Failed**: One or more tests have failed during test execution.
-- **Skipped**: Test was skipped due to a conditional directive or configuration.
+```bash
+ npx playwright test
+```
+
+- Run tests in a specific file. If you want to focus on a particular test file, specify the file name, and only tests within that file will be executed. For example:
+
+```bash
+ npx playwright test Odoo
+```
+
+- Run tests with custom configuration. Playwright allows you to define different configurations for running tests in various browsers. You can specify the browser name (e.g., "chromium", "firefox", "webkit") using the --project flag to run tests in a specific browser. For instance:
+
+```bash
+ npx playwright test --project=chromium
+```
+
+ Interpreting Test Results
+
+- **Passed**: When all tests within the suite pass without encountering any errors, the overall result is marked as "Passed". This means that the application behaved as expected under the test conditions.
+- **Failed**: If any test within the suite encounters an error or assertion failure during execution, the overall result is marked as "Failed". Determine whether the failure is specific to the test case, a particular component or feature, or the entire application. Once you've identified the root cause of the failure, implement a fix to address the issue. This may involve modifying test assertions, updating application code, or addressing environmental dependencies.
+
+- **Skipped**: Sometimes, tests are intentionally skipped based on certain conditions or configurations. These skipped tests are not executed during the test run and are marked as "Skipped" in the test result.
 
 ## Developing New Test Cases
 1. Create a `fileName.spec.js` file in the `e2e/tests` folder.
