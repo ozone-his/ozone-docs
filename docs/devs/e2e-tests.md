@@ -34,23 +34,24 @@ e2e
       as well as methods required by the tests to run.
 ```
 
-### Configuration Options
+### Project configuration
 
- **Environment Settings**:
+Our E2E test suite is designed to interact with three distinct Ozone environments, allowing seamless switching as needed:
 
-The configuration in the [.env](https://github.com/ozone-his/ozone-e2e/blob/main/.env) file provides different URLs and credentials used for accessing various environments and components of Ozone. Developers can configure their development, testing, and deployment environments correctly to ensure seamless interaction with Ozone. Here's a breakdown of the environment variables:
+|          |                                                                                                                                             |
+|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| **Dev**  | Hosts the latest, bleeding-edge versions of Ozone, updated continuously as the development team commits new code to the Ozone repositories. |
+| **QA**   | Used for staging Ozone prior to releases, facilitating final rounds of testing to ensure quality before launch.                             |
+| **Demo** | Features the latest stable release of Ozone, readily accessible online for demonstration purposes and advertised through the Ozone website. |
 
- URLs:
+Two important configuration variables govern the high-level behavior of our E2E test suite:
 
-- There are separate URLs provided for different environments, such as demo, development (Dev), and quality assurance (QA).
-- Each component of the system, such as O3, Odoo, SENAITE, Keycloak, and Analytics, has its own URL for each environment. These URLs are used for accessing the respective components during development, testing, and demonstration.
+1. **`TEST_ENVIRONMENT`**: This variable specifies which one of the three environments — `dev`, `qa`, or `demo` — should be targeted for testing.
+2. **`TEST_PRO`**: This toggle, set to `true` for testing Ozone Pro or `false` for Ozone FOSS, determines the version of the software under test.
 
-Credentials:
+All configuration variables are set to the desired values by editing and saving the [`.env` file <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/ozone-his/ozone-e2e/blob/main/.env) prior to running the tests.
 
-- The credentials are used for authentication when accessing the respective components.
-- There are different sets of credentials provided for accessing the system components. For example, there are credentials for O3 (OpenMRS), Odoo, and SENAITE components.
-
-
+Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS components in each test environment, as well as the credentials needed to execute the test cases.
 
 ## Running Tests
 - Run all tests: `npx playwright test`
