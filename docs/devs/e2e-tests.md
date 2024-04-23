@@ -21,7 +21,7 @@ This section is designed to help Ozone developers familiarize themselves with [`
 2. Navigate to the Project Directory: Change into the directory with<br/>
 `cd ozone-e2e`
 
-3. Install Dependencies: Install the required packages:<br/>
+3. Install Dependencies: Install the required packages<br/>
 `npm install`
 
 ### Project structure
@@ -31,9 +31,11 @@ e2e
  ├── tests
  |   ^ Contains test cases.
  └── utils
-    ^ Contains utilities needed to set up and tear down tests,
-      as well as methods required by the tests to run.
+     ^ Contains utilities needed to set up and tear down tests,
+       as well as methods required by the tests to run.
 ```
+
+The data flows resulting from the integration between specific component pairs (e.g., between Odoo and OpenMRS) are typically tested through a designated test file for each pair (e.g., `odoo-openmrs.spec.js`). All test files are located in the [`e2e/tests` directory](https://github.com/ozone-his/ozone-e2e/tree/main/e2e/tests). We encourage you to explore and review the current set of tests to understand the testing process better.
 
 ### Project configuration
 
@@ -47,40 +49,53 @@ Our E2E test suite is designed to interact with three distinct Ozone environment
 
 Two important configuration variables govern the high-level behavior of our E2E test suite:
 
-1. **`TEST_ENVIRONMENT`**: This variable specifies which one of the three environments — `dev`, `qa`, or `demo` — should be targeted for testing.<br/>E.g., `TEST_ENVIRONMENT=dev`.
-2. **`TEST_PRO`**: This toggle, set to `true` for testing Ozone Pro or `false` for Ozone FOSS, determines the flavour of Ozone HIS under test.<br/>E.g., `TEST_PRO=false`.
+1. **`TEST_ENVIRONMENT`**: This variable specifies which one of the three environments — `dev`, `qa`, or `demo` — should be targeted for testing.<br/>E.g.:
+```
+TEST_ENVIRONMENT=dev
+```
+
+2. **`TEST_PRO`**: This toggle, set to `true` for testing Ozone Pro or `false` for Ozone FOSS, determines the flavour of Ozone HIS under test.<br/>E.g.:
+```
+TEST_PRO=false
+```
 
 All configuration variables are set to the desired values by editing and saving the [`.env` file <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/ozone-his/ozone-e2e/blob/main/.env) prior to running the tests.
 
 Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS components in each test environment, as well as the credentials needed to execute the test cases.
 
+Here’s a clearer and more structured Markdown rendition of your instructions for running tests:
+
 ## Running Tests
-- Run all tests: Execute all tests available in your test suite using the following command:
+
+### Default test execution
+To run all tests in the test suite, use the default command:
 
 ```bash
- npx playwright test
+npx playwright test
 ```
 
-- Run tests in a specific file. If you want to focus on a particular test file, specify the file name, and only tests within that file will be executed. For example:
+### Running specific tests
+To focus on testing data flows between specific pairs of HIS components, you can run tests contained in a specific file. For example, to test the integration data flows between Odoo and OpenMRS:
 
 ```bash
- npx playwright test openmrs-odoo-flows
+npx playwright test odoo-openmrs-flows
 ```
 
-- Run tests with custom configuration. Playwright allows you to define different configurations for running tests in various browsers. You can specify the browser name (e.g., "chromium", "firefox", "webkit") using the --project flag to run tests in a specific browser. For instance:
+### Selecting your browser
+Playwright supports various configurations for running tests across different browsers. Specify the browser using the `--project` flag. For instance, to run tests in Chromium:
 
 ```bash
- npx playwright test --project=chromium
+npx playwright test --project=chromium
 ```
 
- Interpreting Test Results
+### Interpreting test results
 
 - **Passed**: When all tests within the suite pass without encountering any errors, the overall result is marked as "Passed". This means that the application behaved as expected under the test conditions.
 - **Failed**: If any test within the suite encounters an error or assertion failure during execution, the overall result is marked as "Failed". Determine whether the failure is specific to the test case, a particular component or feature, or the entire application. Once you've identified the root cause of the failure, implement a fix to address the issue. This may involve modifying test assertions, updating application code, or addressing environmental dependencies.
 
 - **Skipped**: Sometimes, tests are intentionally skipped based on certain conditions or configurations. These skipped tests are not executed during the test run and are marked as "Skipped" in the test result.
 
-## Developing New Test Cases
+## Developing Test Cases
 1. Create a `fileName.spec.js` file in the `e2e/tests` folder.
 2. Write test scenarios using Playwright's API.
 3. Utilize Playwright's API to interact with the browser, navigate to pages, interact with elements, perform actions, and make assertions.
