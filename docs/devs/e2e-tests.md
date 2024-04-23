@@ -2,12 +2,13 @@
 
 All data flows within Ozone and the actions performed on its HIS components are rigorously validated using a comprehensive suite of automated end-to-end (E2E) tests.
 
-This section is designed to help Ozone developers familiarize themselves with `ozone-e2e`, the repository where all end-to-end (E2E) tests for Ozone are maintained. It will guide you through the architecture of a typical E2E test case and provide the necessary knowledge and practical steps to develop your own test cases.
+This section is designed to help Ozone developers familiarize themselves with [`ozone-e2e`](https://github.com/ozone-his/ozone-e2e), the repository where all end-to-end tests for Ozone are maintained. It will guide you through the architecture of a typical end-to-end test case and provide the necessary knowledge and practical steps to develop your own test cases.
 
-!!! question "Which automation testing framework?"
+!!! info "Some facts about `ozone-e2e`"
 
-    `ozone-e2e` uses [Playwright <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://playwright.dev/)
-
+    - We use [Playwright <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://playwright.dev/), the automation testing framework.
+    - We test our data flows through the actions and effects that they have on Ozone HIS components.
+    - We focus on how these actions and effects are experienced by end users.
 
 !!! tip "Prequisites"
 
@@ -25,7 +26,7 @@ This section is designed to help Ozone developers familiarize themselves with `o
 
 ### Project structure
 The actual E2E tests live in the `e2e` subfolder that is organised as follows:
-```bash
+```
 e2e
  ├── tests
  |   ^ Contains test cases.
@@ -46,8 +47,8 @@ Our E2E test suite is designed to interact with three distinct Ozone environment
 
 Two important configuration variables govern the high-level behavior of our E2E test suite:
 
-1. **`TEST_ENVIRONMENT`**: This variable specifies which one of the three environments — `dev`, `qa`, or `demo` — should be targeted for testing.
-2. **`TEST_PRO`**: This toggle, set to `true` for testing Ozone Pro or `false` for Ozone FOSS, determines the version of the software under test.
+1. **`TEST_ENVIRONMENT`**: This variable specifies which one of the three environments — `dev`, `qa`, or `demo` — should be targeted for testing.<br/>E.g., `TEST_ENVIRONMENT=dev`.
+2. **`TEST_PRO`**: This toggle, set to `true` for testing Ozone Pro or `false` for Ozone FOSS, determines the flavour of Ozone HIS under test.<br/>E.g., `TEST_PRO=false`.
 
 All configuration variables are set to the desired values by editing and saving the [`.env` file <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/ozone-his/ozone-e2e/blob/main/.env) prior to running the tests.
 
