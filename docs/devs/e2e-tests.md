@@ -64,7 +64,7 @@ Additionally, the `.env` file contains a range of configuration variables that s
 - Run tests in a specific file. If you want to focus on a particular test file, specify the file name, and only tests within that file will be executed. For example:
 
 ```bash
- npx playwright test testOdooIntegration
+ npx playwright test openmrs-odoo-flows
 ```
 
 - Run tests with custom configuration. Playwright allows you to define different configurations for running tests in various browsers. You can specify the browser name (e.g., "chromium", "firefox", "webkit") using the --project flag to run tests in a specific browser. For instance:
