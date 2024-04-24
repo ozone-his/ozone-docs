@@ -91,14 +91,32 @@ npx playwright test --project=chromium
 ### Interpreting test results
 
 - **Passed**: When all tests within the suite pass without encountering any errors, the overall result is marked as "Passed". This means that the application behaved as expected under the test conditions.
+
 - **Failed**: If any test within the suite encounters an error or assertion failure during execution, the overall result is marked as "Failed". Determine whether the failure is specific to the test case, a particular component or feature, or the entire application. Once you've identified the root cause of the failure, implement a fix to address the issue. This may involve modifying test assertions, updating application code, or addressing environmental dependencies.
 
 - **Skipped**: Sometimes, tests are intentionally skipped based on certain conditions or configurations. These skipped tests are not executed during the test run and are marked as "Skipped" in the test result.
 
 ## Developing Test Cases
-1. Create a `fileName.spec.js` file in the `e2e/tests` folder.
-2. Write test scenarios using Playwright's API.
-3. Utilize Playwright's API to interact with the browser, navigate to pages, interact with elements, perform actions, and make assertions.
+
+a) To write a new test in a new spec file, follow these steps:
+
+1. Create a new spec file with a `.spec.js` extension within the `e2e/tests` folder.
+
+2. Write the test case that you want to automate. The test case should cover various user interactions and functionalities of the application. Use Playwright's API methods to describe the steps for each test scenario. Th may include actions like clicking buttons, filling out forms, verifying text content, etc.
+
+3. Utilize Playwright's API to interact with the browser, navigate to pages, interact with elements, perform actions, and make assertions to verify that the expected behavior of the flow matches the actual behavior observed during the test execution. Playwright provides assertion methods like `expect`, `toEqual`, `toContain`, etc., to perform these validations.
+
+b) To write a new test in an already existing spec file, follow these steps:
+
+1. Locate the spec file in the `e2e/tests` folder where you want to add the new test case.
+
+2. Write a new test case and define the test steps for the data flows you want to automate.
+
+Once you've written your test, use the right test runner to check if the new test works as expected. For instance, if you've written the test in `openmrs-senaite-flows.spec.js`, you can run:
+
+```bash
+npx playwright test openmrs-senaite-flows
+```
 
 ### Example
 
