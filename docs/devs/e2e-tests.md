@@ -35,7 +35,7 @@ e2e
        as well as methods required by the tests to run.
 ```
 
-The data flows resulting from the integration between specific component pairs (e.g., between Odoo and OpenMRS) are typically tested through a designated test file for each pair (e.g., `odoo-openmrs.spec.js`). All test files are located in the [`e2e/tests` directory](https://github.com/ozone-his/ozone-e2e/tree/main/e2e/tests). We encourage you to explore and review the current set of tests to understand the testing process better.
+The data flows resulting from the integration between specific component pairs (e.g., between Odoo and OpenMRS) are typically tested through a designated test file for each pair (e.g., `odoo-openmrs-flows.spec.js`). All test files are located in the [`e2e/tests` directory](https://github.com/ozone-his/ozone-e2e/tree/main/e2e/tests). We encourage you to explore and review the current set of tests to understand the testing process better and evaluate the extent of their coverage.
 
 ### Project configuration
 
