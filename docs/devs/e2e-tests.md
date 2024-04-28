@@ -98,29 +98,40 @@ npx playwright test --project=chromium
 
 ## Developing Test Cases
 
-a) To write a new test in a new spec file, follow these steps:
+### Naming test files
 
-1. Create a new spec file with a `.spec.js` extension within the `e2e/tests` folder.
+Our test cases cover the data flows between Ozone HIS components and we have taken the convention to group test cases by pairs of components. For example all data flows between OpenMRS and SENAITE are grouped together in a file named `openmrs-senaite-flows.spec.js` that lives in the `e2e/tests`. This file contains all test cases for data flows going from OpenMRS to SENAITE as well as those going from SENAITE to OpenMRS.
 
-2. Write the test case that you want to automate. The test case should cover various user interactions and functionalities of the application. Use Playwright's API methods to describe the steps for each test scenario. Th may include actions like clicking buttons, filling out forms, verifying text content, etc.
+The naming is alphabetical per convention. The data flows going both ways between hypothetical HIS components _Foo_ and _Bar_ would live in a file named `bar-foo-flows.spec.js` and so on and so forth for all pairs of HIS components.
 
-3. Utilize Playwright's API to interact with the browser, navigate to pages, interact with elements, perform actions, and make assertions to verify that the expected behavior of the flow matches the actual behavior observed during the test execution. Playwright provides assertion methods like `expect`, `toEqual`, `toContain`, etc., to perform these validations.
+### Testing actions and effects
 
-b) To write a new test in an already existing spec file, follow these steps:
+While Ozone relies on its components default behaviour and features, we do encompass in our E2E test suite the actions performed when using the user experience of the components and the effects observed throught the user experience of those components. This ensures that test are truly end-to-end with a focus on the end-user experience.
 
-1. Locate the spec file in the `e2e/tests` folder where you want to add the new test case.
+To write a test case:
 
-2. Write a new test case and define the test steps for the data flows you want to automate.
+- Identify the user interactions and functionalities to test between a pair of HIS components.
+- Use Playwright’s API to script the actions within each test scenario, such as navigating pages, clicking buttons, filling forms, and verifying UI elements.
 
-Once you've written your test, use the right test runner to check if the new test works as expected. For instance, if you've written the test in `openmrs-senaite-flows.spec.js`, you can run:
+### Utilizing Playwright
 
-```bash
+Leverage Playwright’s comprehensive API to engage with the browser:
+
+- Navigate to pages.
+- Interact with page elements.
+- Execute actions.
+- Assert expected behaviors using methods like `expect`, `toEqual`, `toContain`, etc.
+
+For detailed usage, refer to [Playwright's documentation <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://playwright.dev/docs/intro).
+
+Once you've written your test, use the appropriate test runner to check that the test works as expected. For instance for the OpenMRS-SENAITE flows written in `openmrs-senaite-flows.spec.js`, run:
+```
 npx playwright test openmrs-senaite-flows
 ```
 
-### Example
+### Analyzing a sample test case
 
-**Test Purpose**: Verify that ordering lab test for an OpenMRS patient creates the corresponding SENAITE client with analysis request.
+Again, in the context of the data flows between OpenMRS and SENAITE, let us verify that ordering lab test for an OpenMRS patient does create the corresponding SENAITE client with an analysis request. Let us look at the sample test case code below:
 
 ```javascript
 import { test, expect } from '@playwright/test';
@@ -137,7 +148,7 @@ test.beforeEach(async ({ page }) => {
   await homePage.startPatientVisit();
 });
 
-test('Ordering lab test for an OpenMRS patient creates the corresponding SENAITE client with analysis request', async ({ page }) => {
+test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAITE client with an analysis request.', async ({ page }) => {
   // setup
   homePage = new HomePage(page);
   await homePage.goToLabOrderForm();
@@ -163,20 +174,16 @@ test.afterEach(async ({ page }) => {
 });
 ```
 
-#### Simplified Explanation
+We observe that the test structure is broken down between a **setup**, the actual **test case** and a **cleanup**:
 
-**Test Setup**: Before the test, login to O3, create a new patient, and start a visit.
+**Test Setup**: Before the actual test, we perform some preliminary actions: logging into Ozone (with SSO), creating a new patient, and starting a visit for the newly created patient.
 
-**Test Case**:
+**Test Case**: The core of each test case follows the _Given-When-Then_ format (commented out here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test environment ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes ("Verification"). In our example:
 
-The core of each test case follows the Given-When-Then format (delineated here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test environment (Setup), the actions performed (Replay), and the verification of outcomes (Verification).
-
-- **Setup**: Navigate to the lab order form, add a new lab order, and save it.
-- **Replay**: Go to the SENAITE and search for the client.
+- **Setup**: Navigating to the lab order form, adding a new lab order, and saving it.
+- **Replay**: Navigating to the SENAITE HIS component and searching for the client by name.
 - **Verification**: Verify that the client's name is visible in the clients list.
 
 **Cleanup**: After the test, delete the patient created during the test run and close the browser page.
 
-## Best Practices
-- Write clear and descriptive test cases.
-- Utilize page objects to encapsulate page-specific logic and interactions for better maintainability.
+We Utilize page objects to encapsulate page-specific logic and interactions for better maintainability.
