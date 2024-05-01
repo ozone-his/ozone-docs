@@ -66,7 +66,7 @@ flowchart LR
 
 :construction: tbc
 
-## Data Flows between OpenMRS and ERPNext
+## Data Flows between ERPNext and OpenMRS 
 
 ### OpenMRS Patient → ERPNext Customer
 
@@ -85,14 +85,16 @@ None
 
 #### Options
 
-!!! note "Override Default Behavior"
+=== "Behaviour"
 
-    Take control of your settings! Override the default options by supplying your custom configurations in the `ozone/distro/configs/eip-erpnext-openmrs/application.properties` file.
+    - <small>**default**</small> &nbsp; An OpenMRS patient is synchronised as an ERPNext customer when a first billable item is ordered from OpenMRS.
+    - <small>_optional_</small> &nbsp; An OpenMRS patient is always synchronised as an ERPNext customer.
 
+=== "Configuration"
 
-| Property Name                         | Description                                                                                                                                                                                                                                                                                                                                                                                                   | Default Value |
-|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| `erpnext.openmrs.enable.patient.sync` | Controls the automatic synchronization of patients from OpenMRS to ERPNext. When this property is set to `true`, a patient record created in OpenMRS is immediately mirrored as a customer record in ERPNext. If this property is set to `false`, the default behavior is followed, which is to create a customer record in ERPNext only when the first billable item for the patient is recorded in OpenMRS. | `false`       |
+    - File:<br/>`ozone/distro/configs/eip-erpnext-openmrs/application.properties`
+    - Property name:<br/>`erpnext.openmrs.enable.patient.sync`
+    - Possible values:<br/>`false` (<small>**default**</small>), `true`
 
 ### OpenMRS Billable Items ⭆ ERPNext Quotation
 
@@ -119,7 +121,7 @@ None
 ### OpenMRS Billable Item → ERPNext Quotation Line
 
 #### Summary
-Each billable item ordered in OpenMRS for a patient is synchronized as a quotation item in the corresponding customer's draft ERPNext quotation.
+Each billable item ordered in OpenMRS for a patient is synchronized in ERPNext as a quotation item in the corresponding customer's draft quotation.
 
 #### Main Flow
 ``` mermaid
@@ -146,9 +148,9 @@ None
 
 #### Summary
 As soon as the first billable item is ordered for a patient in OpenMRS,
-a draft quotation is created in ERPNext based on the Patient's Visit.
+a draft quotation is created in ERPNext based on the patient's visit.
 When the visit is ended, the quotation is submitted.
-Following submission, the quotation is eligible for conversion into a Sales Order.
+Following submission, the quotation is eligible for conversion into a sales order.
 
 #### Main Flow
 ``` mermaid
