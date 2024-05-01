@@ -15,14 +15,18 @@ This section is designed to help Ozone developers familiarize themselves with [`
     Install **Node.js** version 18 or higher and **npm** version 10 or higher, see [here <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Setting up `ozone-e2e`
-1. Clone the Ozone E2E Repository: Execute the command<br/>
-`git clone https://github.com/ozone-his/ozone-e2e`
-
-2. Navigate to the Project Directory: Change into the directory with<br/>
-`cd ozone-e2e`
-
-3. Install Dependencies: Install the required packages<br/>
-`npm install`
+Clone the Ozone E2E Repository: Execute the command<br/>
+```bash
+git clone https://github.com/ozone-his/ozone-e2e
+```
+Navigate to the Project Directory: Change into the directory with<br/>
+```bash
+cd ozone-e2e
+```
+Install Dependencies: Install the required packages<br/>
+```bash
+npm install
+```
 
 ### Project structure
 The actual E2E tests live in the `e2e` subfolder that is organised as follows:
@@ -70,21 +74,21 @@ Here’s a clearer and more structured Markdown rendition of your instructions f
 ### Default test execution
 To run all tests in the test suite, use the default command:
 
-```bash
+```
 npx playwright test
 ```
 
 ### Running specific tests
 To focus on testing data flows between specific pairs of HIS components, you can run tests contained in a specific file. For example, to test the integration data flows between Odoo and OpenMRS:
 
-```bash
+```
 npx playwright test odoo-openmrs-flows
 ```
 
 ### Selecting your browser
 Playwright supports various configurations for running tests across different browsers. Specify the browser using the `--project` flag. For instance, to run tests in Chromium:
 
-```bash
+```
 npx playwright test --project=chromium
 ```
 
@@ -131,7 +135,7 @@ npx playwright test openmrs-senaite-flows
 
 ### Analyzing a sample test case
 
-Again, in the context of the data flows between OpenMRS and SENAITE, let us verify that ordering lab test for an OpenMRS patient does create the corresponding SENAITE client with an analysis request. Let us look at the sample test case code below:
+Again, following our example of the data flows between OpenMRS and SENAITE, let us verify that ordering a lab test for an OpenMRS patient does create the corresponding SENAITE client with an analysis request. Let us look at the sample test case code below:
 
 ```javascript
 import { test, expect } from '@playwright/test';
@@ -149,6 +153,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAITE client with an analysis request.', async ({ page }) => {
+  
   // setup
   homePage = new HomePage(page);
   await homePage.goToLabOrderForm();
