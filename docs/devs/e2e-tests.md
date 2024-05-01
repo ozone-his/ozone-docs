@@ -152,15 +152,15 @@ test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAI
   // setup
   homePage = new HomePage(page);
   await homePage.goToLabOrderForm();
+
+  // replay
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
   await homePage.saveLabOrder();
 
-  // replay
+  // verify
   await homePage.goToSENAITE();
   await expect(page).toHaveURL(/.*senaite/);
-
-  // verify
   await homePage.searchClientInSENAITE();
   const clientName = `${patientName.firstName} ${patientName.givenName}`;
   const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
