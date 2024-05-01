@@ -1,8 +1,12 @@
-??? question "Wait, did you check the online demo? :thinking:"
+!!! info ""
 
-    Before diving into the Quick Start or implementer guides, visit [our website]({{ homepage }}) and click **Try Demo** to explore the official Ozone Pro online demo.
+    This section of the Ozone Docs is designed for **digital health software implementers and integrators**, focusing on how to install, configure, and run Ozone HIS.
 
 # Quick Start
+
+??? question "Did you check the online demo? :thinking:"
+
+    Before diving into the Quick Start or implementer guides, visit [our website]({{ homepage }}) and click **Try Demo** to explore the official Ozone Pro online demo.
 
 === ":fontawesome-solid-location-dot: Locally"
 

@@ -17,7 +17,7 @@ flowchart LR
 
 None
 
-#### Configurability
+#### Options
 
 None
 

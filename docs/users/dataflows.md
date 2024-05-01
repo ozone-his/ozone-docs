@@ -49,8 +49,8 @@ There are also **many-to-1** data flows between a component and another.
 
 #### **Prerequisite Flows**
 
-Certain data flows are dependent on preceding ones, known as prerequisite flows. While these initial flows must occur first, they typically execute automatically and don't require manual activation before the main flow begins. This section will be used to enumartes prerequisite flows, if any.
+Certain data flows are dependent on preceding ones, known as _prerequisite flows_. While these initial flows must occur first, they typically execute automatically and don't require manual activation before the main flow begins. This section will be used to enumerate prerequisite flows, if any.
 
-#### **Configurability**
+#### **Options**
 
-In this section we enumerates whether the flow is configurable and to what extent.
+This section enumerates the available options for the documented data flow and describes how to configure them.

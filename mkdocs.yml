@@ -2,19 +2,19 @@ site_name: Docs
 repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
-  - Implementers:
+  - System Integrators:
     - Quick Start: 'index.md'
     - Create Your Own Distribution: 'create-distro.md'
     - Override Inherited Configs: 'override-configs.md'
-  - Users:
-    - Overview: 'users/overview.md'
+  - Functional Users:
+    - Overview: 'users/index.md'
     - Single Sign-on: 'users/sso.md'
     - Data Flows Guide: 'users/dataflows.md'
     - EMR-ERP Flows: 'users/emr-erp.md'
     - EMR-LIMS Flows: 'users/emr-lims.md'
     - IdP Flows: 'users/all-idp.md'
     - Ozone Analytics: 'users/analytics.md'
-  - Developers:
+  - Software Developers:
     - Architecture Overview: 'devs/index.md'
     - Default Architecture: 'devs/default-archi.md'
     - EIP Client: 'devs/eip-client.md'

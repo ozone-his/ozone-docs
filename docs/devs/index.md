@@ -1,3 +1,7 @@
+!!! info ""
+
+    This section of the Ozone Docs is designed for **software architects, engineers, and developers**. It provides comprehensive information on Ozone's architecture, guides on integrating new software components, and technical advice on developing within Ozone.
+
 # Architecture Overview
 
 ## Ozone Platform

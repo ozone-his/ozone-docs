@@ -1,3 +1,7 @@
+!!! info ""
+
+    This section of the Ozone Docs is tailored for **digital health decision-makers and business analysts**, detailing Ozone's functionalities and highlighting its benefits for end users of health information systems and integrated digital health software.
+
 # Overview
 
 Ozone is an easy-to-install {==growing suite of digital health software==},
@@ -57,7 +61,7 @@ Ozone is powered by an interoperability EIP[^eip] framework that orchestrates se
 
 ## What Ozone is not
 
-Ozone is <u>not a fork</u> of other open-source projects; it utilizes standard, untouched components.
+Ozone is <u>not a fork</u> of other open-source projects; it utilizes standard, officially released and untouched software components.
 
 [^lts]: Long-term support
 
