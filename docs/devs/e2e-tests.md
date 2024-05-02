@@ -156,9 +156,9 @@ test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAI
   
   // setup
   homePage = new HomePage(page);
-  await homePage.goToLabOrderForm();
 
   // replay
+  await homePage.goToLabOrderForm();
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
   await homePage.saveLabOrder();
@@ -185,10 +185,8 @@ We observe that the test structure is broken down between a **setup**, the actua
 
 **Test Case**: The core of each test case follows the _Given-When-Then_ format (commented out here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test environment ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes ("Verification"). In our example:
 
-- **Setup**: Navigating to the lab order form, adding a new lab order, and saving it.
-- **Replay**: Navigating to the SENAITE HIS component and searching for the client by name.
-- **Verification**: Verify that the client's name is visible in the clients list.
+- **Setup**:
+- **Replay**: Navigate to the lab order form, add a lab test, and save the form.
+- **Verification**: Navigate to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
 
 **Cleanup**: After the test, delete the patient created during the test run and close the browser page.
-
-We Utilize page objects to encapsulate page-specific logic and interactions for better maintainability.
