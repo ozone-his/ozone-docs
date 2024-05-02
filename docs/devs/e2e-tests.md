@@ -185,7 +185,7 @@ We observe that the test structure is broken down between a **setup**, the actua
 
 **Test Case**: The core of each test case follows the _Given-When-Then_ format (commented out here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test environment ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes ("Verification"). In our example:
 
-- **Setup**:
+- **Setup**: For this specific test case, the test setup is performed in the `beforeEach()` function which is explained in the "Test Setup" section above.
 - **Replay**: Navigate to the lab order form, add a lab test, and save the form.
 - **Verification**: Navigate to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
 
