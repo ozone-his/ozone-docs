@@ -10,7 +10,7 @@ Ozone provides a series Apache Maven-based tools to facilitate the assembly of y
 
 !!! tip "Prequisites"
 
-    Install [Git](https://github.com/git-guides/install-git), [Maven](https://www.baeldung.com/install-maven-on-windows-linux-mac) and [Docker Compose](https://docs.docker.com/compose/install/)
+    Install [Git <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/git-guides/install-git), [Maven <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://www.baeldung.com/install-maven-on-windows-linux-mac) and [Docker Compose <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.docker.com/compose/install/)
 
 The Ozone Maven Archetype generates a foundational skeleton project, providing a customizable base for any specific implementation requirements.
 

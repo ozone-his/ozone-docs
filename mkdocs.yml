@@ -18,6 +18,7 @@ nav:
     - Architecture Overview: 'devs/index.md'
     - Default Architecture: 'devs/default-archi.md'
     - EIP Client: 'devs/eip-client.md'
+    - Automated E2E Tests: 'devs/e2e-tests.md'
 theme:
   name: material
   custom_dir: overrides
