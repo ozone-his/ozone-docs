@@ -145,16 +145,16 @@ import { patientName } from '../utils/functions/testBase';
 let homePage: HomePage;
 
 test.beforeEach(async ({ page }) => {
-  homePage = new HomePage(page);
-  await homePage.initiateLogin();
-  await expect(page).toHaveURL(/.*home/);
-  await homePage.createPatient();
-  await homePage.startPatientVisit();
+  const homePage = new HomePage(page);
 });
 
 test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAITE client with an analysis request.', async ({ page }) => {
   
   // replay
+  await homePage.initiateLogin();
+  await expect(page).toHaveURL(/.*home/);
+  await homePage.createPatient();
+  await homePage.startPatientVisit();
   await homePage.goToLabOrderForm();
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
@@ -171,7 +171,6 @@ test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAI
 });
 
 test.afterEach(async ({ page }) => {
-  homePage = new HomePage(page);
   await homePage.deletePatient();
   await page.close();
 });
@@ -179,12 +178,12 @@ test.afterEach(async ({ page }) => {
 
 We observe that the test structure is broken down between a **setup**, the actual **test case** and a **cleanup**:
 
-**Test Setup**: Before the actual test, we perform some preliminary actions: logging into Ozone (with SSO), creating a new patient, and starting a visit for the newly created patient.
+**Setup**: Instantiating a new 'homePage' object using the HomePage class constructor.
 
 **Test Case**: The core of each test case follows the _Given-When-Then_ pattern (organised here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes as experienced by the end-user ("Verification"). In our example:
 
-- **Setup**: Omitted here. All aspects of the setup have been performed in the `beforeEach()` method.
-- **Replay**: Navigation to the lab order form, add a lab test, and save the form.
-- **Verification**: Navigation to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
+- **Replay**: Logging into Ozone (with SSO), creating a new patient, and starting a visit for the newly created patient. Navigating to the lab order form, adding a lab test, and saving the form.
+
+- **Verification**: Navigating to the SENAITE HIS component and searching for the client by name. Verifying that the client's name is visible in the clients list.
 
 **Cleanup**: The post-test cleanup consists of deleting the test patient and closing the browser page.
