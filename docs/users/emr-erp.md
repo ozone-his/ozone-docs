@@ -99,9 +99,11 @@ None
 ### OpenMRS Billable Items ⭆ ERPNext Quotation
 
 #### Summary
-As soon as the first billable item is ordered for a patient in OpenMRS,
-a quotation is created in ERPNext for the corresponding customer.
-Billable items ordered in the same visit are added to the same quotation as quotation items.
+As soon
+as the first billable item is ordered for a patient in OpenMRS a quotation is created in ERPNext for the corresponding customer,
+and the quotation is associated with the OpenMRS patient's visit.
+All billable items ordered for a patient within the same OpenMRS visit are added to the ERPNext quotation
+associated with this OpenMRS visit.
 
 #### Main Flow
 ``` mermaid
@@ -147,10 +149,7 @@ None
 ### OpenMRS Visit → ERPNext Quotation
 
 #### Summary
-As soon as the first billable item is ordered for a patient in OpenMRS,
-a draft quotation is created in ERPNext based on the patient's visit.
-When the visit is ended, the quotation is submitted.
-Following submission, the quotation is eligible for conversion into a sales order.
+Ending a patient's visit in OpenMRS submits the ERPNext quotation associated with this visit.
 
 #### Main Flow
 ``` mermaid
@@ -161,6 +160,7 @@ flowchart LR
 #### Prerequisite Flows
 
 - [OpenMRS patient → ERPNext customer](#openmrs-patient-erpnext-customer)
+- [OpenMRS Billable Items ⭆ ERPNext Quotation](#openmrs-billable-items-erpnext-quotation)
 
 #### Options
 
