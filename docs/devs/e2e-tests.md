@@ -154,9 +154,6 @@ test.beforeEach(async ({ page }) => {
 
 test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAITE client with an analysis request.', async ({ page }) => {
   
-  // setup
-  homePage = new HomePage(page);
-
   // replay
   await homePage.goToLabOrderForm();
   await page.click('button:has-text("Add")');
