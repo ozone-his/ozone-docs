@@ -2,7 +2,7 @@ site_name: Docs
 repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
-  - System Integrators:
+  - System Implementers:
     - Quick Start: 'index.md'
     - Create Your Own Distribution: 'create-distro.md'
     - Override Inherited Configs: 'override-configs.md'
