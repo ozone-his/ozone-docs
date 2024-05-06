@@ -17,7 +17,7 @@ flowchart LR
 
 None
 
-#### Configurability
+#### Options
 
 :construction: tbc
 
@@ -36,7 +36,7 @@ flowchart LR
 
 - [OpenMRS patient → Odoo customer](#openmrs-patient-odoo-customer)
 
-#### Configurability
+#### Options
 
 None
 
@@ -62,6 +62,106 @@ flowchart LR
 - [OpenMRS patient → Odoo customer](#openmrs-patient-odoo-customer)
 - [OpenMRS billable item ⭆ Odoo quotation](#openmrs-billable-items-odoo-quotation)
 
-#### Configurability
+#### Options
 
 :construction: tbc
+
+## Data Flows between ERPNext and OpenMRS 
+
+### OpenMRS Patient → ERPNext Customer
+
+#### Summary
+A patient in OpenMRS is synchronized as a customer in ERPNext.
+
+#### Main Flow
+``` mermaid
+flowchart LR
+    a["OpenMRS patient"]-- 1-to-1 -->b["ERPNext customer"]
+```
+
+#### Prerequisite Flows
+
+None
+
+#### Options
+
+=== "Behaviour"
+
+    - <small>**default**</small> &nbsp; An OpenMRS patient is synchronised as an ERPNext customer when a first billable item is ordered from OpenMRS.
+    - <small>_optional_</small> &nbsp; An OpenMRS patient is always synchronised as an ERPNext customer.
+
+=== "Configuration"
+
+    - File:<br/>`ozone/distro/configs/eip-erpnext-openmrs/application.properties`
+    - Property name:<br/>`erpnext.openmrs.enable.patient.sync`
+    - Possible values:<br/>`false` (<small>**default**</small>), `true`
+
+### OpenMRS Billable Items ⭆ ERPNext Quotation
+
+#### Summary
+As soon
+as the first billable item is ordered for a patient in OpenMRS a quotation is created in ERPNext for the corresponding customer,
+and the quotation is associated with the OpenMRS patient's visit.
+All billable items ordered for a patient within the same OpenMRS visit are added to the ERPNext quotation
+associated with this OpenMRS visit.
+
+#### Main Flow
+``` mermaid
+flowchart LR
+    a["OpenMRS billable items"]-- many-to-1 -->b["ERPNext quotation"]
+```
+
+#### Prerequisite Flows
+
+- [OpenMRS patient → ERPNext customer](#openmrs-patient-erpnext-customer)
+- [OpenMRS Visit → ERPNext Quotation](#openmrs-visit-erpnext-quotation)
+
+#### Options
+
+None
+
+### OpenMRS Billable Item → ERPNext Quotation Line
+
+#### Summary
+Each billable item ordered in OpenMRS for a patient is synchronized in ERPNext as a quotation item in the corresponding customer's draft quotation.
+
+#### Main Flow
+``` mermaid
+flowchart LR
+    a["OpenMRS billable item"]-- 1-to-1 -->b["ERPNext quotation Item"]
+```
+
+#### Billable Items
+
+- Drug order
+- Lab test order
+- Service order
+
+#### Prerequisite Flows
+
+- [OpenMRS patient → ERPNext customer](#openmrs-patient-erpnext-customer)
+- [OpenMRS Visit → ERPNext Quotation](#openmrs-visit-erpnext-quotation)
+
+#### Options
+
+None
+
+### OpenMRS Visit → ERPNext Quotation
+
+#### Summary
+Ending a patient's visit in OpenMRS submits the ERPNext quotation associated with this visit.
+
+#### Main Flow
+``` mermaid
+flowchart LR
+    a["OpenMRS visit"]-- 1-to-1 -->b["ERPNext quotation"]
+```
+
+#### Prerequisite Flows
+
+- [OpenMRS patient → ERPNext customer](#openmrs-patient-erpnext-customer)
+- [OpenMRS Billable Items ⭆ ERPNext Quotation](#openmrs-billable-items-erpnext-quotation)
+
+#### Options
+
+None
