@@ -167,6 +167,7 @@ test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAI
   const clientName = `${patientName.firstName} ${patientName.givenName}`;
   const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
   await expect(client).toBeVisible();
+
 });
 
 test.afterEach(async ({ page }) => {
@@ -180,10 +181,10 @@ We observe that the test structure is broken down between a **setup**, the actua
 
 **Test Setup**: Before the actual test, we perform some preliminary actions: logging into Ozone (with SSO), creating a new patient, and starting a visit for the newly created patient.
 
-**Test Case**: The core of each test case follows the _Given-When-Then_ format (commented out here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test environment ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes ("Verification"). In our example:
+**Test Case**: The core of each test case follows the _Given-When-Then_ pattern (organised here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes as experienced by the end-user ("Verification"). In our example:
 
-- **Setup**: For this specific test case, the test setup is performed in the `beforeEach()` function which is explained in the "Test Setup" section above.
-- **Replay**: Navigate to the lab order form, add a lab test, and save the form.
-- **Verification**: Navigate to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
+- **Setup**: Omitted here. All aspects of the setup have been performed in the `beforeEach()` method.
+- **Replay**: Navigation to the lab order form, add a lab test, and save the form.
+- **Verification**: Navigation to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
 
-**Cleanup**: After the test, delete the patient created during the test run and close the browser page.
+**Cleanup**: The post-test cleanup consists of deleting the test patient and closing the browser page.
