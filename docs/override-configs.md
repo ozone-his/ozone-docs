@@ -1,6 +1,7 @@
-!!! info "🚧 Work In Progress"
+# <small>:construction:</small> Overriding Inherited Configurations
 
-Coming soon:  
- - Using the Ozone Maven archetype  
- - Using the Maven parent  
- - Override inherited configurations (OpenMRS backend config, OpenMRS frontend config, Odoo config...)
+!!! info "Coming soon:"
+
+    * Using the Ozone Maven Archetype.
+    * Using the Maven parent.
+    * Overriding inherited configurations. Eg. OpenMRS frontend and backend configs, Odoo config, etc.

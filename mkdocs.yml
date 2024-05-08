@@ -5,19 +5,21 @@ nav:
   - System Implementers:
     - Quick Start: 'index.md'
     - Create Your Own Distribution: 'create-distro.md'
-    - Override Inherited Configs: 'override-configs.md'
+    - "<span style='color:#b0b0b0;font-style:italic'>Override Inherited Configs</span>": 'override-configs.md'
+    - "<span style='color:#b0b0b0;font-style:italic'>Configuration Points</span>": 'config-points.md'
   - Functional Users:
     - Overview: 'users/index.md'
-    - Single Sign-on: 'users/sso.md'
-    - Data Flows Guide: 'users/dataflows.md'
-    - EMR-ERP Flows: 'users/emr-erp.md'
-    - EMR-LIMS Flows: 'users/emr-lims.md'
-    - IdP Flows: 'users/all-idp.md'
-    - Ozone Analytics: 'users/analytics.md'
+    - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
+    - Ozone Flows Guide: 'users/ozoneflows.md'
+    - ERPNext–OpenMRS Flows: 'users/erpnext-openmrs.md'
+    - Keycloak-OpenMRS Flows: 'users/keycloak-openmrs.md'
+    - Keycloak-Superset Flows: 'users/keycloak-superset.md'
+    - Odoo–OpenMRS Flows: 'users/odoo-openmrs.md'
+    - OpenMRS-SENAITE Flows: 'users/openmrs-senaite.md'
+    - "<span style='color:#b0b0b0;font-style:italic'>Ozone Analytics</span>": 'users/analytics.md'
   - Software Developers:
     - Architecture Overview: 'devs/index.md'
-    - Default Architecture: 'devs/default-archi.md'
-    - EIP Client: 'devs/eip-client.md'
+    - "<span style='color:#b0b0b0;font-style:italic'>EIP Client</span>": 'devs/eip-client.md'
     - Automated E2E Tests: 'devs/e2e-tests.md'
 theme:
   name: material
@@ -66,6 +68,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

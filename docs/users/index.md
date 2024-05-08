@@ -18,7 +18,7 @@ stateDiagram-v2
     state2 --> ozone
 ```
 
-## 1) A suite of opt in/out digital health software
+## **1** &nbsp; A suite of opt in/out digital health software
 
 Ozone is a ready-to-use solution, providing a pre-selected array of FOSS[^foss] components that function seamlessly together.
 
@@ -35,37 +35,33 @@ It is a complete health information system allowing users to customize it by cho
 | ERP          | Odoo            | `14`            |                |
 | ERP          | ERPNext         | `15.12.2`       |                |
 | BI           | Apache Superset | `1.5.1`         |                |
-| IdP          | JBoss Keycloak  | `22.0.0`        | {==:oz: Pro==} |
+| IdP          | JBoss Keycloak  | `22.0.0`        |                |
 
 !!! tip "Ozone Pro markers"
 
     Features and sections exclusive to Ozone Pro are marked with &nbsp;&nbsp;{==:oz: Pro==}.
 
-## 2) An interoperability framework
+## **2** &nbsp; An interoperability framework
 
 Ozone is powered by an interoperability EIP[^eip] framework that orchestrates seamless data flows between health information system components — EMR, LIMS, pharmacy, accounting, BI, and more.
 
 [^eip]: Entreprise integration patterns
 
-!!! example
+!!! example "Sample data flows"
 
-    Clinicians' drug orders in the EMR system automatically generate items on the patient bill.
+    _Clinicians' drug orders in the EMR system automatically generate items on the patient bill._
 
-!!! example
-    
-    Lab results entered into the LIMS by lab staff are immediately visible to clinicians in the EMR system.
+    _Lab results entered into the LIMS by lab staff are immediately visible to clinicians in the EMR system._
 
-!!! example "Example &nbsp;&nbsp; {==:oz: Pro==}"
-
-    Data analysts can perform real-time cross-analysis of clinical and billing data on the BI platform.
+    _Data analysts can perform real-time cross-analysis of clinical and billing data on the BI platform._
 
 ## What Ozone is not
 
-Ozone is <u>not a fork</u> of other open-source projects; it utilizes standard, officially released and untouched software components.
+{==Ozone is not a fork==} of other open-source projects; it utilizes standard and officially released software components from various open-source communities.
 
 [^lts]: Long-term support
 
-Ozone packages the latest LTS[^lts] versions of its components 'as-is'. Therefore it is not liable for any bugs, deficiencies, or performance issues in the bundled LTS versions of its components; these fall outside the purview of Ozone.
+Ozone packages the latest LTS[^lts] versions of its components 'as-is'. Therefore it is not liable for any bugs, deficiencies, or performance issues in the bundled LTS versions of its components; these fall outside the purview of Ozone itself.
 
 !!! tip
 

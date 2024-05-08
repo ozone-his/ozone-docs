@@ -2,7 +2,7 @@
 
 ## Why your own distribution?
 
-Beyond experimenting with the Quick Start guide, implementers and integrators of Ozone HIS will soon discover the need to provide their own configurations and possibly bespoke customizations to Ozone HIS. We recommend to do so through creating and managing your own distribution of Ozone HIS.
+Beyond experimenting with the Quick Start guide, implementers of Ozone HIS will soon discover the need to provide their own configurations and possibly bespoke customizations to Ozone HIS. We recommend to do so through creating and managing your own distribution of Ozone HIS.
 
 Ozone provides a series Apache Maven-based tools to facilitate the assembly of your own tailored HIS distribution. This starts with the _Ozone Maven Archetype_.
 
@@ -56,8 +56,8 @@ This will prompt you for several key variables for your Maven project:
 | Prompt variable    | Sample value     | Explanation                                                                                                                                                                                             |
 |--------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `distributionName` | `Ozone Gruzinia` | A name for your distribution. For example, a reference Ozone implementation for the imaginary country of Gruzinia could be named "Ozone Gruzinia".                                                      |
-| `groupId`          | `gz.moh`         | The [Maven group ID](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia" this might be something like `gz.moh`. |
-| `artifactId`       | `ozone-gruzinia` | The [Maven artifact ID](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia" this might be `ozone-gruzinia`.     |
+| `groupId`          | `gz.moh`         | The [Maven group ID <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia" this might be something like `gz.moh`. |
+| `artifactId`       | `ozone-gruzinia` | The [Maven artifact ID <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://maven.apache.org/guides/mini/guide-naming-conventions.html) that will be used for the implementation artifact. For "Ozone Gruzinia" this might be `ozone-gruzinia`.     |
 | `package`          | `gz.moh`         | A required property, but not used. To make it easy just accept the default value, which should default to be the same as the `groupId`.                                                                 |
 | `version`          | `1.0.0-SNAPSHOT` | The version number for the distribution, it starts by default at `1.0.0-SNAPSHOT`.                                                                                                                      |
 

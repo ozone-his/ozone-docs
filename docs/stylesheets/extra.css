@@ -3,7 +3,7 @@
 }
 
 .md-typeset {
-  font-size: medium;
+  font-size: 140%;
 }
 
 .md-typeset .small-title {
@@ -18,7 +18,7 @@
 
 .md-typeset h3 {
   font-size: 120%;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .md-typeset h4 {
