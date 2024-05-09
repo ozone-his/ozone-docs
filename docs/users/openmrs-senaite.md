@@ -25,7 +25,7 @@
 
 !!! question "What is an OpenMRS lab results bundle?"
 
-    Lab results are represented in OpenMRS as observations (obs). A lab results bundle is a set of OpenMRS obs that can be either numeric or coded data types.
+    Lab results are represented in OpenMRS as observations (obs). A lab results bundle is a set of OpenMRS obs that can be either free-text, numeric or coded data types.
 
 ## Flows Details
 
@@ -49,7 +49,7 @@ flowchart LR
 
 ### **3** &nbsp; SENAITE Analyses ⭆ OpenMRS Lab Results Bundle
 
-When an analysis request's analyses (or lab results) have been submitted in SENAITE, the lab results bundle is saved into OpenMRS as an array of obs.
+When an analysis request's analyses (or lab results) have been submitted, verified and published in SENAITE, the lab results bundle is saved into OpenMRS as an array of obs.
 
 ``` mermaid
 flowchart LR
