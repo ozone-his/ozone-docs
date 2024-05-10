@@ -139,31 +139,34 @@ Again, following our example of the data flows between OpenMRS and SENAITE, let 
 
 ```javascript
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../utils/functions/testBase';
-import { patientName } from '../utils/functions/testBase';
+import { OpenMRS, patientName } from '../utils/functions/openmrs';
+import { SENAITE } from '../utils/functions/senaite';
 
-let homePage: HomePage;
+let openmrs: OpenMRS;
+let senaite: SENAITE;
 
 test.beforeEach(async ({ page }) => {
-  const homePage = new HomePage(page);
+  openmrs = new OpenMRS(page);
+  senaite = new SENAITE(page);
+
+  await openmrs.login();
+  await expect(page).toHaveURL(/.*home/);
+  await openmrs.createPatient();
+  await openmrs.startPatientVisit();
 });
 
 test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAITE client with an analysis request.', async ({ page }) => {
   
   // replay
-  await homePage.initiateLogin();
-  await expect(page).toHaveURL(/.*home/);
-  await homePage.createPatient();
-  await homePage.startPatientVisit();
-  await homePage.goToLabOrderForm();
+  await openmrs.goToLabOrderForm();
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-  await homePage.saveLabOrder();
+  await openmrs.saveLabOrder();
 
   // verify
-  await homePage.goToSENAITE();
+  await senaite.open();
   await expect(page).toHaveURL(/.*senaite/);
-  await homePage.searchClientInSENAITE();
+  await senaite.searchClient();
   const clientName = `${patientName.firstName} ${patientName.givenName}`;
   const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
   await expect(client).toBeVisible();
@@ -171,19 +174,19 @@ test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAI
 });
 
 test.afterEach(async ({ page }) => {
-  await homePage.deletePatient();
+  await openmrs.deletePatient();
   await page.close();
 });
 ```
 
 We observe that the test structure is broken down between a **setup**, the actual **test case** and a **cleanup**:
 
-**Setup**: Instantiating a new 'homePage' object using the HomePage class constructor.
+**Test Setup**: Before the actual test, we perform some preliminary actions: logging into Ozone (with SSO), creating a new patient, and starting a visit for the newly created patient.
 
 **Test Case**: The core of each test case follows the _Given-When-Then_ pattern (organised here as Setup-Replay-Verification). We highly recommend this structured approach as it clearly delineates the setup of the test ("Setup"), the end-user actions performed ("Replay"), and the assertion of outcomes as experienced by the end-user ("Verification"). In our example:
 
-- **Replay**: Logging into Ozone (with SSO), creating a new patient, and starting a visit for the newly created patient. Navigating to the lab order form, adding a lab test, and saving the form.
-
-- **Verification**: Navigating to the SENAITE HIS component and searching for the client by name. Verifying that the client's name is visible in the clients list.
+- **Setup**: Omitted here. All aspects of the setup have been performed in the `beforeEach()` method.
+- **Replay**: Navigation to the lab order form, add a lab test, and save the form.
+- **Verification**: Navigation to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
 
 **Cleanup**: The post-test cleanup consists of deleting the test patient and closing the browser page.
