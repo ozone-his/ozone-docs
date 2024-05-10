@@ -139,31 +139,34 @@ Again, following our example of the data flows between OpenMRS and SENAITE, let 
 
 ```javascript
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../utils/functions/testBase';
-import { patientName } from '../utils/functions/testBase';
+import { OpenMRS, patientName } from '../utils/functions/openmrs';
+import { SENAITE } from '../utils/functions/senaite';
 
-let homePage: HomePage;
+let openmrs: OpenMRS;
+let senaite: SENAITE;
 
 test.beforeEach(async ({ page }) => {
-  homePage = new HomePage(page);
-  await homePage.initiateLogin();
+  openmrs = new OpenMRS(page);
+  senaite = new SENAITE(page);
+
+  await openmrs.login();
   await expect(page).toHaveURL(/.*home/);
-  await homePage.createPatient();
-  await homePage.startPatientVisit();
+  await openmrs.createPatient();
+  await openmrs.startPatientVisit();
 });
 
 test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAITE client with an analysis request.', async ({ page }) => {
   
   // replay
-  await homePage.goToLabOrderForm();
+  await openmrs.goToLabOrderForm();
   await page.click('button:has-text("Add")');
   await page.selectOption('#tab select', '857AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-  await homePage.saveLabOrder();
+  await openmrs.saveLabOrder();
 
   // verify
-  await homePage.goToSENAITE();
+  await senaite.open();
   await expect(page).toHaveURL(/.*senaite/);
-  await homePage.searchClientInSENAITE();
+  await senaite.searchClient();
   const clientName = `${patientName.firstName} ${patientName.givenName}`;
   const client = await page.$('table tbody tr:nth-child(1) td.contentcell.title div span a:has-text("' + clientName + '")');
   await expect(client).toBeVisible();
@@ -171,8 +174,7 @@ test('Ordering a lab test for an OpenMRS patient creates the corresponding SENAI
 });
 
 test.afterEach(async ({ page }) => {
-  homePage = new HomePage(page);
-  await homePage.deletePatient();
+  await openmrs.deletePatient();
   await page.close();
 });
 ```
