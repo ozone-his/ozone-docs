@@ -2,6 +2,12 @@
 
 In this section, we provide a comprehensive list of configuration points available in Ozone, organized by EIP services and thereby grouped by pairs of components.
 
+---
+
+!!! info inline end ""
+
+    {==:oz: Pro==}
+
 ## Keycloak-Superset Flows
 
 ###### `superset.polling-interval`
@@ -16,6 +22,8 @@ The time in milliseconds. Defaults to 30000 – Controls the polling interval fo
     ```java
     superset.polling-interval=30000
     ```
+
+---
 
 ## ERPNext-OpenMRS Flows
 
@@ -33,4 +41,66 @@ The time in milliseconds. Defaults to 30000 – Controls the polling interval fo
     erpnext.openmrs.enable.patient.sync=false
     ```
 
+---
+
 ## Odoo-OpenMRS Flows
+
+###### `concept.complex.uuid`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+###### `create.customer.if.not.exist`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+###### `emr.weight.concept`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+###### `openmrs.identifier.type.uuid`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+###### `results.encounterType.uuid`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+---
+
+## OpenMRS-SENAITE Flows
+
+###### `concept.complex.uuid`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+###### `openmrs.identifier.type.uuid`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
+
+###### `results.encounterType.uuid`
+
+- _Location:_<br/>
+<br/>
+- _Possible values:_<br/>
+<br/>
