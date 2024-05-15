@@ -10,9 +10,9 @@ This section is designed to help Ozone developers familiarize themselves with [`
     - We test our data flows through the actions and effects that they have on Ozone HIS components.
     - We focus on how these actions and effects are experienced by end users.
 
-!!! tip "Prequisites"
+!!! tip "Software Prequisites"
 
-    Install **Node.js** version 18 or higher and **npm** version 10 or higher, see [here <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+    [:simple-nodedotjs: Node.js (version 18 or higher) and :simple-npm: npm (version 10 or higher) <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Setting up `ozone-e2e`
 Clone the Ozone E2E Repository: Execute the command<br/>

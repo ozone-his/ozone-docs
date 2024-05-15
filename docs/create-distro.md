@@ -8,9 +8,11 @@ Ozone provides a series Apache Maven-based tools to facilitate the assembly of y
 
 ## The Ozone Maven Archetype
 
-!!! tip "Prequisites"
+!!! tip "Software Prequisites"
 
-    Install [Git <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/git-guides/install-git), [Maven <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://www.baeldung.com/install-maven-on-windows-linux-mac) and [Docker Compose <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.docker.com/compose/install/)
+    - [:simple-git: Git <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/git-guides/install-git)
+    - [:simple-apachemaven: Maven <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://www.baeldung.com/install-maven-on-windows-linux-mac)
+    - [:simple-docker: Docker Compose <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://docs.docker.com/compose/install/)
 
 The Ozone Maven Archetype generates a foundational skeleton project, providing a customizable base for any specific implementation requirements.
 

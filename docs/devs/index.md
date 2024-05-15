@@ -47,3 +47,17 @@ Development in Ozone primarily involves assembling peer-to-peer services using t
     * With Ozone Pro's Identity Provider (IdP). &nbsp;&nbsp;{==:oz: Pro==}
 
 - It includes a variety of common libraries to implement data flows that can be reused across different services.
+
+## Missing :fhir:FHIR APIs
+
+Many software components do not provide a FHIR API, often because they are not healthcare-specific, such as ERP systems. When this occurs, there are two possible solutions:
+
+### **1** &nbsp; Lobby for the inclusion of a FHIR API
+
+The ideal solution is to advocate for the software editor or development community to include a FHIR API as part of the software itself.
+
+Generally, this can be achieved gradually with minimal effort by focusing on the subset of FHIR resources most needed to accomplish the desired flows within Ozone HIS. Often, only a couple of resources are required, and not all operations need to be supported for those resources.
+
+### **2** &nbsp; Development of a Camel FHIR facade
+
+When advocating for a FHIR API inclusion is not feasible or unsuccessful, an alternative solution is to develop a FHIR facade using Camel. This approach involves introducing the necessary FHIR resources via a new Camel component that extends the existing software from the outside.
