@@ -50,7 +50,7 @@ Ozone distribution comes with O3, Odoo, Senaite and Superset as the default comp
 
  Ozone distribution comes with Odoo as the default ERP component. You can swap Odoo with ERPNext component using the following the steps:
 
-  - After starting Ozone, go to the scripts directory `target/ozone/run/docker/scripts/` and replace the manifest for Odoo with that of ERPNext component ie `docker-compose-erpnext.yml` in the `docker-compose-files.txt` file.
+  - After starting Ozone, go to the scripts directory `target/ozone/run/docker/scripts/` and replace the manifest for Odoo with that of ERPNext component, i.e., `docker-compose-erpnext.yml` in the `docker-compose-files.txt` file.
   - Restart Ozone by running `./start-demo.sh`.
 
 !!! info "Coming soon:"
