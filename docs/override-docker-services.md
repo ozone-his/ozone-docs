@@ -1,6 +1,6 @@
 ## Overriding configs in a custom Ozone distribution
 
-- Creat a custom Ozone distribution following [this](https://docs.ozone-his.com/create-distro/) guide.
+- Create a custom Ozone distribution following [this](https://docs.ozone-his.com/create-distro/) guide.
 - Add the custom docker compose override configurations and make sure they're copied to the right directory.
 - Add the build step in the `pom.xml`file for the custom configs:
 
@@ -39,7 +39,7 @@ source target/go-to-scripts-dir.sh
 
 ## Disabling components in Ozone distribution
 
-Ozone distribution comes with O3, Odoo, Senaite and Superset as the default components. If you may want to disable any of them, here are the steps to follow:
+Ozone distribution comes with OpenMRS 3, Odoo, SENAITE and Superset as the default components. If you want to disable any of them, here are the steps to follow:
 
  - Start Ozone using [quick start](https://docs.ozone-his.com/) guide.
 
