@@ -28,16 +28,16 @@ It is a complete health information system allowing users to customize it by cho
 
 ### Ozone HIS suite
 
-**<small>:fontawesome-solid-tag:</small> Ozone HIS `1.0.0-alpha.9`**
+**<small>:fontawesome-solid-tag:</small> Ozone HIS `1.0.0-alpha.10`**
 
 |HIS type|Component|Version in Ozone HIS|
 |:---:|:---:|:---:|
-|EMR|:openmrs: OpenMRS|`3.0.0-beta.16`|
-|LIMS|SENAITE|`2.1.0`|
+|EMR|:openmrs: OpenMRS|`3.0.0-beta.18`|
+|LIMS|SENAITE|`2.3.0`|
 |ERP|Odoo|`14`|
 |ERP|:erpnext: ERPNext|`15.12.2`|
-|BI|:superset: Apache Superset|`1.5.1`|
-|IdP|:keycloak: JBoss Keycloak|`22.0.0`|
+|BI|:superset: Apache Superset|`2.1.0`|
+|IdP|:keycloak: JBoss Keycloak|`22.0.5`|
 
 !!! tip "Ozone Pro markers"
 
