@@ -67,8 +67,6 @@ All configuration variables are set to the desired values by editing and saving 
 
 Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS components in each test environment, as well as the credentials needed to execute the test cases.
 
-Here’s a clearer and more structured Markdown rendition of your instructions for running tests:
-
 ## Running Tests
 
 ### Default test execution
