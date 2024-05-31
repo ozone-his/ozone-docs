@@ -57,6 +57,7 @@ As Ozone continues to expand its suite of software components, several criteria 
 |:fontawesome-solid-heart-pulse: Health check|**Should**|It is crucial that each component includes a web endpoint to let Ozone verify it is operational within the HIS.|
 |:simple-prometheus: Prometheus metrics|**Should**|Providing Prometheus metrics is recommended to enhance monitoring and ensure effective system performance management.|
 |:fontawesome-solid-timeline: Backup & restore|**Should**|Automated backup and restore capabilities ensure data integrity and system resilience in production use.|
+|:fontawesome-solid-globe: Internationalization|**Should**|Internationalization should be a first class citizen for any software. It ensures that it can be easily adapted to various languages and regions, making it accessible and usable by a global audience.|
 |:material-puzzle: Modularity|**Should**|Modularitiy enables potential enhancements or modifications to be made via modules, plugins, or addons without affecting the core component.|
 |:fhir: HL7 FHIR API|**Should**|Providing HL7 FHIR API reduces development overhead for peer-to-peer HIS components routes within Ozone.|
 |:fontawesome-solid-sitemap: Event bus|Could|An event bus offers a more efficient method of dispatching information as it becomes available, eliminating the need for polling.|
