@@ -77,6 +77,10 @@ flowchart LR
 
 Each billable item ordered in OpenMRS during a patient's visit is synchronized in ERPNext as a quotation item in the corresponding customer's draft quotation that is linked with the OpenMRS patient's visit.
 
+When a drug / lab order is discontinued for a patient in OpenMRS, the corresponding quotation item is removed from the corresponding ERPNext quotation.
+
+If all quotation items are removed from a quotation, the quotation is then marked as cancelled or deleted.
+
 ``` mermaid
 flowchart LR
     a["OpenMRS billable item"]-- 1-to-1 -->b["ERPNext quotation item"]
