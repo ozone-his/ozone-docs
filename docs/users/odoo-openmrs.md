@@ -74,9 +74,9 @@ flowchart LR
 
 Each billable item ordered in OpenMRS during a patient's visit is synchronized in Odoo as an order line in the corresponding customer's quotation that is linked with the OpenMRS patient's visit.
 
-When a drug / lab order is discontinued for a patient in OpenMRS, the corresponding order line is removed from the corresponding Odoo quotation.
+When a drug or lab test order is discontinued for a patient in OpenMRS, the corresponding order line is removed from the related Odoo quotation.
 
-If all order lines are removed from a quotation, the quotation is then marked as cancelled.
+If all order lines are removed from a quotation, the quotation is marked as cancelled.
 
 ``` mermaid
 flowchart LR
