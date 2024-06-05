@@ -1,4 +1,5 @@
 site_name: Docs
+site_url: https://docs.ozone-his.com
 repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
