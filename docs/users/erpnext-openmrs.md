@@ -79,7 +79,7 @@ Each billable item ordered in OpenMRS during a patient's visit is synchronized i
 
 When a drug / lab order is discontinued for a patient in OpenMRS, the corresponding quotation item is removed from the corresponding ERPNext quotation.
 
-If all quotation items are removed from a quotation, the quotation is then marked as cancelled or deleted.
+If all quotation items are removed from a quotation, the quotation is then marked as deleted.
 
 ``` mermaid
 flowchart LR
