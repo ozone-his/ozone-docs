@@ -13,7 +13,7 @@
         OpenMRS->>Ozone: Drug orders
         OpenMRS->>Ozone: Lab test orders
         Ozone->>Odoo: Quotations
-        Ozone->>Odoo: Quotation items
+        Ozone->>Odoo: Order Lines
 ```
 
 ## Flows List
@@ -23,7 +23,7 @@
 |OpenMRS|    Patient    |→|Odoo|    Customer     |
 |OpenMRS|     Visit     |→|Odoo|    Quotation    |
 |OpenMRS| Billable item |⭆|Odoo|    Quotation    |
-|OpenMRS| Billable item |→|Odoo| Quotation item |
+|OpenMRS| Billable item |→|Odoo| Order line |
 
 
 !!! question "What are the OpenMRS billable items?"
@@ -70,13 +70,13 @@ flowchart LR
     a["OpenMRS billable items"]-- many-to-1 -->b["Odoo quotation"]
 ```
 
-### **4** &nbsp; OpenMRS Billable Item → Odoo Quotation Item
+### **4** &nbsp; OpenMRS Billable Item → Odoo Order Line
 
-Each billable item ordered in OpenMRS during a patient's visit is synchronized in Odoo as a quotation item in the corresponding customer's quotation that is linked with the OpenMRS patient's visit.
+Each billable item ordered in OpenMRS during a patient's visit is synchronized in Odoo as an order line in the corresponding customer's quotation that is linked with the OpenMRS patient's visit.
 
-When a drug / lab order is discontinued for a patient in OpenMRS, the corresponding quotation item is removed from the corresponding Odoo quotation.
+When a drug / lab order is discontinued for a patient in OpenMRS, the corresponding order line is removed from the corresponding Odoo quotation.
 
-If all quotation items are removed from a quotation, the quotation is then marked as cancelled.
+If all order lines are removed from a quotation, the quotation is then marked as cancelled.
 
 ``` mermaid
 flowchart LR
