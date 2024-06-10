@@ -67,6 +67,37 @@ All configuration variables are set to the desired values by editing and saving 
 
 Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS components in each test environment, as well as the credentials needed to execute the test cases.
 
+### Running tests against a local instance
+
+When developing on Ozone, you will likely run a local instance of the HIS and want to execute the E2E tests against it. To do this, set to `true` for testing on localhost and update the URL coordinates for the **dev** environment profile in the `.env` file.
+
+```
+TEST_LOCALHOST=true
+```
+
+Typically, you may set the URLs in your local version of the `.env` file like this:
+
+```bash
+# OpenMRS
+O3_URL_DEV=http://localhost/openmrs/spa
+O3_URL_QA=
+O3_URL_DEMO=
+
+# ...
+
+# Odoo
+ODOO_URL_DEV=http://localhost:8069
+ODOO_URL_QA=
+ODOO_URL_DEMO=
+
+# SENAITE
+SENAITE_URL_DEV=http://localhost:8081/senaite
+SENAITE_URL_QA=
+SENAITE_URL_DEMO=
+# ...
+```
+Continue this pattern for all components running locally by identifying their local URL in your development environment, and edit the `.env` file accordingly.
+
 ## Running Tests
 
 ### Default test execution
