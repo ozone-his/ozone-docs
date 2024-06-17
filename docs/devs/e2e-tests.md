@@ -69,17 +69,13 @@ Additionally, the `.env` file contains a range of configuration variables that s
 
 ### Running tests against a local instance
 
-When developing on Ozone, you will likely run a local instance of the HIS and want to execute the E2E tests against it. To do this, set to `true` for testing on localhost and update the URL coordinates for the **dev** environment profile in the `.env` file.
-
-```
-TEST_LOCALHOST=true
-```
+When developing on Ozone, you will likely run a local instance of the HIS and want to execute the E2E tests against it. To do this, update the URL coordinates for the **dev** environment profile in the `.env` file.
 
 Typically, you may set the URLs in your local version of the `.env` file like this:
 
 ```bash
 # OpenMRS
-O3_URL_DEV=http://localhost/openmrs/spa
+O3_URL_DEV=http://localhost
 O3_URL_QA=
 O3_URL_DEMO=
 
