@@ -9,4 +9,4 @@
 
 ## `camel-frappe`
 
-## `openmrs-fhir`
+## `camel-openmrs-fhir`

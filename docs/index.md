@@ -30,13 +30,13 @@
 
     Then, start browsing Ozone. This requires you to log into each component separately:
 
-    | **HIS Component** | **URL**                                                                                   |
-    |-------------------|-------------------------------------------------------------------------------------------|
-    | OpenMRS 3         | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>   |
-    | SENAITE           | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a> |
-    | Odoo              | <a href="http://localhost:8069" target="_blank">http://localhost:8069</a>                 |
-    | Superset          | <a href="http://localhost:8088" target="_blank">http://localhost:8088</a>                 |
-
+    | **HIS Component**                      | **URL**                                                                                     |
+    |----------------------------------------|---------------------------------------------------------------------------------------------|
+    | OpenMRS 3                              | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>     |
+    | SENAITE                                | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a>   |
+    | Odoo                                   | <a href="http://localhost:8069" target="_blank">http://localhost:8069</a>                   |
+    | Superset                               | <a href="http://localhost:8088" target="_blank">http://localhost:8088</a>                   |
+    | <span class='secondary'>ERPNext</span> | <a class='secondary' href="http://localhost:8082" target="_blank">http://localhost:8082</a> |
 
 === ":simple-gitpod: Gitpod"
 
@@ -56,12 +56,13 @@
 
 Each component will require you to log in separately with their own credentials:
 
-| **HIS Component** | **Username** | **Password** |
-|-------------------|--------------|--------------|
-| OpenMRS 3         | admin        | Admin123     |
-| SENAITE           | admin        | password     |
-| Odoo              | admin        | admin        |
-| Superset          | admin        | password     |
+| **HIS Component**                      | **Username**                                 | **Password**                            |
+|----------------------------------------|----------------------------------------------|-----------------------------------------|
+| OpenMRS 3                              | admin                                        | Admin123                                |
+| SENAITE                                | admin                                        | password                                |
+| Odoo                                   | admin                                        | admin                                   |
+| Superset                               | admin                                        | password                                |
+| <span class='secondary'>ERPNext</span> | <span class='secondary'>administrator</span> | <span class='secondary'>password</span> |
 
 !!! tip "**Did you know?**"
 

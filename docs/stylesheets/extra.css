@@ -41,3 +41,15 @@
   --md-primary-fg-color--light: #007d79;
   --md-primary-fg-color--dark:  #007d79;
 }
+
+.secondary {
+    color:grey;
+}
+
+a.secondary {
+    color:grey;
+}
+
+a.secondary:hover {
+    color:var(--md-accent-fg-color)
+}
