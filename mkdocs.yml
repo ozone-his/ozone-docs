@@ -21,7 +21,7 @@ nav:
   - Software Developers:
     - Architecture Overview: 'devs/index.md'
     - "<span style='color:#b0b0b0;font-style:italic'>Camel Components</span>": 'devs/camel-components.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>EIP Client</span>": 'devs/eip-client.md'
+    - EIP Client: 'devs/eip-client.md'
     - Automated E2E Tests: 'devs/e2e-tests.md'
 theme:
   name: material
