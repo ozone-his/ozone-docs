@@ -2,6 +2,14 @@
   color: #007d79;
 }
 
+.md-typeset .admonition {
+  font-size: 100%;
+}
+
+.md-typeset .admonition-title {
+  font-weight: 500;
+}
+
 .md-typeset {
   font-size: 140%;
 }
