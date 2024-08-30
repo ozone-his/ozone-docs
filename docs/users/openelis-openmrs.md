@@ -25,6 +25,30 @@ provided in this project and application properties.
 
 ----------------------------------------------------
 
+### Architecture
+
+OpenELIS has a workflow where it expects a `Task` resource to be created in the configured remote FHIR
+server. The `Task` created should have reference of `ServiceRequest`, `Practitioner`, `Location`, `Patient` 
+(Note: These resources should already be present in the remote FHIR server). The OpenELIS
+workflow triggers every `x` minutes and looks for Task's in `REQUESTED` status. Then this `Task` is converted into an
+`Incoming Order` in OpenELIS UI and stored in OpenELIS DB as well.
+
+Whenever a Lab Order is created in OpenMRS then the following resources are created in OpenELIS and an `Incoming Order` is shown in the OpenELIS UI
+(provided it's LOINC mapping is present in OpenELIS).
+- `Practitioner`
+- `Patient`
+- `ServiceRequest`
+- `Location`
+- `Task`
+
+A `Task` is also created in OpenMRS to keep a track of Lab Order status in OpenELIS. This tracking of status is done with
+the help of polling mechanism where after every `x` minutes OpenMRS `Task`'s are polled which have  `REQUESTED` or `ACCEPTED`
+status. Then for each `Task` corresponding OpenELIS `Task` is fetched, if the OpenELIS `Task` status is moved to `COMPLETED` then
+corresponding `DiagnosticReport` and `Observation` is fetched from OpenELIS and saved in OpenMRS. Subsequently OpenMRS `Task` status
+is also updated to `COMPLETED`.
+
+----------------------------------------------------
+
 ### Integrations
 
 |      Integration      |        Sync        | Status                   | Unit Test |
