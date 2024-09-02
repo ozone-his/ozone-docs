@@ -232,3 +232,9 @@ Make the following changes in your Ozone Distro.
 - Once the Ozone distro is up and running create a Patient and start a Visit, add a Lab Order Eg. (Red Blood Cell) and save.
 - This Lab Order should be visible under `Order`->`Incoming Orders`->`Search`
 
+
+----------------------------------------------------
+
+### Demo
+
+Watch the demo video. [Link](https://openmrs.atlassian.net/wiki/spaces/projects/pages/26938839/OpenMRS+Interoperability+and+Integration+Updates#OEG-integration%3A)
