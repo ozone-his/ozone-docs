@@ -12,6 +12,20 @@
   src: url("../fonts/Geist-Regular.ttf");
 }
 
+:root {
+  --md-primary-fg-color: #3cb393;
+  --md-default-bg-color: #fcf4e5;
+  background:            var(--md-default-bg-color)
+}
+
+body {
+  --md-default-bg-color: #fcf4e5 !important;
+}
+
+code {
+  --md-code-bg-color: #fefaf4 !important;
+}
+
 .md-ellipsis {
   font-family: "Recoleta"; 
   font-size: 110%;
@@ -63,16 +77,6 @@
 
 .md-typeset h6 {
   font-size: 120%;
-}
-
-:root {
-  --md-primary-fg-color: #3cb393;
-  --md-default-bg-color: #fcf4e5;
-  background:            var(--md-default-bg-color)
-}
-
-body {
-  --md-default-bg-color: #fcf4e5 !important;
 }
 
 .secondary {
