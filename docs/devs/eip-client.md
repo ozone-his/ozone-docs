@@ -2,17 +2,19 @@
 
 ## Overview
 
-The Ozone EIP Client is a flexible Spring Boot application designed to facilitate seamless integration between different Health Information System (HIS) components. By leveraging Apache Camel routes and utilizing FHIR (Fast Healthcare Interoperability Resources) as the transport format, it acts as a powerful middleware solution. This setup ensures efficient management of data processing, routing, and transformation across systems. The application serves as a foundational platform for enabling smooth data exchange and integration between disparate HIS components.
+The Ozone EIP Client is a plain **Spring Boot application** serving as the integration middleware between apps of the Health Information System (HIS). Preconfigured within Ozone, this Spring Boot application exchanges **FHIR messages via Apache Camel routes**.
+
+This setup within Ozone leverages established enterprise integration patterns (EIP), proven open-source software (Apache Camel), and adherence to health data standards (FHIR). It ensures efficient data processing, routing, and transformation across app of the HIS, enabling seamless interoperability.
 
 ## Technology Stack
 
 Ozone EIP Client ergonomically combines the following technologies:
 
-- **Spring Boot (Java 17)** - The core framework for the application. It provides a flexible and scalable platform for building Java applications.
-- **Apache Camel** - A powerful open source integration framework used to create routing between disparate systems. It provides a collection of libraries and components that facilitate the integration of systems. Some of the common used components include HTTP, JMS, and JDBC.
-- **Hibernate** - An object-relational mapping (ORM) library for the Java language that provides a framework for mapping an object-oriented domain model to a relational database.
-- **Testcontainers** - A Java library that provides lightweight, common databases that is, Postgres, MySQL, etc. or anything else that can run in a Docker container.
-- **JUnit 5** - A unit testing framework for Java programming language. It's a part of the JUnit platform that provides a rich set of features to write and run tests.
+- **[:simple-springboot: Spring Boot <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://spring.io/projects/spring-boot)** (Java 17) - The core framework for the application. It provides a flexible and scalable platform for building Java applications.
+- **[Apache Camel <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://camel.apache.org/)** - A powerful open source integration framework used to create routing between disparate systems. It provides a collection of libraries and components that facilitate the integration of systems. Some of the common used components include HTTP, JMS, and JDBC.
+- **[:simple-hibernate: Hibernate <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://hibernate.org/)** - An object-relational mapping (ORM) library for the Java language that provides a framework for mapping an object-oriented domain model to a relational database.
+- **[Testcontainers <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://testcontainers.com/)** - A Java library that provides lightweight, common databases that is, Postgres, MySQL, etc. or anything else that can run in a Docker container.
+- **[:simple-junit5: JUnit 5 <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://junit.org/junit5/)** - A unit testing framework for Java programming language. It's a part of the JUnit platform that provides a rich set of features to write and run tests.
 
 ## Project Structure
 
