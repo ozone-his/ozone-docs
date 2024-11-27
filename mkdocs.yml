@@ -1,6 +1,6 @@
 site_name: Docs
 site_url: https://docs.ozone-his.com
-repo_url: https://github.com/ozone-his/ozone-distro
+repo_url: https://github.com/ozone-his/ozone
 repo_name: ozone-his/ozone
 nav:
   - System Implementers:
@@ -33,7 +33,7 @@ theme:
     - navigation.sections
     - content.code.copy
   font:
-    text: Poppins
+    text: Geist
   palette:
     primary: custom
   logo: assets/logo.png
