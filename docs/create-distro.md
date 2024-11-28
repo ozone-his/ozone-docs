@@ -16,7 +16,7 @@ Ozone provides a series Apache Maven-based tools to facilitate the assembly of y
 
 The Ozone Maven Archetype generates a foundational skeleton project, providing a customizable base for any specific implementation requirements.
 
-## **1** &nbsp; Configure Maven
+### 1) Configure Maven
 
 Edit your Maven `settings.xml` file (usually located at `~/.m2/settings.xml`) and add the following block to it:
 ```xml
@@ -45,7 +45,7 @@ Edit your Maven `settings.xml` file (usually located at `~/.m2/settings.xml`) an
 </activeProfiles>
 ```
 
-## **2** &nbsp; Generate the archetype
+### 2) Generate the archetype
 
 Use Maven's archetype tools to generate a new Ozone implementation project structure:
 
@@ -67,19 +67,19 @@ This will prompt you for several key variables for your Maven project:
 This will create a bare-bones Ozone implementation project that should look like this:
 ```bash
 ozone-gruzinia/
-  ├── README.md
-  ├── configs
-  │     └── openmrs
-  │         ├── frontend_config
-  │         └── initializer_config
-  ├── pom.xml
-  ├── readme
-  │     └── impl-guide.md
-  └── scripts
-      ├── mvnw
-      ├── mvnw.cmd
-      ├── mvnwDebug
-      └── mvnwDebug.cmd
+├── README.md
+├── config
+│     └── openmrs
+│         ├── frontend_config
+│         └── initializer_config
+├── pom.xml
+├── readme
+│     └── impl-guide.md
+└── scripts
+    ├── mvnw
+    ├── mvnw.cmd
+    ├── mvnwDebug
+    └── mvnwDebug.cmd
 ```
 
 ## Available commands
@@ -88,6 +88,8 @@ ozone-gruzinia/
 |:----|:----|:----|
 |**Build** the distribution|<pre>./scripts/mvnw clean package</pre>|Assembles and packages your distribution, incorporating any configurations and customizations you've applied.|
 |Access start/stop/destroy commands|<pre>source target/go-to-scripts-dir.sh</pre>|Navigates to the directory containing the scripts for starting, stopping, and destroying the distribution, making these commands readily accessible.|
-|**Start** the distribution|<pre>./start-demo.sh</pre>|Initiates and launches all components of the Ozone HIS, bringing up the system.|
+|**Start** the distribution|<pre>./start-demo.sh</pre>|Initiates and launches all apps of the Ozone HIS, bringing up the system.|
 |**Stop** the distribution|<pre>./stop-demo.sh</pre>|Gracefully halts all Ozone HIS services, effectively shutting down the system.|
-|**Destroy** the distribution|<pre>./destroy-demo.sh</pre>|Completely removes the distribution, clearing all its components and data, ideal for resetting the system or rectifying persistent issues ahead of a restart or a rebuild and restart.|
+|**Destroy** the distribution|<pre>./destroy-demo.sh</pre>|Completely removes the distribution, clearing all its apps and data, ideal for resetting the system or rectifying persistent issues ahead of a restart or a rebuild and restart.|
+
+You are now ready to tailor Ozone to fit your specific requirements. Proceed to the following page for guidance on how to override default configurations.

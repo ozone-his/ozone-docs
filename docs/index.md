@@ -1,6 +1,6 @@
 !!! info ""
 
-    This section of the Ozone Docs is designed for **digital health technical implementers**, focusing on how to install, configure, and run Ozone HIS.
+    This section of the Ozone Docs is designed for **digital health technical implementers**, focusing on how to install, configure, and run the Ozone HIS.
 
 # Quick Start
 
@@ -28,9 +28,9 @@
 
         :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
 
-    Then, start browsing Ozone. This requires you to log into each component separately:
+    Then, start browsing Ozone. This requires you to log into each app of the HIS separately:
 
-    | **HIS Component**                      | **URL**                                                                                     |
+    | **HIS App**                      | **URL**                                                                                     |
     |----------------------------------------|---------------------------------------------------------------------------------------------|
     | OpenMRS 3                              | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>     |
     | SENAITE                                | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a>   |
@@ -50,13 +50,13 @@
 
     Gitpod will automatically launch a new tab for OpenMRS 3.
 
-    You can navigate to other Ozone HIS components via the PORTS tab of the Gitpod window:
+    You can navigate to other Ozone apps of the HIS via the PORTS tab of the Gitpod window:
 
     ![Ozone services started](assets/images/gitpod-list-services.png)
 
-Each component will require you to log in separately with their own credentials:
+Each app of the HIS will require you to log in separately with their own credentials:
 
-| **HIS Component**                      | **Username**                                 | **Password**                            |
+| **App**                      | **Username**                                 | **Password**                            |
 |----------------------------------------|----------------------------------------------|-----------------------------------------|
 | OpenMRS 3                              | admin                                        | Admin123                                |
 | SENAITE                                | admin                                        | password                                |

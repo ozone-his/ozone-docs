@@ -1,13 +1,13 @@
 # Automated End-to-End Tests
 
-All data flows within Ozone and the actions performed on its HIS components are rigorously validated using a comprehensive suite of automated end-to-end (E2E) tests.
+All data flows within Ozone and the actions performed on its HIS apps are rigorously validated using a comprehensive suite of automated end-to-end (E2E) tests.
 
 This section is designed to help Ozone developers familiarize themselves with [`ozone-e2e`](https://github.com/ozone-his/ozone-e2e), the repository where all end-to-end tests for Ozone are maintained. It will guide you through the architecture of a typical end-to-end test case and provide the necessary knowledge and practical steps to develop your own test cases.
 
 !!! info "Some facts about `ozone-e2e`"
 
     - We use [Playwright <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://playwright.dev/), the automation testing framework.
-    - We test our data flows through the actions and effects that they have on Ozone HIS components.
+    - We test our data flows through the actions and effects that they have on Ozone HIS apps.
     - We focus on how these actions and effects are experienced by end users.
 
 !!! tip "Software Prequisites"
@@ -39,7 +39,7 @@ e2e
        as well as methods required by the tests to run.
 ```
 
-The data flows resulting from the integration between specific component pairs (e.g., between Odoo and OpenMRS) are typically tested through a designated test file for each pair (e.g., `odoo-openmrs-flows.spec.js`). All test files are located in the [`e2e/tests` directory](https://github.com/ozone-his/ozone-e2e/tree/main/e2e/tests). We encourage you to explore and review the current set of tests to understand the testing process better and evaluate the extent of their coverage.
+The data flows resulting from the integration between specific app pairs (e.g., between Odoo and OpenMRS) are typically tested through a designated test file for each pair (e.g., `odoo-openmrs-flows.spec.js`). All test files are located in the [`e2e/tests` directory](https://github.com/ozone-his/ozone-e2e/tree/main/e2e/tests). We encourage you to explore and review the current set of tests to understand the testing process better and evaluate the extent of their coverage.
 
 ### Project configuration
 
@@ -65,7 +65,7 @@ TEST_PRO=false
 
 All configuration variables are set to the desired values by editing and saving the [`.env` file <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/ozone-his/ozone-e2e/blob/main/.env) prior to running the tests.
 
-Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS components in each test environment, as well as the credentials needed to execute the test cases.
+Additionally, the `.env` file contains a range of configuration variables that specify the URLs for accessing the various HIS apps in each test environment, as well as the credentials needed to execute the test cases.
 
 ### Running tests against a local instance
 
@@ -92,7 +92,7 @@ SENAITE_URL_QA=
 SENAITE_URL_DEMO=
 # ...
 ```
-Continue this pattern for all components running locally by identifying their local URL in your development environment, and edit the `.env` file accordingly.
+Continue this pattern for all apps running locally by identifying their local URL in your development environment, and edit the `.env` file accordingly.
 
 ## Running Tests
 
@@ -104,7 +104,7 @@ npx playwright test
 ```
 
 ### Running specific tests
-To focus on testing data flows between specific pairs of HIS components, you can run tests contained in a specific file. For example, to test the integration data flows between Odoo and OpenMRS:
+To focus on testing data flows between specific pairs of HIS apps, you can run tests contained in a specific file. For example, to test the integration data flows between Odoo and OpenMRS:
 
 ```
 npx playwright test odoo-openmrs-flows
@@ -121,7 +121,7 @@ npx playwright test --project=chromium
 
 - **Passed**: When all tests within the suite pass without encountering any errors, the overall result is marked as "Passed". This means that the application behaved as expected under the test conditions.
 
-- **Failed**: If any test within the suite encounters an error or assertion failure during execution, the overall result is marked as "Failed". Determine whether the failure is specific to the test case, a particular component or feature, or the entire application. Once you've identified the root cause of the failure, implement a fix to address the issue. This may involve modifying test assertions, updating application code, or addressing environmental dependencies.
+- **Failed**: If any test within the suite encounters an error or assertion failure during execution, the overall result is marked as "Failed". Determine whether the failure is specific to the test case, a particular app or feature, or the entire application. Once you've identified the root cause of the failure, implement a fix to address the issue. This may involve modifying test assertions, updating application code, or addressing environmental dependencies.
 
 - **Skipped**: Sometimes, tests are intentionally skipped based on certain conditions or configurations. These skipped tests are not executed during the test run and are marked as "Skipped" in the test result.
 
@@ -129,17 +129,17 @@ npx playwright test --project=chromium
 
 ### Naming test files
 
-Our test cases cover the data flows between Ozone HIS components and we have taken the convention to group test cases by pairs of components. For example all data flows between OpenMRS and SENAITE are grouped together in a file named `openmrs-senaite-flows.spec.js` that lives in the `e2e/tests`. This file contains all test cases for data flows going from OpenMRS to SENAITE as well as those going from SENAITE to OpenMRS.
+Our test cases cover the data flows between Ozone HIS apps and we have taken the convention to group test cases by pairs of apps. For example all data flows between OpenMRS and SENAITE are grouped together in a file named `openmrs-senaite-flows.spec.js` that lives in the `e2e/tests`. This file contains all test cases for data flows going from OpenMRS to SENAITE as well as those going from SENAITE to OpenMRS.
 
-The naming is alphabetical per convention. The data flows going both ways between hypothetical HIS components _Foo_ and _Bar_ would live in a file named `bar-foo-flows.spec.js` and so on and so forth for all pairs of HIS components.
+The naming is alphabetical per convention. The data flows going both ways between hypothetical HIS apps _Foo_ and _Bar_ would live in a file named `bar-foo-flows.spec.js` and so on and so forth for all pairs of HIS apps.
 
 ### Testing actions and effects
 
-While Ozone relies on its components default behaviour and features, we do encompass in our E2E test suite the actions performed when using the user experience of the components and the effects observed throught the user experience of those components. This ensures that test are truly end-to-end with a focus on the end-user experience.
+While Ozone relies on its apps default behaviour and features, we do encompass in our E2E test suite the actions performed when using the user experience of the apps and the effects observed throught the user experience of those apps. This ensures that test are truly end-to-end with a focus on the end-user experience.
 
 To write a test case:
 
-- Identify the user interactions and functionalities to test between a pair of HIS components.
+- Identify the user interactions and functionalities to test between a pair of HIS apps.
 - Use Playwright’s API to script the actions within each test scenario, such as navigating pages, clicking buttons, filling forms, and verifying UI elements.
 
 ### Utilizing Playwright
@@ -212,6 +212,6 @@ We observe that the test structure is broken down between a **setup**, the actua
 
 - **Setup**: Omitted here. All aspects of the setup have been performed in the `beforeEach()` method.
 - **Replay**: Navigation to the lab order form, add a lab test, and save the form.
-- **Verification**: Navigation to the SENAITE HIS component and search for the client by name. Verify that the client's name is visible in the clients list.
+- **Verification**: Navigation to the SENAITE HIS app and search for the client by name. Verify that the client's name is visible in the clients list.
 
 **Cleanup**: The post-test cleanup consists of deleting the test patient and closing the browser page.
