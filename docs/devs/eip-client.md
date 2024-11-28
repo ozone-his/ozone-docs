@@ -2,7 +2,9 @@
 
 ## Overview
 
-The Ozone EIP Client is a flexible Spring Boot application designed to facilitate seamless integration between different Health Information System (HIS) components. By leveraging Apache Camel routes and utilizing FHIR (Fast Healthcare Interoperability Resources) as the transport format, it acts as a powerful middleware solution. This setup ensures efficient management of data processing, routing, and transformation across systems. The application serves as a foundational platform for enabling smooth data exchange and integration between disparate HIS components.
+The Ozone EIP Client is a plain **Spring Boot application** serving as the integration middleware between apps of the Health Information System (HIS). Preconfigured within Ozone, this Spring Boot application exchanges **FHIR messages via Apache Camel routes**.
+
+This setup within Ozone leverages established enterprise integration patterns (EIP), proven open-source software (Apache Camel), and adherence to health data standards (FHIR). It ensures efficient data processing, routing, and transformation across app of the HIS, enabling seamless interoperability.
 
 ## Technology Stack
 
