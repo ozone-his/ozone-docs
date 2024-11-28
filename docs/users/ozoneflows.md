@@ -1,8 +1,8 @@
 # Ozone Flows Guide
 
-The following pages describe the data flows orchestrated by Ozone HIS among its supported components. These flows are fundamental to Ozone's functionality, as they leverage and integrate existing software components to provide enhanced features that are not available when these components are used independently.
+The following pages describe the data flows orchestrated by Ozone HIS among its supported apps. These flows are fundamental to Ozone's functionality, as they leverage and integrate existing software within the HIS to provide enhanced features that are not available when these apps are used independently.
 
-Flows are documented by {==pairs of components==}, such as:
+Flows are documented by {==pairs of apps==}, such as:
 
 - Flows between ERPNext and OpenMRS.
 - Flows between OpenMRS and SENAITE.
@@ -10,11 +10,11 @@ Flows are documented by {==pairs of components==}, such as:
 
 ## Flows Documentation Structure
 
-The structure of each flows documentation page is typically organized as follows (unless unnecessary or impractical), for each pair of components: flows overview, flows list and flows details.
+The structure of each flows documentation page is typically organized as follows (unless unnecessary or impractical), for each pair of apps: flows overview, flows list and flows details.
 
 ### **1** &nbsp; Flows Overview
 
-This section includes a sequence diagram that illustrates the high-level exchanges between two components that are facilitated through Ozone. Eg.:
+This section includes a sequence diagram that illustrates the high-level exchanges between two apps that are facilitated through Ozone. Eg.:
 
 ``` mermaid
     sequenceDiagram

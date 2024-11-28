@@ -1,6 +1,6 @@
 # <small>:construction:</small> Configuration Points
 
-In this section, we provide a comprehensive list of configuration points available in Ozone, organized by EIP services and thereby grouped by pairs of components.
+In this section, we provide a comprehensive list of configuration points available in Ozone, organized by EIP services and thereby grouped by pairs of apps.
 
 ---
 

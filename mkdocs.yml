@@ -49,10 +49,6 @@ extra:
       link: https://openmrs.slack.com/archives/C02PYQD5D0A
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/mekom-solutions
-    - icon: fontawesome/brands/x-twitter
-      link: https://twitter.com/mekomsolutions
-    - icon: fontawesome/brands/facebook
-      link: https://www.facebook.com/mekomsolutions/
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
