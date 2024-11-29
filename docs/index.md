@@ -30,7 +30,7 @@
 
     Then, start browsing Ozone. This requires you to log into each app of the HIS separately:
 
-    | **HIS App**                      | **URL**                                                                                     |
+    | **App**                      | **URL**                                                                                     |
     |----------------------------------------|---------------------------------------------------------------------------------------------|
     | OpenMRS 3                              | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>     |
     | SENAITE                                | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a>   |

@@ -18,7 +18,7 @@ stateDiagram-v2
     state2 --> ozone
 ```
 
-## **1** &nbsp; A suite of opt in/out digital health software
+## **1** &nbsp; A suite of opt in/out digital health apps
 
 Ozone is a ready-to-use solution, providing a pre-selected array of FOSS[^foss] apps that function seamlessly together.
 
@@ -26,18 +26,23 @@ Ozone is a ready-to-use solution, providing a pre-selected array of FOSS[^foss] 
 
 It is a complete health information system allowing users to customize it by choosing which supported digital health software to include or exclude:
 
-### Ozone HIS suite
+### Ozone HIS apps
 
-**<small>:fontawesome-solid-tag:</small> Ozone HIS `1.0.0-alpha.10`**
+**<small>:fontawesome-solid-tag:</small> `1.0.0-alpha.11`**
 
-|HIS type|App|Version in Ozone|
-|:---:|:---:|:---:|
-|EMR|:openmrs: OpenMRS|`3.0.0-beta.18`|
-|LIMS|SENAITE|`2.3.0`|
-|ERP|Odoo|`14`|
-|ERP|:erpnext: ERPNext|`15.12.2`|
-|BI|:superset: Apache Superset|`2.1.0`|
-|IdP|:keycloak: JBoss Keycloak|`22.0.5`|
+|Area|App|Version in Ozone|Maturity in Ozone|
+|:---:|:---:|:---:|:---:|
+|EMR|:openmrs: OpenMRS|`3.0.0-beta.21`|:material-diamond-stone: Core|
+|LIMS|SENAITE|`2.5.0`|:material-diamond-stone: Core|
+|ERP|Odoo|`14`|:material-diamond-stone: Core|
+|ERP|:erpnext: ERPNext|`15.12.2`|:material-timer-pause-outline: Legacy|
+|BI|:superset: Apache Superset|`3.1.0`|:material-diamond-stone: Core|
+|IdP|:keycloak: JBoss Keycloak|`22.0.5`|:material-diamond-stone: Core|
+
+### Maturity levels in Ozone
+
+- **:material-diamond-stone: Core** – Core apps are fully supported in Ozone. They are regularly upgraded with new Ozone versions, with their data flows within the HIS maintained to ensure seamless upgrades and backward compatibility.
+- **:material-timer-pause-outline: Legacy** – Legacy apps and their data flows were introduced in a specific version of Ozone but are no longer actively maintained. They remain available "as is" for continued use without further updates.
 
 !!! tip "Ozone Pro markers"
 
@@ -51,7 +56,7 @@ As Ozone continues to expand its suite of software apps, several criteria must b
 |:---:|:---:|:---:|
 |:fontawesome-brands-osi: Open-source|{==**Must**==}|Ozone is FOSS under MPL 2.0. Closed-source software is accommodated within the Pro edition of Ozone or through custom developments.|
 |:fontawesome-solid-tag: Released version|{==**Must**==}|Ozone supports HIS flows between versioned software apps with stable and, ideally, well-documented APIs.|
-|:fontawesome-solid-shield-halved: OAuth 2|{==**Must**==}|OAuth2 is required for enhanced security and to implement SSO within Ozone HIS.|
+|:fontawesome-solid-shield-halved: OAuth 2|{==**Must**==}|OAuth2 is required for enhanced security and to implement SSO within the Ozone HIS.|
 |:fontawesome-brands-docker: Docker image|{==**Must**==}|Docker, while not the sole deployment mechanism supported, is currently the default one in Ozone HIS.|
 |:material-cog: Automated configurability|**Should**|Apps should be configurable through deployment processes, allowing for automated setup and initialization (specifically of master data) by placing configuration files in the appropriate locations.|
 |:fontawesome-solid-heart-pulse: Health check|**Should**|It is crucial that each app includes a web endpoint to let Ozone verify it is operational within the HIS.|
