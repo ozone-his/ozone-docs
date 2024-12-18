@@ -15,6 +15,7 @@ nav:
     - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
     - Ozone Flows Guide: 'users/ozoneflows.md'
     - ERPNext–OpenMRS Flows: 'users/erpnext-openmrs.md'
+    - Keycloak-Odoo Flows: 'users/keycloak-odoo.md'
     - Keycloak-OpenMRS Flows: 'users/keycloak-openmrs.md'
     - Keycloak-Superset Flows: 'users/keycloak-superset.md'
     - Odoo–OpenMRS Flows: 'users/odoo-openmrs.md'
