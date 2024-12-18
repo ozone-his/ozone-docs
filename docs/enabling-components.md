@@ -18,27 +18,147 @@ Ozone uses Docker by default and its Docker Compose setup is stated as a depende
 
     This guide will run you through the process of enabling and disabling Ozone HIS components when using Docker Compose as the deployment mechanism.
 
-## Introducing `docker-compose-files.txt`
+## Introducing  `docker-compose-files.txt`  file
+This is the main configuration file used configure the enabled Ozone components that are available for a give Distro. By Default the file is a kitchen sink configuration showcasing all the components available in Ozone. In real world usage you may not neccesary want to enable all of the components. The default file contains these file;
 
-This key configuration file in the Ozone Docker Compose project serves as the default inventory of the various Docker Compose files that will be run when launching Ozone HIS. Its default content may look like this:
+| File | Details |
+|--|--|
+|docker-compose-common.yml  | This file defines shared services and configurations that are used across the entire Ozone HIS Docker Compose setup. It includes common settings and dependencies needed by multiple components. |
+|docker-compose-openmrs.yml| This file defines the OpenMRS backend , OpenMRS Frontend, extra MySQL configurations required by OpenMRS (Volumes and ENV variables) and ENV substitution service configuration for OpenMRS|
+|docker-compose-openmrs-sso.yml|This file contains extra configuration needed to enable Single Sign On for OpenMRS it contains overrides for the OpenMRS,the OpenMRS frontend and the ENV substitution service|
+|docker-compose-odoo.yml|This file defines Odoo , [Odoo FHIR](https://github.com/ozone-his/fhir-odoo) , Odoo OpenMRS EIP client to sync data from OpenMRS to Odoo, PostgreSQL overrides for Odoo , MySQL overrides for Odoo OpenMRS EIP client and the ENV substitution service overrides|
+|docker-compose-odoo-sso.yml|This file contains extra configuration needed to enable Single Sign On for Odoo it contains SSO overrides for the Odoo, and the ENV substitution service , Odoo OpenMRS EIP client and the ENV substitution|
+|docker-compose-erpnext.yml|This file defines the ERPNext backend and supporting services , ERPNext OpenMRS EIP client and extra MySQL configurations required by ERPNext OpenMRS EIP client|
+|docker-compose-erpnext-sso.yml|This file contains extra configuration needed to enable Single Sign On for ERPNext it contains overrides for ERPNext and ERPNext OpenMRS EIP client|
+|docker-compose-senaite.yml|This file defines the SENAITE service, The OpenMRS SENAITE EIP client, PostgreSQL overrides for SENAITE and MySQL overrides for OpenMRS SENAITE EIP client|
+|docker-compose-senaite-sso.yml|This file contains extra configuration needed to enable Single Sign On for SENAITE it contains SSO overrides for SENAITE , OpenMRS SENAITE EIP client and ENV substitution |
+|docker-compose-keycloak.yml|This file defines the Keycloak which is the IDP used for SSO, PostgreSQL overrides for Keycloak and ENV substitution overrides for Keycloak|
 
-```text
-docker-compose-common.yml
-docker-compose-odoo.yml
-docker-compose-openmrs.yml
-docker-compose-senaite.yml
-```
 
-* The `docker-compose-common.yml` file defines shared services and configurations that are used across the entire Ozone HIS Docker Compose setup. It includes common settings and dependencies needed by multiple components.
-* The `docker-compose-odoo.yml` file handles spinning up Odoo, `docker-compose-openmrs.yml` takes care of OpenMRS, and `docker-compose-senaite.yml` is responsible for SENAITE.
+### Running Only the EMR
+The core funcionality of Ozone is built around the EMR component so in a barebone setup you are likely going to want to run only the EMR component. At the moment Only OpenMRS 3 is supported
 
-!!! info ""
+### Running Ozone with an ERP
+In deployments where billing and stock management is needed you can run Ozone with an ERP. Ozone has 2 options for the ERP you can run Ozone with Odoo or ERPNext. Take a look at the Matrix below for how to combine Ozone the ERP of choice
 
-    There will be a default Docker Compose file provided by Ozone for each supported component of the Ozone HIS FOSS ecosystem.
+### Running Ozone with a LIMS
+In deployments where a Lab is available you can run Ozone a LIMS. Ozone supports SENAITE as the LIMS component. See the Matrix below for how to combine with a LIMS 
+
+### Ozone Component Matrix
+
+<table>
+  <tr>
+    <th>File</th>
+    <th>O3</th>
+    <th>O3</th>
+    <th>Odoo</th>
+    <th>O3</th>
+    <th>ERPNext</th>
+    <th>O3</th>
+    <th>SENAITE</th>
+    <th>O3</th>
+    <th>Odoo</th>
+    <th>SENAITE</th>
+    <th>O3</th>
+    <th>ERPNext</th>
+    <th>SENAITE</th>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-common.yml</td>
+   <td align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="3" align="center" valign="center" >&#10003;</td>
+    <td colspan="3" align="center" valign="center">&#10003;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-openmrs.yml</td>
+   <td align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="3" align="center" valign="center" >&#10003;</td>
+    <td colspan="3" align="center" valign="center">&#10003;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-openmrs-sso.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" ></td>
+    <td colspan="3" align="center" valign="center"></td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-odoo.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" >&#10003;</td>
+    <td colspan="3" align="center" valign="center"></td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-odoo-sso.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" ></td>
+    <td colspan="3" align="center" valign="center"></td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-erpnext.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" ></td>
+    <td colspan="3" align="center" valign="center">&#10003;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-erpnext-sso.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" ></td>
+    <td colspan="3" align="center" valign="center"></td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-senaite.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center">&#10003;</td>
+    <td colspan="3" align="center" valign="center" >&#10003;</td>
+    <td colspan="3" align="center" valign="center">&#10003;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-senaite-sso.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" ></td>
+    <td colspan="3" align="center" valign="center"></td>
+  </tr>
+  <tr>
+    <td align="center" valign="center">docker-compose-keycloak.yml</td>
+   <td align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="2" align="center" valign="center"></td>
+    <td colspan="3" align="center" valign="center" ></td>
+    <td colspan="3" align="center" valign="center"></td>
+  </tr>
+</table>
+
 
 ## Overriding `docker-compose-files.txt`
 
-It is possible to define another setup than the Ozone default with your own version of `docker-compose-files.txt` that you would place here, where "`ozone-gruzinia`" is the top level folder of your distribution Maven project:
+Following the Matrix above you can define your own version of `docker-compose-files.txt` to replace the default one. Take for example the distribution "`ozone-gruzinia`" you can create a new `docker-compose-files.txt` in the scripts folder as shown below:
 
 ```bash
 ozone-gruzinia
@@ -92,3 +212,6 @@ It is also possible to provide an additional `docker-compose-override.yml`[^over
     This bespoke configuration ensures that the MySQL service starts with specific settings tailored for the KenyaHMIS project. It also initializes the database with necessary SQL scripts that update and configure the database schema and data according to the project’s requirements.
 
     See [here <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/palladiumkenya/kenyahmis/blob/b24503fd623d6b9c06a94d1af3588c15b463abf6/scripts/docker-compose-override.yml) how this can be done.
+
+
+
