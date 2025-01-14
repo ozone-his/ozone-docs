@@ -52,6 +52,9 @@ extra:
       link: https://openmrs.slack.com/archives/C02PYQD5D0A
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/mekom-solutions
+  analytics:
+    provider: google
+    property: G-VW3Z3FMSMP
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
