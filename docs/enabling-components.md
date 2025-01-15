@@ -1,39 +1,12 @@
 # Enabling & Disabling HIS Components
-
-Ozone uses Docker by default and its Docker Compose setup is stated as a dependency of the distribution by relying on the Ozone Docker Compose project:
-
-```xml
-<dependency>
-  <groupId>com.ozonehis</groupId>
-  <artifactId>ozone-docker-compose</artifactId>
-  <type>zip</type>
-</dependency>
-```
-
-!!! question "What if Docker can't be used?"
-    
-    Ozone's default deployment mechanism could be changed by depending on another deployment mechanism project than Ozone Docker Compose. Such alternatives, that are yet to be developed, could leverage Kubernetes, bare metal installation, Puppet, Vagrant, etc.
-
 !!! info ""
 
-    This guide will run you through the process of enabling and disabling Ozone HIS components when using Docker Compose as the deployment mechanism.
 
-## Introducing  `docker-compose-files.txt`  file
-This is the main configuration file used configure the enabled Ozone components that are available for a give Distro. By Default the file is a kitchen sink configuration showcasing all the components available in Ozone. In real world usage you may not neccesary want to enable all of the components. The default file contains these file;
+    This guide will run you through the process of enabling and disabling Ozone HIS components when using Docker Compose as the deployment mechanism. We assume you have already created your own distribution using the Ozone Distro Maven Archetype. If you haven't, please refer to [Ozone Distro Maven Archetype](http://localhost:8000/create-distro/)
 
-| File | Details |
-|--|--|
-|docker-compose-common.yml  | This file defines shared services and configurations that are used across the entire Ozone HIS Docker Compose setup. It includes common settings and dependencies needed by multiple components. |
-|docker-compose-openmrs.yml| This file defines the OpenMRS backend , OpenMRS Frontend, extra MySQL configurations required by OpenMRS (Volumes and ENV variables) and ENV substitution service configuration for OpenMRS|
-|docker-compose-openmrs-sso.yml|This file contains extra configuration needed to enable Single Sign On for OpenMRS it contains overrides for the OpenMRS,the OpenMRS frontend and the ENV substitution service|
-|docker-compose-odoo.yml|This file defines Odoo , [Odoo FHIR](https://github.com/ozone-his/fhir-odoo) , Odoo OpenMRS EIP client to sync data from OpenMRS to Odoo, PostgreSQL overrides for Odoo , MySQL overrides for Odoo OpenMRS EIP client and the ENV substitution service overrides|
-|docker-compose-odoo-sso.yml|This file contains extra configuration needed to enable Single Sign On for Odoo it contains SSO overrides for the Odoo, and the ENV substitution service , Odoo OpenMRS EIP client and the ENV substitution|
-|docker-compose-erpnext.yml|This file defines the ERPNext backend and supporting services , ERPNext OpenMRS EIP client and extra MySQL configurations required by ERPNext OpenMRS EIP client|
-|docker-compose-erpnext-sso.yml|This file contains extra configuration needed to enable Single Sign On for ERPNext it contains overrides for ERPNext and ERPNext OpenMRS EIP client|
-|docker-compose-senaite.yml|This file defines the SENAITE service, The OpenMRS SENAITE EIP client, PostgreSQL overrides for SENAITE and MySQL overrides for OpenMRS SENAITE EIP client|
-|docker-compose-senaite-sso.yml|This file contains extra configuration needed to enable Single Sign On for SENAITE it contains SSO overrides for SENAITE , OpenMRS SENAITE EIP client and ENV substitution |
-|docker-compose-keycloak.yml|This file defines the Keycloak which is the IDP used for SSO, PostgreSQL overrides for Keycloak and ENV substitution overrides for Keycloak|
+## Ozone Deployment scenarios
 
+In real world usage you may not necessarily want to enable all of the components. Ozone is designed to be modular and you can enable or disable components as needed. Below are some of the common scenarios you may encounter;
 
 ### Running Only the EMR
 The core funcionality of Ozone is built around the EMR component so in a barebone setup you are likely going to want to run only the EMR component. At the moment Only OpenMRS 3 is supported
@@ -156,9 +129,38 @@ In deployments where a Lab is available you can run Ozone a LIMS. Ozone supports
 </table>
 
 
-## Overriding `docker-compose-files.txt`
+## The  `docker-compose-files.txt`  file
+This is the main configuration file used to configure the Ozone components that are available for a give Distro. It contains a list of Docker Compose files that are used to enable the Ozone HIS components. The file is located in the `scripts` directory of the distribution. Below are the files included in the Kitchen Sink Ozone His distribution
 
-Following the Matrix above you can define your own version of `docker-compose-files.txt` to replace the default one. Take for example the distribution "`ozone-gruzinia`" you can create a new `docker-compose-files.txt` in the scripts folder as shown below:
+
+| File | Details |
+|--|--|
+|docker-compose-common.yml  | This file defines shared services and configurations that are used across the entire Ozone HIS Docker Compose setup. It includes common settings and dependencies needed by multiple components. |
+|docker-compose-openmrs.yml| This file defines the OpenMRS backend , OpenMRS Frontend, extra MySQL configurations required by OpenMRS (Volumes and ENV variables) and ENV substitution service configuration for OpenMRS|
+|docker-compose-openmrs-sso.yml|This file contains extra configuration needed to enable Single Sign On for OpenMRS it contains overrides for the OpenMRS,the OpenMRS frontend and the ENV substitution service|
+|docker-compose-odoo.yml|This file defines Odoo , [Odoo FHIR](https://github.com/ozone-his/fhir-odoo) , Odoo OpenMRS EIP client to sync data from OpenMRS to Odoo, PostgreSQL overrides for Odoo , MySQL overrides for Odoo OpenMRS EIP client and the ENV substitution service overrides|
+|docker-compose-odoo-sso.yml|This file contains extra configuration needed to enable Single Sign On for Odoo it contains SSO overrides for the Odoo, and the ENV substitution service , Odoo OpenMRS EIP client and the ENV substitution|
+|docker-compose-erpnext.yml|This file defines the ERPNext backend and supporting services , ERPNext OpenMRS EIP client and extra MySQL configurations required by ERPNext OpenMRS EIP client|
+|docker-compose-erpnext-sso.yml|This file contains extra configuration needed to enable Single Sign On for ERPNext it contains overrides for ERPNext and ERPNext OpenMRS EIP client|
+|docker-compose-senaite.yml|This file defines the SENAITE service, The OpenMRS SENAITE EIP client, PostgreSQL overrides for SENAITE and MySQL overrides for OpenMRS SENAITE EIP client|
+|docker-compose-senaite-sso.yml|This file contains extra configuration needed to enable Single Sign On for SENAITE it contains SSO overrides for SENAITE , OpenMRS SENAITE EIP client and ENV substitution |
+|docker-compose-keycloak.yml|This file defines the Keycloak which is the IDP used for SSO, PostgreSQL overrides for Keycloak and ENV substitution overrides for Keycloak|
+
+
+
+## Overriding the `docker-compose-files.txt` file
+
+Ozone uses Docker by default and its Docker Compose setup is stated as a dependency of the distribution by relying on the Ozone Docker Compose project:
+
+```xml
+<dependency>
+  <groupId>com.ozonehis</groupId>
+  <artifactId>ozone-docker-compose</artifactId>
+  <type>zip</type>
+</dependency>
+```
+
+Following the Ozone Matrix above you can define your own version of `docker-compose-files.txt` to replace the default one. Take for example the distribution "`ozone-gruzinia`" you can create a new `docker-compose-files.txt` in the scripts folder as shown below:
 
 ```bash
 ozone-gruzinia
