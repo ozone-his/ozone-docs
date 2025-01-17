@@ -4,7 +4,7 @@ repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
   - System Implementers:
-    - Quick Start: 'index.md'
+    - Quick Start: 'foo.md'
     - Create Your Own Distribution: 'create-distro.md'
     - Customizing Ozone HIS: 'customize-ozone.md'
     - Enabling & Disabling HIS Components: 'enabling-components.md'
@@ -83,3 +83,6 @@ markdown_extensions:
 plugins:
   - search
   - macros
+  - gen-files:
+      scripts:
+        - gen_pages.py
