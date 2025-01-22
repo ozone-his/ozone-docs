@@ -42,7 +42,7 @@ It is a complete health information system allowing users to customize it by cho
 ### Maturity levels in Ozone
 
 - **:material-diamond-stone: Core** – Core apps are fully supported in Ozone. They are regularly upgraded with new Ozone versions, with their data flows within the HIS maintained to ensure seamless upgrades and backward compatibility.
-- **:material-timer-pause-outline: Legacy** – Legacy apps and their data flows were introduced in a specific version of Ozone but are no longer actively maintained. They remain available "as is" for continued use without further updates.
+- **:material-timer-pause-outline: Legacy** – Legacy apps and their data flows were introduced in a specific version of Ozone but are no longer actively maintained beyond that version. They remain available "as is" for continued use without further updates.
 
 !!! tip "Ozone Pro markers"
 
@@ -57,7 +57,8 @@ As Ozone continues to expand its suite of software apps, several criteria must b
 |:fontawesome-brands-osi: Open-source|{==**Must**==}|Ozone is FOSS under MPL 2.0. Closed-source software is accommodated within the Pro edition of Ozone or through custom developments.|
 |:fontawesome-solid-tag: Released version|{==**Must**==}|Ozone supports HIS flows between versioned software apps with stable and, ideally, well-documented APIs.|
 |:fontawesome-solid-shield-halved: OAuth 2|{==**Must**==}|OAuth2 is required for enhanced security and to implement SSO within the Ozone HIS.|
-|:fontawesome-brands-docker: Docker image|{==**Must**==}|Docker, while not the sole deployment mechanism supported, is currently the default one in Ozone HIS.|
+|:fontawesome-solid-lock: Security updates|{==**Must**==}|Must undergo regular security audits (e.g. pen tests) and have a clear process for broadcasting the availability of security updates.|
+|:fontawesome-brands-docker: Docker image|**Should**|Docker, while not the sole deployment mechanism supported, is currently the default one in Ozone HIS.|
 |:material-cog: Automated configurability|**Should**|Apps should be configurable through deployment processes, allowing for automated setup and initialization (specifically of master data) by placing configuration files in the appropriate locations.|
 |:fontawesome-solid-heart-pulse: Health check|**Should**|It is crucial that each app includes a web endpoint to let Ozone verify it is operational within the HIS.|
 |:simple-prometheus: Prometheus metrics|**Should**|Providing Prometheus metrics is recommended to enhance monitoring and ensure effective system performance management.|
