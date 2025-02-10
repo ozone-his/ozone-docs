@@ -61,6 +61,7 @@ As Ozone continues to expand its suite of software apps, several criteria must b
 |:fontawesome-brands-docker: Docker image|**Should**|Docker, while not the sole deployment mechanism supported, is currently the default one in Ozone HIS.|
 |:material-cog: Automated configurability|**Should**|Apps should be configurable through deployment processes, allowing for automated setup and initialization (specifically of master data) by placing configuration files in the appropriate locations.|
 |:fontawesome-solid-heart-pulse: Health check|**Should**|It is crucial that each app includes a web endpoint to let Ozone verify it is operational within the HIS.|
+|:fontawesome-solid-scale-balanced: Privacy & Legal Compliance|**Should**|Should comply with relevant privacy, domestic, and applicable international laws. This may include data protection regulations.|
 |:simple-prometheus: Prometheus metrics|**Should**|Providing Prometheus metrics is recommended to enhance monitoring and ensure effective system performance management.|
 |:fontawesome-solid-timeline: Backup & restore|**Should**|Automated backup and restore capabilities ensure data integrity and system resilience in production use.|
 |:fontawesome-solid-globe: Internationalization|**Should**|Internationalization should be a first class citizen for any software. It ensures that it can be easily adapted to various languages and regions, making it accessible and usable by a global audience.|
