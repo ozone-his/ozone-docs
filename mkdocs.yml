@@ -3,13 +3,24 @@ site_url: https://docs.ozone-his.com
 repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
+  - Quick Start: 'index.md'
+
   - System Implementers:
-    - Quick Start: 'index.md'
-    - Create Your Own Distribution: 'create-distro.md'
-    - Customizing Ozone HIS: 'customize-ozone.md'
-    - Enabling & Disabling HIS Components: 'enabling-components.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>Configuring HIS Components</span>": 'configuring-components.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>EIP Configuration Points</span>": 'eip-config-points.md'
+    - Introduction: 'implementers/intro.md'
+    - <span style='color:#141324;font-weight:bold;'>Evaluate</span>:
+      - <span style='color:36464e'>Quick Start: 'implementers/quick-start.md'
+    - <span style='color:#141324;font-weight:bold;'>Adopt Ozone:
+      - <span style='color:36464e'>Create Your Own Distribution: 'implementers/create-distro.md'
+      - <span style='color:36464e'>Configure Apps: 'implementers/configure-apps.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Configure Integrations: 'implementers/configure-integrations.md'
+      - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-components.md'
+    - <span style='color:#141324;font-weight:bold;'>Deploy:
+      - <span style='color:#b0b0b0;font-style:italic'/>Start & Stop: 'implementers/start-stop.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Backup & Restore: 'implementers/backup-restore.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Monitor: 'implementers/monitor.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Troubleshoot: 'implementers/troubleshoot.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Software & Hardware Requirements: 'implementers/requirements.md'
+
   - Functional Users:
     - Overview: 'users/index.md'
     - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
@@ -41,6 +52,7 @@ theme:
     primary: custom
   logo: assets/logo.png
   favicon: assets/images/favicon.png
+
 extra:
   homepage: https://www.ozone-his.com
   social:
