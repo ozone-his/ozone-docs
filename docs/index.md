@@ -1,6 +1,3 @@
-!!! info ""
-
-    This section of the Ozone Docs is designed for **digital health technical implementers**, focusing on how to install, configure, and run the Ozone HIS.
 
 # Quick Start
 
