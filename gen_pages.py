@@ -3,14 +3,13 @@ import requests
 import os
 
 # GitHub raw URL for application.properties
-ODOO_OPENMRS_GITHUB_URL = "https://raw.githubusercontent.com/ozone-his/eip-odoo-openmrs/d7f12a140a97ee1e1a8e202adacbd0920cafa4f5/odoo-openmrs/src/main/resources/config/application.properties"
+ODOO_OPENMRS_GITHUB_URL = "https://raw.githubusercontent.com/ozone-his/eip-odoo-openmrs/da35c6587c4cf280d9baace5ad9eb8ea29d5b640/odoo-openmrs/src/main/resources/config/application.properties"
 OPENMRS_ORTHANC_GITHUB_URL = ""
 KEYCLOCK_SUPERSET_GITHUB_URL = ""
 OPENMRS_SENAITE_GITHUB_URL = ""
 ERPNEXT_OPENMRS_GITHUB_URL = ""
 
-mkdocs_config_points = {'mkdocs-config-enabled': 'Enabled', 'mkdocs-config-name': 'Name',
-                        'mkdocs-config-description': 'Description',
+mkdocs_config_points = {'mkdocs-config-name': 'Name', 'mkdocs-config-description': 'Description',
                         'mkdocs-config-location': 'Location', 'mkdocs-config-possible-values': 'Possible Values',
                         'mkdocs-config-default-value': 'Default Value'}
 mkdocs_block_end_identifier = '# /mkdocs-end'
