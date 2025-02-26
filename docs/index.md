@@ -42,7 +42,7 @@
 
     Just one click:
     
-    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ozone-his/ozone/)
+    [![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/?autostart=true#https://github.com/ozone-his/ozone/tree/1.0.0-alpha.12)
 
     !!! warning ""
 
