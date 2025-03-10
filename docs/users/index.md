@@ -38,7 +38,7 @@ It is a complete health information system allowing users to customize it by cho
 |ERP|:erpnext: ERPNext|`15.12.2`|:material-timer-pause-outline: Legacy|
 |BI|:superset: Apache Superset|`3.1.0`|:material-diamond-stone: Core|
 |IdP|:keycloak: JBos Keycloak|`22.0.5`|:material-diamond-stone: Core|
-|DICOM|Orthanc|`1.0.0`|:material-diamond-stone: Core|
+|PACS|Orthanc|`1.0.0`|:material-diamond-stone: Core|
 
 ### Maturity levels in Ozone
 
