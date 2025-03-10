@@ -28,16 +28,17 @@ It is a complete health information system allowing users to customize it by cho
 
 ### Ozone HIS apps
 
-**<small>:fontawesome-solid-tag:</small> `1.0.0-alpha.11`**
+**<small>:fontawesome-solid-tag:</small> `1.0.0-alpha.13`**
 
 |Area|App|Version in Ozone|Maturity in Ozone|
 |:---:|:---:|:---:|:---:|
-|EMR|:openmrs: OpenMRS|`3.0.0-beta.21`|:material-diamond-stone: Core|
+|EMR|:openmrs: OpenMRS|`3.2.1`|:material-diamond-stone: Core|
 |LIMS|SENAITE|`2.5.0`|:material-diamond-stone: Core|
 |ERP|Odoo|`14`|:material-diamond-stone: Core|
 |ERP|:erpnext: ERPNext|`15.12.2`|:material-timer-pause-outline: Legacy|
 |BI|:superset: Apache Superset|`3.1.0`|:material-diamond-stone: Core|
-|IdP|:keycloak: JBoss Keycloak|`22.0.5`|:material-diamond-stone: Core|
+|IdP|:keycloak: JBos Keycloak|`22.0.5`|:material-diamond-stone: Core|
+|DICOM|Orthanc|`1.0.0`|:material-diamond-stone: Core|
 
 ### Maturity levels in Ozone
 

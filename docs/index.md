@@ -37,6 +37,7 @@
     | Odoo                                   | <a href="http://localhost:8069" target="_blank">http://localhost:8069</a>                   |
     | Superset                               | <a href="http://localhost:8088" target="_blank">http://localhost:8088</a>                   |
     | <span class='secondary'>ERPNext</span> | <a class='secondary' href="http://localhost:8082" target="_blank">http://localhost:8082</a> |
+    | <span class='secondary'>Orthanc</span> | <a class='secondary' href="localhost:8889/orthanc" target="_blank">localhost:8889/orthanc</a> |
 
 === ":simple-gitpod: Gitpod"
 
@@ -63,6 +64,7 @@ Each app of the HIS will require you to log in separately with their own credent
 | Odoo                                   | admin                                        | admin                                   |
 | Superset                               | admin                                        | password                                |
 | <span class='secondary'>ERPNext</span> | <span class='secondary'>administrator</span> | <span class='secondary'>password</span> |
+| <span class='secondary'>Orthanc</span> | <span class='secondary'>orthanc</span> | <span class='secondary'>orthanc</span> |
 
 !!! tip "**Did you know?**"
 
