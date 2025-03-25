@@ -10,27 +10,27 @@
         Orthanc->>Ozone: ImagingStudy
         Orthanc->>Ozone: Series
         Orthanc->>Ozone: Instance
-        Ozone->>OpenMRS: Observation (Attachment)
+        Ozone->>OpenMRS: Obs (Attachment)
 ```
 
 ## Flows List
 
 | Source |Element| |Target|         Element          |
 |:------:|:---:|:---:|:---:|:------------------------:|
-|Orthanc |Instance|⭆|OpenMRS| Observation (Attachment) |
+|Orthanc |Instance|⭆|OpenMRS| Obs (Attachment) |
 
 
-!!! question "What is Observation (attachment)?"
+!!! question "What is Obs (Attachment)?"
 
-    An attachment is represented as an complex Obs in OpenMRS. An Attachment can have a file, image, pdf with an Attachment title and description, in case of Orthanc, an attachment has an image and a hyperlink to view the imaging study.
+    An Attachment is represented as an complex Obs in OpenMRS. An Attachment can have a file, image, pdf with an Attachment title and description, in case of Orthanc, an Attachment has an image and a hyperlink to view the imaging study.
 
 ## Flows Details
 
-### **1** &nbsp; Orthanc Instance → OpenMRS Observation (attachment)
+### **1** &nbsp; Orthanc Instance → OpenMRS Obs (Attachment)
 
-An Orthanc ImagingStudy has multiple series, each series has multiple instances an instance image is mapped to OpenMRS Patient Observation as an attachment.
+An Orthanc ImagingStudy consists of multiple series, each containing multiple instances. Each instance image is mapped to an OpenMRS Patient Obs as an Attachment.
 
 ``` mermaid
 flowchart LR
-    a["Orthanc Instance"]-- many-to-1 -->b["OpenMRS Observation (attachment)"]
+    a["Orthanc Instance"]-- many-to-1 -->b["OpenMRS Obs (Attachment)"]
 ```
