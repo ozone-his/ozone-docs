@@ -7,30 +7,55 @@
         participant OpenMRS
         participant Ozone
         participant Orthanc
-        Orthanc->>Ozone: ImagingStudy
+        Orthanc->>Ozone: Imaging study
         Orthanc->>Ozone: Series
         Orthanc->>Ozone: Instance
-        Ozone->>OpenMRS: Obs (Attachment)
+        Ozone->>OpenMRS: Attachment
 ```
 
 ## Flows List
 
 | Source |Element| |Target|         Element          |
 |:------:|:---:|:---:|:---:|:------------------------:|
-|Orthanc |Instance|⭆|OpenMRS| Obs (Attachment) |
+| Orthanc |ImagingStudy | → | OpenMRS | Attachment |
+| Orthanc |Series | ⭆ | OpenMRS | Attachment |
+| Orthanc |Instance | ⭆ | OpenMRS | Attachment |
 
 
-!!! question "What is Obs (Attachment)?"
+!!! question "What is an OpenMRS attachment?"
 
-    An Attachment is represented as an complex Obs in OpenMRS. An Attachment can have a file, image, pdf with an Attachment title and description, in case of Orthanc, an Attachment has an image and a hyperlink to view the imaging study.
+    In OpenMRS, an **attachment** is any file associated with a patient’s medical record. Attachments typically include files such as images or PDFs to which users can add titles and descriptions. Internally, attachments are managed as a special type of observation (`Obs` in the OpenMRS data model) that stores complex data (generally the binaries of the file itself).
+
 
 ## Flows Details
 
-### **1** &nbsp; Orthanc Instance → OpenMRS Obs (Attachment)
+An Orthanc imaging study consists of multiple series of image instances. In this lightweight integration, one image instance from the study is selected to serve as a simplified reference within OpenMRS. The selected instance is then saved as an attachment in OpenMRS.
 
-An Orthanc ImagingStudy consists of multiple series, each containing multiple instances. Each instance image is mapped to an OpenMRS Patient Obs as an Attachment.
+Its description contains a direct link to the complete imaging study hosted in Orthanc.
+
+### **1** &nbsp; Orthanc Imaging Study → OpenMRS Attachment
+
+This data flow synchronizes each Orthanc imaging study to an attachment (`Obs`) in the patient's OpenMRS record. Each attachment includes a soft reference to the originating imaging study by storing the study's URL in its description (the attachment's file caption).
 
 ``` mermaid
 flowchart LR
-    a["Orthanc Instance"]-- many-to-1 -->b["OpenMRS Obs (Attachment)"]
+    a["Orthanc imaging study"]-- 1-to-1 -->b["OpenMRS attachment"]
+```
+
+### **2** &nbsp; Orthanc Series ⭆ OpenMRS Attachment
+
+In this implicit secondary flow, the image instance used for the OpenMRS attachment is selected from the first series within the Orthanc imaging study.
+
+``` mermaid
+flowchart LR
+    a["Orthanc series"]-- many-to-1 -->b["OpenMRS attachment"]
+```
+
+### **3** &nbsp; Orthanc Instance ⭆ OpenMRS Attachment
+
+In this implicit secondary flow, the first image instance from the first series of the Orthanc imaging study is selected for use as the OpenMRS attachment.
+
+``` mermaid
+flowchart LR
+    a["Orthanc Instance"]-- many-to-1 -->b["OpenMRS attachment"]
 ```
