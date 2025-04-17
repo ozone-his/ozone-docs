@@ -3,8 +3,10 @@ site_url: https://docs.ozone-his.com
 repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
-  - Quick Start: 'index.md'
-
+  - Getting Started:
+    - Online Demo: getting-started/online-demo.md
+    - Locally: getting-started/run-locally.md
+    - In Gitpod: getting-started/run-in-gitpod.md
   - System Implementers:
     - Introduction: 'implementers/intro.md'
     - <span style='color:#141324;font-weight:bold;'>Evaluate</span>:
@@ -73,7 +75,7 @@ markdown_extensions:
   - admonition
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji 
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
       options:
         custom_icons:
