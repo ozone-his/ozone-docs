@@ -10,6 +10,7 @@ nav:
     - Enabling & Disabling HIS Components: 'enabling-components.md'
     - "<span style='color:#b0b0b0;font-style:italic'>Configuring HIS Components</span>": 'configuring-components.md'
     - "<span style='color:#b0b0b0;font-style:italic'>EIP Configuration Points</span>": 'auto-eip-config-points.md'
+    - Backup and Restore: 'backup-and-restore.md'
   - Functional Users:
     - Overview: 'users/index.md'
     - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
