@@ -1,3 +1,5 @@
+## Download and start
+
 Only three commands in a terminal:
 
 ```bash
@@ -16,16 +18,30 @@ cd ozone/run/docker/scripts/
 
     :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
 
+## Browse
 Once started, the script will output the URLs to access the services locally.
+
 For example:
+
 ![Ozone services started](../assets/images/run-locally-list-services.png)
 
-Then, start browsing Ozone:
+Accessing any of those URLs should present you the Single Sign-On portal page:
+![SSO login page](../assets/images/sso-login.png)
 
-| **App**                      | **URL**                                                                                     |
-|----------------------------------------|---------------------------------------------------------------------------------------------|
-| OpenMRS 3                              | <a href="http://localhost/openmrs/spa" target="_blank">http://localhost/openmrs/spa</a>     |
-| SENAITE                                | <a href="http://localhost:8081/senaite" target="_blank">http://localhost:8081/senaite</a>   |
-| Odoo                                   | <a href="http://localhost:8069" target="_blank">http://localhost:8069</a>                   |
-| Superset                               | <a href="http://localhost:8088" target="_blank">http://localhost:8088</a>                   |
-| <span class='secondary'>ERPNext</span> | <a class='secondary' href="http://localhost:8082" target="_blank">http://localhost:8082</a> |
+Enter the demo username and password: `jdoe` / `password`
+
+You're ready to start browsing Ozone 👏 !
+
+!!! warning ""
+
+    🛠️ If you encounter an error when trying to access OpenMRS, you may need to apply the following command to force a restart of the OpenMRS service.
+    ```curl
+    docker restart ozone-openmrs-1
+    ```
+## Shut down the server
+
+Once you're done with browsing Ozone, you may destroy the server:
+
+```bash
+./destroy-demo.sh
+```
