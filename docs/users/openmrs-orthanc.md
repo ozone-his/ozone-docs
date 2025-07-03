@@ -7,7 +7,11 @@
         participant OpenMRS
         participant Ozone
         participant Orthanc
+<<<<<<< HEAD
         Orthanc->>Ozone: Imaging study
+=======
+        Orthanc->>Ozone: Study
+>>>>>>> main
         Orthanc->>Ozone: Series
         Orthanc->>Ozone: Instance
         Ozone->>OpenMRS: Attachment
@@ -17,9 +21,15 @@
 
 | Source |Element| |Target|         Element          |
 |:------:|:---:|:---:|:---:|:------------------------:|
+<<<<<<< HEAD
 | Orthanc |ImagingStudy | → | OpenMRS | Attachment |
 | Orthanc |Series | ⭆ | OpenMRS | Attachment |
 | Orthanc |Instance | ⭆ | OpenMRS | Attachment |
+=======
+| Orthanc | Study | → | OpenMRS | Attachment |
+| Orthanc | Series | ⭆ | OpenMRS | Attachment |
+| Orthanc | Instance | ⭆ | OpenMRS | Attachment |
+>>>>>>> main
 
 
 !!! question "What is an OpenMRS attachment?"
@@ -33,7 +43,11 @@ An Orthanc imaging study consists of multiple series of image instances. In this
 
 Its description contains a direct link to the complete imaging study hosted in Orthanc.
 
+<<<<<<< HEAD
 ### **1** &nbsp; Orthanc Imaging Study → OpenMRS Attachment
+=======
+### **1** &nbsp; Orthanc Study → OpenMRS Attachment
+>>>>>>> main
 
 This data flow synchronizes each Orthanc imaging study to an attachment (`Obs`) in the patient's OpenMRS record. Each attachment includes a soft reference to the originating imaging study by storing the study's URL in its description (the attachment's file caption).
 
