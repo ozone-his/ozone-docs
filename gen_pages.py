@@ -50,10 +50,10 @@ def process_application_properties(text):
 
 def main():
     result_lines = []
-    result_lines.append(page_heading(mk_emoji_construction() + ' EIP Configuration Points'))
+    result_lines.append(page_heading('Configure Integrations'))
     result_lines.append(mk_newline())
     result_lines.append(
-        'In this section, we provide a comprehensive list of configuration points available in Ozone, organized by EIP services and thereby grouped by pairs of apps.')
+        'In this section, we provide a comprehensive list of configuration points available in to configure the integrations between apps in Ozone, organized by EIP services and thereby grouped by pairs of apps.')
     result_lines.append(mk_newline())
     result_lines.append(mk_seperator_line())
     for key, value in app_github_dict.items():
