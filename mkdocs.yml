@@ -3,13 +3,31 @@ site_url: https://docs.ozone-his.com
 repo_url: https://github.com/ozone-his/ozone-distro
 repo_name: ozone-his/ozone
 nav:
+  - Getting Started:
+    - Access Online Demo: getting-started/online-demo.md
+    - Run Locally: getting-started/run-locally.md
+    - Run In Gitpod: getting-started/run-in-gitpod.md
   - System Implementers:
-    - Quick Start: 'index.md'
-    - Create Your Own Distribution: 'create-distro.md'
-    - Customizing Ozone HIS: 'customize-ozone.md'
-    - Enabling & Disabling HIS Components: 'enabling-components.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>Configuring HIS Components</span>": 'configuring-components.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>EIP Configuration Points</span>": 'auto-eip-config-points.md'
+    - Introduction: 'implementers/intro.md'
+    - <span style='color:#141324;font-weight:bold;'>Evaluate</span>:
+      - <span style='color:36464e'>The Ozone Demo: 'implementers/ozone-demo.md'
+
+    - <span style='color:#141324;font-weight:bold;'>Adopt</span>:
+      - <span style='color:36464e'>Create Your Own Distribution: 'implementers/create-distro.md'
+      - <span style='color:36464e'>Configure Apps: 'implementers/configure-apps.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Configure Integrations: 'implementers/configure-integrations.md'
+      - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
+      - <span style='color:36464e'>Enable & Disable Single Sign-On: 'implementers/enable-sso.md'
+      - <span style='color:36464e'>Enable & Disable Central Authorization: 'implementers/enable-central-auth.md'
+      - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
+
+    - <span style='color:#141324;font-weight:bold;'>Deploy</span>:
+      - <span style='color:#b0b0b0;font-style:italic'/>Start & Stop: 'implementers/start-stop.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Backup & Restore: 'implementers/backup-restore.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Monitor: 'implementers/monitor.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Troubleshoot: 'implementers/troubleshoot.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Software & Hardware Requirements: 'implementers/specs.md'
+
   - Functional Users:
     - Overview: 'users/index.md'
     - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
@@ -42,6 +60,7 @@ theme:
     primary: custom
   logo: assets/logo.png
   favicon: assets/images/favicon.png
+
 extra:
   homepage: https://www.ozone-his.com
   social:
@@ -62,7 +81,7 @@ markdown_extensions:
   - admonition
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji 
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
       options:
         custom_icons:
@@ -84,6 +103,12 @@ markdown_extensions:
 plugins:
   - search
   - macros
+  - mkdocs-video:
+      video_autoplay: True
+      video_loop: True
+      css_style:
+        width: "100%"
+        height: "38vw"
   - gen-files:
       scripts:
         - gen_pages.py
