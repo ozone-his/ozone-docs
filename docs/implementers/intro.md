@@ -1,16 +1,51 @@
-This implementation guide is divided in 3 sections which correspond to the typical implementer approach:
+This guide is divided into three sections, corresponding to a typical approach for assessing software and tools used in digital health interventions:
+
+``` mermaid
+stateDiagram-v2
+    direction LR
+
+    classDef EvalClass fill:white
+    classDef AdoptClass fill:#3CB393
+    classDef DeployClass fill:#3CB393,color:white
+    
+
+    state "1. Evaluate" as eval
+    state "2. Adopt" as adopt
+    state "3. Deploy" as deploy
+
+    eval --> adopt
+    adopt --> deploy
+    deploy --> adopt
+
+    class eval EvalClass
+    %% class adopt AdoptClass
+    class deploy DeployClass
+```
+
+!!! tip
+    Use the left-hand menu to navigate the subguides and technical resources available under **Evaluate**, **Adopt**, and **Deploy**.
 
 ## 1. Evaluate
-For those new to Ozone, this section outlines various assessment options. It includes:
 
-- A link to the online demo
-- Instructions for running Ozone locally
-- Guidance on using Ozone within a Gitpod environment
+First and foremost, it is important to evaluate what Ozone is and explore how it may look to end users. The easiest way to do this is by exploring the **Ozone Demo**. There are three immediate options:
+
+- Browse the online {==:oz: Pro==} demo  
+- Run Ozone FOSS locally
+- Run Ozone FOSS in Gitpod  
+
+We also recommend reaching out via our website to request a guided Ozone deep dive and demo.
+
+!!! info "About the Ozone Demo"
+    The Ozone Demo is _one_ opinionated example of a typical HIS implemented with Ozone.  
+    It serves to illustrate a realistic end-user experience, but does not represent the full range of outcomes and customizations possible with Ozone.
 
 ## 2. Adopt
-Once you've determined Ozone's suitability for your project, it's time to set up your environment.
-First and foremost, you will want to create your own copy of Ozone (aka, distribution), so that you can configure it or customize it to your needs. This is essential to adopt Ozone. We have developed a comprehensive tool suite to facilitate implementers creating their own distribution. Such distribution will be at first, an empty shell that will just inherit a plain Ozone. Progressively, you will be able make it your own, but under the hood still depending on the most recent version of Ozone, directly benefiting from its new features and fixes.
+Once you've confirmed Ozone is suitable for your project, the next step is to create your own customized copy (distribution) of Ozone. We provide a comprehensive toolkit to help implementers easily set up their own distribution. This custom distribution will initially inherit Ozone’s defaults, and can be progressively configured and customized to your needs while continuing to benefit from the latest features and improvements from Ozone.
 
 ## 3. Deploy
-Finally, once your software is ready and packaged, you can deploy it to your server. Ozone provides some utils scripts to help you with this. Additionally, it comes with backup and restore functionality as well as monitoring. We also provide in that section a page for common errors and troubleshooting tips.
 
+Once your Ozone distribution is packaged and ready, you can deploy it to your servers. Ozone includes utility scripts to streamline deployment, built-in backup and restore capabilities, and integrated monitoring.
+
+Typically, you'll experience some iteration between "Adopt" and "Deploy"—configuring, deploying, reviewing, and refining until your environment matches your needs.
+
+This section also provides troubleshooting tips and solutions to common deployment issues.
