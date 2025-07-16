@@ -115,6 +115,6 @@ Check out our next section to configure your distribution:
 
 - [Configure Apps](./configure-apps.md) - White labeling, metadata configuration...
 - [Configure Integrations](./configure-integrations.md) - Configure integration points, enable/disable integration routes...
-- [Enable & Disable Apps Integrations](./enabling-components.md) - Define which app or integration should be run.
+- [Enable & Disable Apps Integrations](./enabling-apps.md) - Define which app or integration should be run.
 
 Or if you want to try your distribution as such, jump right to [Start & Stop](./start-stop.md) page.

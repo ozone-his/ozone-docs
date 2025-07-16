@@ -18,7 +18,7 @@ nav:
       - <span style='color:#b0b0b0;font-style:italic'/>Configure Integrations: 'implementers/configure-integrations.md'
       - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
       - <span style='color:36464e'>Enable & Disable Single Sign-On: 'implementers/enable-sso.md'
-      - <span style='color:36464e'>Enable & Disable Central Authorization: 'implementers/enable-sso.md'
+      - <span style='color:36464e'>Enable & Disable Central Authorization: 'implementers/enable-central-auth.md'
       - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
 
     - <span style='color:#141324;font-weight:bold;'>Deploy</span>:
@@ -26,7 +26,7 @@ nav:
       - <span style='color:#b0b0b0;font-style:italic'/>Backup & Restore: 'implementers/backup-restore.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Monitor: 'implementers/monitor.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Troubleshoot: 'implementers/troubleshoot.md'
-      - <span style='color:#b0b0b0;font-style:italic'/>Software & Hardware Requirements: 'implementers/requirements.md'
+      - <span style='color:#b0b0b0;font-style:italic'/>Software & Hardware Requirements: 'implementers/specs.md'
 
   - Functional Users:
     - Overview: 'users/index.md'
