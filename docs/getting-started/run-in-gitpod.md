@@ -12,16 +12,17 @@ You can navigate to other Ozone apps of the HIS via the `PORTS` tab of the Termi
 
 ![Ozone services started](../assets/images/gitpod-list-services.png)
 
-Each app of the HIS will require you to log in separately with their own credentials:
+In Gitpod each app of the HIS will require you to log in separately with their own credentials:
 
-| **App**                      | **Username**                                 | **Password**                            |
-|----------------------------------------|----------------------------------------------|-----------------------------------------|
-| OpenMRS 3                              | admin                                        | Admin123                                |
-| SENAITE                                | admin                                        | password                                |
-| Odoo                                   | admin                                        | admin                                   |
-| Superset                               | admin                                        | password                                |
+| **HIS App**                                  | **Username**                                             | **Password**                                        |
+|----------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------|
+| OpenMRS 3                                          | admin                                                    | Admin123                                            |
+| Odoo                                               | admin                                                    | admin                                               |
+| Superset                                           | admin                                                    | password                                            |
+| SENAITE                                            | admin                                                    | password                                            |
+| Orthanc                                            | orthanc                                                  | orthanc                                             |
 | <span class='secondary'>ERPNext</span> | <span class='secondary'>administrator</span> | <span class='secondary'>password</span> |
 
 !!! info ""
 
-    💡 Single Sign-On is not supported when running Ozone in Gitpod. Check out the [offical demo](online-demo.md) or [run locally](run-locally.md) to experience Single Sign-On.
+    💡 Single Sign-On isn’t supported in Gitpod. To try it out, check the [offical demo](online-demo.md) or [run Ozone locally](run-locally.md)
