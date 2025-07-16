@@ -1,1 +1,0 @@
-# <small>:construction:</small> Configuring Integrations
