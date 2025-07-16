@@ -4,21 +4,21 @@ This guide is divided into three sections, corresponding to a typical approach f
 stateDiagram-v2
     direction LR
 
-    classDef EvalClass fill:white
-    classDef AdoptClass fill:#3CB393
-    classDef DeployClass fill:#3CB393,color:white
+    classDef EvalClass fill:#FCF4E5
+    classDef AdoptClass fill:#B5C5E7
+    classDef DeployClass fill:#F5CAB3
     
 
-    state "1 &nbsp; Evaluate" as eval
-    state "2 &nbsp; Adopt" as adopt
-    state "3 &nbsp; Deploy" as deploy
+    state "<b>1</b> &nbsp; Evaluate" as eval
+    state "<b>2</b> &nbsp; Adopt" as adopt
+    state "<b>3</b> &nbsp; Deploy" as deploy
 
     eval --> adopt
     adopt --> deploy
     deploy --> adopt
 
     class eval EvalClass
-    %% class adopt AdoptClass
+    class adopt AdoptClass
     class deploy DeployClass
 ```
 
