@@ -21,7 +21,7 @@ nav:
       - <span style='color:#b0b0b0;font-style:italic'/>Enable & Disable Central Authorization: 'implementers/enable-central-auth.md'
       
     - <span style='color:#141324;font-weight:bold;'>Deploy</span>:
-      - <span style='color:#b0b0b0;font-style:italic'/>Start & Stop: 'implementers/start-stop.md'
+      - Start & Stop: 'implementers/start-stop.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Backup & Restore: 'implementers/backup-restore.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Monitor: 'implementers/monitor.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Troubleshoot: 'implementers/troubleshoot.md'
@@ -38,13 +38,17 @@ nav:
     - Odoo–OpenMRS Flows: 'users/odoo-openmrs.md'
     - OpenMRS-Orthanc Flows: 'users/openmrs-orthanc.md'
     - OpenMRS-SENAITE Flows: 'users/openmrs-senaite.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>Ozone Analytics</span>": 'users/analytics.md'
+
   - Software Developers:
     - Architecture Overview: 'devs/index.md'
     - "<span style='color:#b0b0b0;font-style:italic'>Camel Components</span>": 'devs/camel-components.md'
     - EIP Client: 'devs/eip-client.md'
     - "<span style='color:#b0b0b0;font-style:italic'>Conventions</span>": 'devs/conventions.md'
     - Automated E2E Tests: 'devs/e2e-tests.md'
+
+  - "Ozone Analytics":
+    - "<span style='color:#b0b0b0;font-style:italic'>Overview</span>": 'analytics/index.md'
+
 theme:
   name: material
   custom_dir: overrides
