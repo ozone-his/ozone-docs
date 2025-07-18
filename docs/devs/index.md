@@ -43,8 +43,8 @@ Development in Ozone primarily involves assembling peer-to-peer services using t
 - It's a ready-to-use application designed for implementing Camel routes.
 - It manages authentication:
 
-    * With Ozone FOSS's HIS apps.
-    * With Ozone Pro's Identity Provider (IdP). &nbsp;&nbsp;{==:oz: Pro==}
+    * With Ozone's HIS apps.
+    * With Ozone's Identity Provider (IdP).
 
 - It includes a variety of common libraries to implement data flows that can be reused across different services.
 
