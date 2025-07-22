@@ -1,8 +1,8 @@
 ## Download and start
 
-!!! System Requirements
+!!! info "System Requirements"
     
-    To run Ozone and it's applications smoothly your machine should atleast have the following:
+    To run Ozone and its apps smoothly, your environment should meet at least the following requirements:
 
     - 12 GB of free RAM
     - 8 core CPU
