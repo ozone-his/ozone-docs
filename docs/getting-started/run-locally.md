@@ -6,8 +6,7 @@
 
     - 12 GB of free RAM
     - 8 core CPU
-    - 25 GB for free space
-    - High speed internet
+    - 25 GB for free disk space
 
 Running the Ozone demo locally takes just three terminal commands:
 
