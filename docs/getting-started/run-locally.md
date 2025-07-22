@@ -1,5 +1,14 @@
 ## Download and start
 
+!!! System Requirements
+    
+    To run Ozone and it's applications smoothly your machine should atleast have the following:
+
+    - 12 GB of free RAM
+    - 8 core CPU
+    - 25 GB for free space
+    - High speed internet
+
 Running the Ozone demo locally takes just three terminal commands:
 
 ```bash
