@@ -1,12 +1,10 @@
-# Branding Applications
+# Branding & White-labelling
 
-## Customise Odoo Theme Color Using Add-On
+## While-labelling Odoo
 
-### Overview
+Odoo allows developers to extend and modify both its functionality and user interface using add-ons. In this guide, we will document how to use the [OCA `web_company_color`](https://github.com/OCA/web/tree/17.0/web_company_color) add-on to apply a custom theme to your Odoo instance.
 
-Odoo allows developers to extend and modify both its **functionality** and **user interface (UI)** using **add-ons**. In this guide, we will document how to use the [OCA `web_company_color`](https://github.com/OCA/web/tree/17.0/web_company_color) add-on to apply a custom theme to your Odoo instance.
-
-We've used this add-on to apply **OpenMRS theme colors** across the Odoo 17 UI.
+As an example, we've used this add-on to apply the OpenMRS theme colors across the Odoo 17 UI to provide a users with a more unified experience between Ozone applications.
 
 ### What Does the Add-on Do?
 
@@ -73,13 +71,11 @@ def _scss_get_sanitized_values(self):
 
 ### How to Modify the Theme Colors
 
-Let's say you want to change the **navbar background color** to dark blue and **button background color** to green.
+Let's say you want to change the navbar background color to dark blue and button background color to green.
 
-- **Locate the Add-on Code**
-   The logic is inside `res.company.py` model.
+- Locate the `res.company.py` file where the SCSS code is defined.
 
-- **Modify the Color Dictionary**
-   Update the color values in `_scss_get_sanitized_values`:
+- Update the color values in `_scss_get_sanitized_values` method:
 
    ```python
    values.update(
@@ -98,22 +94,18 @@ Let's say you want to change the **navbar background color** to dark blue and **
    )
    ```
 
-- **Restart the Odoo Server**
-   Restart Odoo to regenerate the SCSS and apply the new theme.
+- Restart Odoo to regenerate the SCSS and apply the new theme.
 
-- **Clear Browser Cache**
-   Clear cache or do a hard reload to see the updated theme.
+- Clear cache or do a hard reload to see the updated theme.
 
 ### Notes
 
 - More SCSS variables and styles can be added by editing the `SCSS_TEMPLATE`.
-- Validate CSS/SCSS syntax.
+- Manually verify your CSS/SCSS syntax because your IDE might not show the errors as the code is in Python and not HTML/CSS
 - Use `!important` carefully to avoid style conflicts.
 
 
-## Keycloak Theme Customization
-
-### Overview
+## While-labelling Keycloak
 
 Keycloak allows you to fully customize its look, feel, and behavior by modifying its themes. Themes control how pages like login, account management, and email templates appear to users.
 
