@@ -155,3 +155,4 @@ __Supported Configuration__
 |RESTIC_KEEP_YEARLY| How many years back we should keep at least one snapshot | |
 |LOG_LEVEL| The log level for the Docker Compose Wrapper | `info` |
 | RESTIC_LOCAL_BACKUP_PATH | The external directory for storing restic backups when storing the backups on the local disk | |
+

@@ -15,6 +15,7 @@ nav:
     - <span style='color:#141324;font-weight:bold;'>Adopt</span>:
       - <span style='color:36464e'>Create Your Own Distribution: 'implementers/create-distro.md'
       - <span style='color:36464e'>Configure Apps: 'implementers/configure-apps.md'
+      - <span style='color:36464e'>Branding & White-labelling: 'implementers/branding-apps.md'
       - <span style='color:36464e'>Configure Integrations: 'auto-eip-config-points.md'
       - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Enable & Disable Single Sign-On: 'implementers/enable-sso.md'
