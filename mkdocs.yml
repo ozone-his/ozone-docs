@@ -22,7 +22,7 @@ nav:
       
     - <span style='color:#141324;font-weight:bold;'>Deploy</span>:
       - Start & Stop: 'implementers/start-stop.md'
-      - <span style='color:#b0b0b0;font-style:italic'/>Backup & Restore: 'implementers/backup-restore.md'
+      - <span style='color:36464e'/>Backup & Restore: 'implementers/backup-restore.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Monitor: 'implementers/monitor.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Troubleshoot: 'implementers/troubleshoot.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Software & Hardware Requirements: 'implementers/specs.md'
