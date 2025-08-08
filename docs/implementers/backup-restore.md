@@ -2,6 +2,8 @@ Ozone includes backup and restore out of the box. The backup and restore engine 
 
 We wrap Restic in a convience project to allow it to seamlessly intergrate with Ozone and if you are curious about the details you can take a look at the wrapper [project](https://github.com/mekomsolutions/restic-compose-backup)
 
+Backups stored by restic are encrypted.
+
 The backup and restore process is broken into two different services;
 
 - Backup service, which will run perdiocally.
@@ -142,8 +144,7 @@ __Supported Configuration__
 
 | Env Variable | Details | Example
 |--|--|--|
-|RESTIC_REPOSITORY|Location of repository. A repository in Restic is refers to where the backups will be stored |  `/restic-backups` , `s3:s3.amazonaws.com/ozone-backup`
-|RESTIC_PASSWORD| The password used to unlock the repository | |
+| BACKUP_PATH | The external directory for storing Restic backups when storing on local disk | |
 |CRON_SCHEDULE| Unix Cron pattern for when the backup with happen | `*/5 * * * *`|
 |AWS_DEFAULT_REGION| This is used to set the bucket region when `RESTIC_REPOSITORY`  is S3| |
 |AWS_ACCESS_KEY_ID| This is used to set the AWS access key id when `RESTIC_REPOSITORY`  is S3 | |
@@ -153,6 +154,7 @@ __Supported Configuration__
 |RESTIC_KEEP_WEEKLY|How many weeks back we should keep at least one snapshot  | |
 |RESTIC_KEEP_MONTHLY|How many months back we should keep at least one snapshot  | |
 |RESTIC_KEEP_YEARLY| How many years back we should keep at least one snapshot | |
+|RESTIC_PASSWORD| The password used to unlock the repository | |
 |LOG_LEVEL| The log level for the Docker Compose Wrapper | `info` |
-| RESTIC_LOCAL_BACKUP_PATH | The external directory for storing restic backups when storing the backups on the local disk | |
+|RESTIC_REPOSITORY| Location of repository. A repository in Restic is refers to where the backups will be stored |  `/restic-backups` , `s3:s3.amazonaws.com/ozone-backup`
 
