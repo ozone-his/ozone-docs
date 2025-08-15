@@ -50,23 +50,23 @@ The color values are provided in Python as a dictionary. This method overrides t
 
 ```python
 def _scss_get_sanitized_values(self):
-  self.ensure_one()
-  values = dict(self.company_colors or {})
-  values.update(
-    {
-      "color_navbar_bg": "#005d5d",
-      "color_navbar_bg_hover": "#007070",
-      "color_navbar_text": "#ffffff",
-      "color_button_bg": "#005d5d",
-      "color_button_bg_hover": "#007070",
-      "color_button_text": "#ffffff",
-      "color_link_text": "#005d5d",
-      "color_link_text_hover": "#007070",
-      "color_submenu_text": "#ffffff",
-      "color_menu_brand": "#ffffff"
-    }
-  )
-  return values
+    self.ensure_one()
+    values = dict(self.company_colors or {})
+    values.update(
+        {
+            "color_navbar_bg": "#005d5d",
+            "color_navbar_bg_hover": "#007070",
+            "color_navbar_text": "#ffffff",
+            "color_button_bg": "#005d5d",
+            "color_button_bg_hover": "#007070",
+            "color_button_text": "#ffffff",
+            "color_link_text": "#005d5d",
+            "color_link_text_hover": "#007070",
+            "color_submenu_text": "#ffffff",
+            "color_menu_brand": "#ffffff"
+        }
+    )
+    return values
 ```
 
 ### How to Modify the Theme Colors
