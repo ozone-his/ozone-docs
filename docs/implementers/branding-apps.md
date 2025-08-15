@@ -111,15 +111,12 @@ Keycloak allows you to fully customize its look, feel, and behavior by modifying
 
 ### Types of Keycloak Theme Pages
 
-Keycloak provides multiple theme types that can be customized:
+Keycloak has different pages and templates which can be customized:
 
-- *Login Theme Pages*: Controls login, registration, password reset, and other identity workflows.
-
-- *Account Theme Pages*: Used for the user account management console.
-
-- *Email Theme Pages*: Used to customize the design and content of Keycloak's email templates (verification, password reset, etc.).
-
-- *Admin Console and Account Console Pages*: For customizing admin UI and self-service account UI.
+- *Login Pages*
+- *Account Pages*
+- *Admin Console Pages*
+- *Email templates*
 
 !!! tip "Recommendation"
 
@@ -133,22 +130,46 @@ There are several ways to customize themes in Keycloak. The two most recommended
 
 **Technology**: Uses [Apache FreeMarker](https://freemarker.apache.org/)    
 **Use Case**: Good for small customizations or branding changes  
-**Used In**: [Ozone Distro](https://github.com/ozone-his/ozone/tree/main/distro/configs/keycloak/themes/carbon/login) - A simple custom login screen is implemented using FTL templates and custom CSS.
+**Used In**: 
+- [Ozone Distro](https://github.com/ozone-his/ozone/tree/main/distro/configs/keycloak/themes/carbon/login) - A custom login screen for Ozone, implemented using FTL templates and custom CSS.
+- [OpenMRS Distro HIS](https://github.com/openmrs/openmrs-distro-his/tree/main/configs/keycloak/themes/carbon/login) - Customized login screen for OpenMRS Distro HIS
+
+**How to use**:
+- Follow the official Keycloak documentation on [creating a theme](https://www.keycloak.org/docs/latest/server_development/index.html#creating-a-theme).
+- Once your theme directory (e.g., `myCustomTheme`) is ready, place it inside the `configs/keycloak/themes` folder in your distribution.
+- The Maven build process will automatically detect the theme and load it into Keycloak.
+- After the Ozone distribution is up and running:
+    - Log in to Keycloak.
+    - Navigate to the Themes section.
+    - Select your custom theme.
+    - Restart the Keycloak container if required.
+- To make this your **default** theme:
+    - Duplicate the realm configuration file in your distribution.
+    - Place the copy inside the `configs/keycloak/realms` folder.
+- In the copied file, update the Keycloak theme name at [this location](https://www.keycloak.org/docs/latest/server_development/index.html#creating-a-theme).
+
 
 #### - Keycloakify
 
 **Technology**: React-based theme builder [Keycloakify](https://www.keycloakify.dev/)  
 **Use Case**: Ideal for complex UI changes and building modern UIs  
-**Used In**: [Ozone FAIMER Project](https://github.com/faimer-figs/keycloak-theme-faimer) - Used to fully customize login, reset password, and email verification pages.
+**Used In**: 
+- Ozone FAIMER Project - Used to fully customize login, reset password, and email verification pages.
 
-### Deploying Custom Themes
+**How to use**:
+- Follow the Keycloakify documentation on [theme types](https://docs.keycloakify.dev/theme-types/difference-between-login-themes-and-the-other-types-of-themes).
+- Make the desired cosmetic changes to your theme.
+- [Build your theme JAR](https://docs.keycloakify.dev/deploying-your-theme#building-the-jar-file).
+- You now have two deployment options:
+    - **Mavenize the Keycloakify project** and publish the JAR to a central repository so it can be pulled into your distribution automatically.
+    - **Manually deploy** by building the JAR locally and copying it into the distribution every time you make a theme change.
+- In either case, ensure the following:
+    - The final theme JAR is located in `distro/binaries/keycloak/themes`.
+    - If manually copying, place the JAR directly inside `binaries/keycloak/themes` in your distribution.
+- To make this your **default** theme:
+    - Duplicate the realm configuration file in your distribution.
+    - Place the copy inside `configs/keycloak/realms`.
 
-After building your custom theme (FTL or Keycloakify):
-
-1. Copy the theme under `distro/binaries/keycloak/themes`
-2. Restart the Keycloak server
-3. Update the realm to use your custom theme in the **Realm Settings → Themes** section
-4. If required you can make the custom theme as the default theme by modifying the `ozone-realm.json` located at `distro/configs/keycloak/realms/ozone-realm.json`
 
 ### Additional Notes
 
