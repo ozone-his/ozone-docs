@@ -1,6 +1,6 @@
 # Branding & White-labelling
 
-## While-labelling Odoo
+## White-labelling Odoo
 
 Odoo allows developers to extend and modify both its functionality and user interface using add-ons. In this guide, we will document how to use the [OCA `web_company_color`](https://github.com/OCA/web/tree/17.0/web_company_color) add-on to apply a custom theme to your Odoo instance.
 
