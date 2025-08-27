@@ -1,30 +1,27 @@
-Ozone includes backup and restore out of the box. The backup and restore engine is powered by the powerful and popular [Restic](https://restic.readthedocs.io/en/stable/) project. Meaning all the [storage types](https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html) supported by Restic can eventually be supported by Ozone.
+Ozone includes backup and restore out of the box. The backup and restore engine is powered by the powerful and popular [Restic](https://restic.readthedocs.io/en/stable/) project. Meaning all the storage types supported by Restic can eventually be supported by Ozone.
 
 We wrap Restic in a convience project to allow it to seamlessly intergrate with Ozone and if you are curious about the details you can take a look at the wrapper [project](https://github.com/mekomsolutions/restic-compose-backup)
 
-Backups stored by restic are encrypted.
+Backups stored by Restic are encrypted.
 
-The backup and restore process is broken into two different services;
+The backup and restore process is broken into two different services:
 
 - Backup service, which will run perdiocally.
-- Restore service, which will be run one time to restore from a backup.
+- Restore service, which will be run once, to restore from a backup.
 
 ## Backing up
 
 While the backup services are enabled by default when starting Ozone using the Start & Stop instructions, you may want to configure how and where the backups are stored, as well as at which frequency they're made.
 
-As of now, you have 2 options for the backup target storage:
+As of now, you have 2 options to configure the Restic repository:
 
 - Backup to a local path
 - Backup to S3
 
 Configuration of the backup services is done through environment variables.
 There are multiple ways to set environment variables in Ozone. One of them could be to export the variable before running the start scripts, and this is the method used as an example in this page.
-<!---
-Should rather to a page dedicated to documenting how to set environiment variables in an Ozone deployment
--->
 
-Once you speficy where and when to backup (see instructions below), you can run Ozone.
+Once you speficy where and when to backup, you can run Ozone.
 
 Example using the standard Start & Stop instructions:
 
@@ -34,7 +31,7 @@ Example using the standard Start & Stop instructions:
 
 A container suffixed as `-backup` will be created and always running.
 
-See below how to configure the backup service.
+But be sure to configure the backup service first, as detailed in the section below.
 
 ### Configure the backup frequency
 
@@ -54,7 +51,7 @@ To do so, set the `BACKUP_PATH` environment variable to point to the path of cho
 ```
 export BACKUP_PATH=/mnt/nfs/backups/
 ```
- 
+
 ### Backup to S3
 Alternatively, you can store your backups on an S3 bucket.
 !!! tip "Setting up an AWS S3 bucket"
@@ -70,19 +67,49 @@ export RESTIC_REPOSITORY='s3:s3.amazonaws.com/ozone-backup'
 export AWS_DEFAULT_REGION='eu-west-1'
 ```
 
+## Viewing backups
+
+You can list the backups by using the Restic `snapshots` command.
+You can either run `restic snapshots` directly from an existing Restic container, or you can run an ephemeral container just for it:
+
+Example for a local path Restic repository (assuming you have set the `BACKUP_PATH` value)
+`docker run --rm --volume $BACKUP_PATH:/restic_data -env-file .env restic/restic:0.18.0 snapshots -r /restic_data`
+
+Example if using S3 storage. Make sure to export the S3 specific variables. The command will then be:
+`docker run --rm -env-file .env restic/restic:0.18.0 snapshots -r /restic_data`
+
+The output will look like this:
+
+```
+ID        Time                 Host          Tags        Paths    Size
+----------------------------------------------------------------------------
+848a1772  2025-08-08 17:00:13  b89710290fa0              /backup  72.046 MiB
+d46a0a4c  2025-08-08 17:15:08  10a1aa2e1817              /backup  70.820 MiB
+----------------------------------------------------------------------------
+2 snapshots
+```
+
+Unless you speficy otherwise, the most recent snapshot will be used for restore.
+To override this, set the `RESTIC_RESTORE_SNAPSHOT` variable to the snapshot ID of choice.
+
+
 ## Restoring
 
-Depending on how you have configured the backups, you need to restore the data accordingly. The 2 options available are:
+Depending on how you have configured the backups, you need to restore the data accordingly. As a reminder, the 2 options available are:
 
 - Restoring from a local path
 - Restoring from S3
 
-As opposed to the backup services, the restore services will run only once. Once done, it will exit and you will be able to start your Ozone distribution again.
+As opposed to the backup services, the restore services will run only once. Once done, the restore service will exit and Ozone will resume its startup.
 
 Restore is triggered by setting `RESTORE` to `true`:
 ```
 export RESTORE="true"
 ```
+
+!!! danger "Potential Data Loss!"
+
+    Please avoid hardcoding `RESTORE="true"` in any environment file so that it doesn't persist. This is to avoid re-restoring upon next restart, which could lead to losing data.
 
 Then you need to set a particular value to the `COMPOSE_PROFILES` to inform which app you will restore data from.
 The available values are:
@@ -96,7 +123,7 @@ For example:
 export COMPOSE_PROFILES='openmrs-restore,odoo-restore'
 ```
 
-And run Ozone to proceed to the restore.
+And run Ozone to proceed with the restore.
 
 Eg, using the standard Start & Stop instructions:
 
@@ -104,7 +131,14 @@ Eg, using the standard Start & Stop instructions:
 ./start.sh
 ```
 
-But first, let's dive and see how to set the variable to tell where to retrieve the backup.
+!!! danger "Potential Data Loss!"
+
+    Once the restore is done, run `unset RESTORE`.
+    This is to avoid re-restoring upon next restart, which could lead to losing data.
+
+
+
+But before actually restoring, let's dive and see how to set the variables to tell where to retrieve the backup.
 
 ### Restoring from a local path
 
@@ -127,6 +161,8 @@ export RESTIC_REPOSITORY='s3:s3.amazonaws.com/ozone-backup'
 export AWS_DEFAULT_REGION='eu-west-1'
 ```
 
+And run the commands as specified earlier.
+
 ## Disable backups
 
 When using the default Start & Stop instrucutions, the backup services are enabled by default.
@@ -137,8 +173,8 @@ See this link to know how to specify the list of files to run: [Enable & Disable
 
 ## Advanced configuration
 
-Restic provides a rich set of features and a backup storage backends, but Ozone supports only a small subset of the features and local path and S3 as the backup storage backends.
-Amond the supported features, you can set a password to protect the archives and configure data retention duration.
+Restic provides a rich set of features and backup storage backends, but Ozone supports only a small subset of the features and local path and S3 as the backup storage backends.
+Among the supported features, you can set the password to protect the archives or configure data retention duration.
 
 __Supported Configuration__
 
@@ -154,7 +190,8 @@ __Supported Configuration__
 |RESTIC_KEEP_WEEKLY|How many weeks back we should keep at least one snapshot  | |
 |RESTIC_KEEP_MONTHLY|How many months back we should keep at least one snapshot  | |
 |RESTIC_KEEP_YEARLY| How many years back we should keep at least one snapshot | |
-|RESTIC_PASSWORD| The password used to unlock the repository | |
+|RESTIC_PASSWORD| The password used to unlock the repository | `password` |
+|RESTIC_RESTORE_SNAPSHOT| The snapshot to be restored | `latest` |
 |LOG_LEVEL| The log level for the Docker Compose Wrapper | `info` |
 |RESTIC_REPOSITORY| Location of repository. A repository in Restic is refers to where the backups will be stored |  `/restic-backups` , `s3:s3.amazonaws.com/ozone-backup`
 
