@@ -204,10 +204,115 @@ For Ozone logs, you'll typically start with container name filtering and then ap
 {container_name="ozone-openmrs-1"}
 
 # All logs from EIP containers
-{container_name=~".*eip.*"}
+{container_name=~"ozone-eip-.*"}
 
 # All logs from specific Ozone services
 {container_name=~"ozone-openmrs-1|ozone-odoo-1|ozone-senaite-1"}
+```
+
+#### JSON Log Parsing (OpenMRS & EIP)
+
+For services that output structured JSON logs. **Note**: Always specify only the JSON fields you need (e.g., `json level` instead of `json`) to avoid high cardinality and improve query performance:
+
+```logql
+# Filter OpenMRS logs by level
+{container_name="ozone-openmrs-1"} | json level | level="error"
+
+# Filter by specific logger
+{container_name="ozone-openmrs-1"} | json loggerName | loggerName=~".*OpenmrsUtil.*"
+
+# Monitor specific thread activity
+{container_name="ozone-openmrs-1"} | json thread | thread="pool-2-thread-2"
+
+# Database connection monitoring
+{container_name="ozone-openmrs-1"} | json loggerName | loggerName=~".*LocalContainerEntityManagerFactoryBean.*"
+
+# EIP integration monitoring
+{container_name=~"ozone-eip-.*"} | json logger_name | logger_name="poll-senaite"
+
+# Monitor Camel threads
+{container_name=~"ozone-eip-.*"} | json thread_name | thread_name=~".*Camel.*"
+```
+
+#### Simple Line Filter (Odoo & SENAITE)
+
+For services that output plain text logs:
+
+```logql
+# Filter Odoo logs by level
+{container_name="ozone-odoo-1"} |~ "ERROR|WARNING"
+
+# Monitor Odoo modules
+{container_name="ozone-odoo-1"} |~ "odoo\\.addons\\..*res_users"
+
+# SENAITE API monitoring
+{container_name="ozone-senaite-1"} |~ "GET /senaite/.*API"
+
+# Track SENAITE operations
+{container_name="ozone-senaite-1"} |~ "AnalysisRequest|getClientID"
+```
+
+#### Rate and Volume Queries
+
+For monitoring error rates and log volume:
+
+```logql
+# Error rate per minute by service
+rate({container_name="ozone-openmrs-1"} | json level | level="error"[1m])
+rate({container_name=~"ozone-eip-.*"} | json level | level="ERROR"[1m])
+rate({container_name="ozone-odoo-1"} |~ "ERROR"[1m])
+rate({container_name="ozone-senaite-1"} |~ "ERROR"[1m])
+
+# Total log volume per minute
+rate({container_name="ozone-openmrs-1"}[1m])
+rate({container_name=~"ozone-eip-.*"}[1m])
+rate({container_name="ozone-odoo-1"}[1m])
+rate({container_name="ozone-senaite-1"}[1m])
+```
+
+#### Aggregation Queries
+
+For counting and grouping log entries:
+
+```logql
+# Count of log entries by service over 5 minute windows
+sum by (container_name) (count_over_time({container_name=~"ozone-.*"}[5m]))
+
+# Count of errors by OpenMRS logger
+sum by (loggerName) (count_over_time({container_name="ozone-openmrs-1"} | json loggerName, level | level="error"[5m]))
+
+# Count of EIP activities by component
+sum by (logger_name) (count_over_time({container_name=~"ozone-eip-.*"} | json logger_name | logger_name!=""[5m]))
+
+# Top log generating threads in OpenMRS
+topk(5, sum by (thread) (count_over_time({container_name="ozone-openmrs-1"} | json thread[5m])))
+
+# Top error-generating threads in OpenMRS
+topk(5, sum by (thread) (count_over_time({container_name="ozone-openmrs-1"} | json thread, level | level="error"[5m])))
+
+# Count by log level across OpenMRS
+sum by (level) (count_over_time({container_name="ozone-openmrs-1"} | json level[5m]))
+```
+
+#### Time-based Analysis
+
+For trending and historical analysis:
+
+```logql
+# Error count over time windows
+count_over_time({container_name="ozone-openmrs-1"} | json level | level="error"[5m])
+
+# Integration poll activity trends
+count_over_time({container_name=~"ozone-eip-.*"} | json logger_name | logger_name=~".*poll.*"[5m])
+
+# Database activity over time
+count_over_time({container_name="ozone-openmrs-1"} | json loggerName | loggerName=~".*hikari.*"[5m])
+
+# Error rate trends
+rate({container_name="ozone-openmrs-1"} | json level | level="error"[5m])
+
+# Combined service activity over time
+sum(count_over_time({container_name=~"ozone-.*"}[5m])) by (container_name)
 ```
 
 #### Advanced LogQL Queries
@@ -240,100 +345,6 @@ For Ozone logs, you'll typically start with container name filtering and then ap
 
 🚧
 
-### Creating Grafana Dashboards
-
-#### Rate and Volume Metrics
-
-For error rate and log volume panels:
-
-```logql
-# Error rate per minute by service
-rate({container_name="ozone-openmrs-1"} | json | level="error"[1m])
-rate({container_name=~"ozone-eip-.*"} | json | level="ERROR"[1m])
-rate({container_name="ozone-odoo-1"} |~ "ERROR"[1m])
-rate({container_name="ozone-senaite-1"} |~ "ERROR"[1m])
-
-# Total log volume per minute by service
-rate({container_name="ozone-openmrs-1"}[1m])
-rate({container_name=~"ozone-eip-.*"}[1m])
-rate({container_name="ozone-odoo-1"}[1m])
-rate({container_name="ozone-senaite-1"}[1m])
-
-# Combined error rate across all services
-sum(rate({container_name="ozone-openmrs-1"} | json | level="error"[5m]))
-+ sum(rate({container_name=~"ozone-eip-.*"} | json | level="ERROR"[5m]))
-+ sum(rate({container_name="ozone-odoo-1"} |~ "ERROR"[5m]))
-+ sum(rate({container_name="ozone-senaite-1"} |~ "ERROR"[5m]))
-```
-
-#### Aggregation Queries
-
-For dashboard panels with counts and grouping:
-
-```logql
-# Count of log entries by service
-count by (container_name) ({container_name=~"ozone-.*"})
-
-# Count of errors by OpenMRS logger
-count by (loggerName) ({container_name="ozone-openmrs-1"} | json | level="error")
-
-# Count of EIP activities by component
-count by (logger_name) ({container_name=~"ozone-eip-.*"} | json | logger_name!="")
-
-# Top error-generating threads in OpenMRS
-topk(5, count by (thread) ({container_name="ozone-openmrs-1"} | json | level="error"))
-
-# Count by log level across OpenMRS
-count by (level) ({container_name="ozone-openmrs-1"} | json)
-```
-
-#### Time-based Analysis
-
-For trending and historical analysis:
-
-```logql
-# Error count over time windows
-count_over_time({container_name="ozone-openmrs-1"} | json | level="error"[5m])
-
-# Integration poll activity trends
-count_over_time({container_name=~"ozone-eip-.*"} | json | logger_name=~".*poll.*"[5m])
-
-# Database activity over time
-count_over_time({container_name="ozone-openmrs-1"} | json | loggerName=~".*hikari.*"[5m])
-
-# Error rate trends (rate over longer periods)
-rate({container_name="ozone-openmrs-1"} | json | level="error"[5m])
-
-# Combined service activity over time
-sum(count_over_time({container_name=~"ozone-.*"} | json[5m])) by (container_name)
-```
-
-#### Real-time Monitoring Queries
-
-For live monitoring dashboards:
-
-```logql
-# Live error stream across all Ozone services
-{container_name="ozone-openmrs-1"} | json | level="error"
-{container_name=~"ozone-eip-.*"} | json | level="ERROR"
-{container_name="ozone-odoo-1"} |~ "ERROR"
-{container_name="ozone-senaite-1"} |~ "ERROR"
-
-# Integration flow monitoring
-{container_name=~"ozone-eip-.*"} | json | logger_name="poll-senaite"
-{container_name=~"ozone-eip-.*"} | json | thread_name=~".*Camel.*"
-
-# OpenMRS activity monitoring
-{container_name="ozone-openmrs-1"} | json | loggerName=~".*OpenmrsUtil.*"
-{container_name="ozone-openmrs-1"} | json | thread="pool-2-thread-2"
-
-# Database connection monitoring
-{container_name="ozone-openmrs-1"} | json | loggerName=~".*LocalContainerEntityManagerFactoryBean.*"
-
-# SENAITE operations monitoring
-{container_name="ozone-senaite-1"} |~ "AnalysisRequest|getClientID"
-{container_name="ozone-senaite-1"} |~ "senaite\\.jsonapi"
-```
 
 ## Log Monitoring and Alerting
 
@@ -365,54 +376,6 @@ Monitor these log patterns for system health:
 3. **Combine filters efficiently** - Use JSON pipe after initial filtering to minimize processing
 4. **Leverage regex patterns** - Use regex for flexible pattern matching in log messages
 
-### Common LogQL Patterns
-
-Based on validated working queries from Ozone services:
-
-#### Container Selection Patterns
-```logql
-# Specific service container
-{container_name="ozone-openmrs-1"}
-
-# Multiple EIP containers
-{container_name=~"ozone-eip-.*"}
-
-# Multiple specific services
-{container_name=~"ozone-openmrs-1|ozone-odoo-1|ozone-senaite-1"}
-```
-
-#### JSON Log Filtering (OpenMRS, EIP)
-```logql
-# Filter by log level
-{container_name="ozone-openmrs-1"} | json | level="error"
-
-# Filter by logger class
-{container_name="ozone-openmrs-1"} | json | loggerName=~".*OpenmrsUtil.*"
-
-# Filter by thread patterns
-{container_name="ozone-openmrs-1"} | json | thread=~"pool-.*-thread-.*"
-
-# Filter EIP by component
-{container_name=~"ozone-eip-.*"} | json | logger_name="poll-senaite"
-
-# Monitor Camel threads
-{container_name=~"ozone-eip-.*"} | json | thread_name=~".*Camel.*"
-```
-
-#### Plain Text Log Filtering (Odoo, SENAITE)
-```logql
-# Filter by log level using regex
-{container_name="ozone-odoo-1"} |~ "ERROR|WARNING"
-
-# Filter by Python module
-{container_name="ozone-odoo-1"} |~ "odoo\\.addons\\..*res_users"
-
-# Monitor SENAITE API calls
-{container_name="ozone-senaite-1"} |~ "GET /senaite/.*API"
-
-# Track specific SENAITE operations
-{container_name="ozone-senaite-1"} |~ "AnalysisRequest|getClientID"
-```
 
 ### Dashboard Design Tips
 
