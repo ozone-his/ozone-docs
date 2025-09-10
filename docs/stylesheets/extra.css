@@ -104,3 +104,7 @@ a.secondary {
 a.secondary:hover {
     color:var(--md-accent-fg-color)
 }
+
+code {
+  white-space : pre-wrap !important;
+}
