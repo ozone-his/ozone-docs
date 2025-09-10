@@ -107,7 +107,8 @@ EIP services output structured JSON logs with integration-specific metadata:
 }
 ```
 
-**Available JSON fields for EIP:**
+Available JSON fields for EIP:
+
 - `@timestamp` - Log timestamp in ISO 8601 format
 - `@version` - Log format version
 - `level` - Log level (`ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`)
@@ -390,7 +391,7 @@ Suggested patterns to monitor efficiently your logs and track system health:
     Keep Loki labels minimal and use JSON pipe for detailed filtering. High cardinality labels can significantly impact Loki performance.
 
 
-## Atlernative: Directly accessing logs using Docker CLI
+## Alternative: Directly accessing logs using Docker CLI
 
 As an alternative (if you are not running the logging service or just require quick access) you can still access logs directly in the terminal:
 
