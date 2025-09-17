@@ -1,10 +1,74 @@
-# <small>:construction:</small> Start & Stop
+## Build
+
+Build your distribution using Maven:
+
+```bash
+mvn clean package
+```
+
+??? info "Alernative with Maven Wrapper"
+    You can use Maven Wrapper if Maven is not installed on your machine:
+    ```bash
+    ./scripts/mvnw clean package
+    ```
+
+## Run
+
+Run your Ozone distribution locally with SSO enabled and some demo data.
+```bash
+./start-demo-with-sso.sh
+```
+
+!!! info
+
+    - Without SSO:
+    ```bash
+    ./start-demo.sh
+    ```
+
+    - Without demo data: 
+    ```bash
+    ./start-with-sso.sh
+    ```
 
 
-|Goal|Command|Explanation|
-|:----|:----|:----|
-|**Build** the distribution|<pre>./scripts/mvnw clean package</pre>|Assembles and packages your distribution, incorporating any configurations and customizations you've applied.|
-|Access start/stop/destroy commands|<pre>source target/go-to-scripts-dir.sh</pre>|Navigates to the directory containing the scripts for starting, stopping, and destroying the distribution, making these commands readily accessible.|
-|**Start** the distribution|<pre>./start-demo.sh</pre>|Initiates and launches all apps of the Ozone HIS, bringing up the system.|
-|**Stop** the distribution|<pre>./stop-demo.sh</pre>|Gracefully halts all Ozone HIS services, effectively shutting down the system.|
-|**Destroy** the distribution|<pre>./destroy-demo.sh</pre>|Completely removes the distribution, clearing all its apps and data, ideal for resetting the system or rectifying persistent issues ahead of a restart or a rebuild and restart.|
+## Browse
+Once started, the script will output the URLs to access the HIS apps and services:
+
+For example:
+
+![Ozone services started](../assets/images/run-locally-list-services.png)
+
+Accessing any of those URLs should present you the Single Sign-On portal page:
+
+![SSO login page](../assets/images/sso-login.png)
+
+Log in to the demo using username **jdoe** and password **password**.
+
+You're ready to start browsing Ozone 👏 !
+
+!!! warning ""
+
+    🛠️ If you encounter an error when trying to access OpenMRS specifically, you may need to apply the following command to force a restart of the OpenMRS service.
+    ```curl
+    docker restart ozone-openmrs-1
+    ```
+## Stop or Destroy
+
+Once you're done browsing Ozone, you can destroy the server to keep your environment clean.
+
+```bash
+./destroy-demo.sh
+```
+
+You can also just stop it, without destroying it:
+
+```bash
+./stop-demo.sh
+```
+
+## Limitations
+
+!!! warning "'start.sh'  is not suitable for production"
+    
+    The scripts described on this page are not intended for production use. They are provided as utility tools to help implementers quickly run Ozone in a development environment, whether locally or in the cloud. To simplify setup, these scripts include default values for runtime options that would normally require customization in production, such as JVM settings, backup configurations, certificates and more.
