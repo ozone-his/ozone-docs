@@ -14,6 +14,12 @@ mvn clean package
 
 ## Run
 
+First, move the directory where the run scripts are located:
+```bash
+source target/go-to-scripts-dir.sh
+```
+
+
 Run your Ozone distribution locally with SSO enabled and some demo data.
 ```bash
 ./start-demo-with-sso.sh
