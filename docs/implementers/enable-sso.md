@@ -1,12 +1,8 @@
 # Enabling and Disabling Single Sign-On (SSO)
 
-Ozone HIS provides supports for Single Sign-On (SSO), enabling users to authenticate once and seamlessly access all integrated applications without repeated logins. SSO is powered by [Keycloak](https://www.keycloak.org), which serves as the central Identity Provider (IDP) for managing authentication and authorization throughout the Ozone ecosystem.
+Ozone HIS provides support for Single Sign-On (SSO), enabling users to authenticate once and seamlessly access all integrated applications without repeated logins. SSO is powered by [Keycloak](https://www.keycloak.org), which serves as the central Identity Provider (IDP) for managing authentication and authorization throughout the Ozone ecosystem.
 
-With SSO enabled, all authentication requests are routed through Keycloak, which acts as the Identity Provider (IDP) and
-replaces each application's individual login page with a unified Keycloak login page for all users. This provides a
-consistent login experience across all integrated applications. For branding or user experience customization, you can
-modify the Keycloak login page,
-see [Customizing the Keycloak Login Page](../implementers/branding-apps.md#white-labelling-keycloak) for more details.
+With SSO enabled, all authentication requests are routed through Keycloak. It replaces each application's individual login page with a unified Keycloak login page for all users. This provides a consistent login experience across all integrated applications. For branding or user experience customization, you can modify the Keycloak login page, see [Customizing the Keycloak Login Page](../implementers/branding-apps.md#white-labelling-keycloak) for more details.
 
 ## SSO Implementation per App
 
@@ -69,9 +65,8 @@ SENAITE includes native support for SSO, so no additional modules or extensions 
 
 To run with SSO, you need to:
 
-- Set the necessary environment variables. You can do this by setting necessary environment variables in your shell or
-  in a `.env` file. The `.env` file is automatically mounted into the container when you run Docker Compose. Below are
-  the environment variables that you need to set:
+- Set the necessary environment variables. You can do this by exporting directly in your shell (e.g. `export ENABLE_SSO=true`) or set them in a `.env` file. The environment variables set in the `.env` file will be automatically picked up by Docker Compose when you run the Docker Compose files and will be available to all containers.
+Below are the environment variables that you need to set:
 
 ```bash
 ENABLE_SSO=true
