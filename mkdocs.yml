@@ -31,7 +31,7 @@ nav:
 
   - Functional Users:
     - Overview: 'users/index.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
+    - SSO & Auth: 'users/auth.md'
     - Ozone Flows Guide: 'users/ozoneflows.md'
     - ERPNext–OpenMRS Flows: 'users/erpnext-openmrs.md'
     - Keycloak-Odoo Flows: 'users/keycloak-odoo.md'
