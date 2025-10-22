@@ -73,24 +73,27 @@ To run with SSO, you need to:
   in a `.env` file. The `.env` file is automatically mounted into the container when you run Docker Compose. Below are
   the environment variables that you need to set:
 
-```dotenv
+```bash
 ENABLE_SSO=true
 SERVER_SCHEME=https
-O3_HOSTNAME=
-ODOO_HOSTNAME=
-SENAITE_HOSTNAME=
-KEYCLOAK_HOSTNAME=
-OPENMRS_CLIENT_ID=
-OPENMRS_CLIENT_SECRET=
-ODOO_CLIENT_ID=
-ODOO_CLIENT_SECRET=
-SENAITE_CLIENT_ID=
-SENAITE_CLIENT_SECRET=
-OAUTH_CLIENT_ID=
-OAUTH_CLIENT_SECRET=
-OAUTH_CLIENT_SCOPE=
-OAUTH_ACCESS_TOKEN_URL=
+O3_HOSTNAME=example.com
+ODOO_HOSTNAME=erp.example.com
+SENAITE_HOSTNAME=lims.example.com
+KEYCLOAK_HOSTNAME=auth.example.com
+OPENMRS_CLIENT_ID=2210d175-7bf0-4628-a2d5-2a2370161ef6
+OPENMRS_CLIENT_SECRET=8FGsdeOPUG7ct2Diisb6A9LWkEzHHxDo
+ODOO_CLIENT_ID=dbe398f0-7095-4230-ba1b-736397301a1c
+ODOO_CLIENT_SECRET=y8PWKgBhIXR1k0qAw8vg3yfeD0zp4FUj
+SENAITE_CLIENT_ID=711a9537-2efb-4ee2-92f4-bfd321f49605
+SENAITE_CLIENT_SECRET=gSeajnyaU5vakcaFrOKWi6VvYRv6W8Zk
+OAUTH_CLIENT_ID=fd0f7f3b-c42f-4613-a9e7-e8ffd720c5a5
+OAUTH_CLIENT_SECRET=ZCURmSmiOqkkEuGRwChcrPBDkioVr0t6
+OAUTH_CLIENT_SCOPE=email,profile,openid
+OAUTH_ACCESS_TOKEN_URL=https://auth.example.com/realms/ozone/protocol/openid-connect/token
 ```
+
+!!! note
+    The above values are examples. Replace them with your actual domain names and client credentials.
 
 !!! warning
     If Git or any version control is enabled for your project, ensure that sensitive files such as `.env` (containing secrets or credentials) are excluded from version control to protect sensitive information. This is to avoid accidental exposure of sensitive information.
@@ -103,13 +106,13 @@ cd <path-to-your-distribution>/run/docker/
 docker-compose -f docker-compose-common.yml -f docker-compose-keycloak.yml -f docker-compose-openmrs.yml -f docker-compose-openmrs-sso.yml -f docker-compose-odoo.yml -f docker-compose-odoo-sso.yml -f docker-compose-senaite.yml -f docker-compose-senaite-sso.yml up -d
 ```
 
-Alternatively, use the `start-with-sso.sh` or `start-demo-with-sso.sh` scripts provided in the project. These scripts automatically set the necessary environment variables and include the appropriate Docker Compose files, which mount the required SSO binaries and configuration files as volumes.
+Alternatively, use the `start-with-sso.sh` or `start-demo-with-sso.sh` scripts provided in the project. Follow the instructions in [Run Locally](../getting-started/run-locally.md) to download and start Ozone locally with SSO enabled. The scripts will set the necessary environment variables and include the appropriate Docker Compose files, which mount the required SSO binaries and configuration files as volumes.
 
 ## Run Without SSO
 
-To run without SSO, use `start.sh` or `start-demo.sh` scripts provided in the project. These scripts include the correct
-Docker Compose files, mount required configs & binaries, and set the necessary environment variables. The scripts will
-exclude the `-sso.yml` files from the Docker Compose files and disable any SSO-related configurations.
+To run without SSO, follow the instructions in [here](../getting-started/run-locally.md) to download and start Ozone locally but instead of `start-with-sso.sh` or `start-demo-with-sso.sh`, use `start.sh` or `start-demo.sh` scripts. These scripts will include the correct Docker Compose files, mount required configs & binaries, and set the necessary environment variables. The scripts will exclude the Docker Compose files with the suffix `-sso.yml` and disable any SSO-related configurations.
+
+If you already have your own Ozone distribution. The steps to run without SSO are similar to running with SSO, but you need to exclude the SSO-specific Docker Compose files and ensure that the `ENABLE_SSO` environment variable is set to `false` or not set at all.
 
 !!! question "Did you know?"
     Ozone {==:oz: Pro==} comes with Central Auth! Without central authentication, user roles from each app are not available in Keycloak. Central Auth enables synchronizing roles from all apps into Keycloak for unified access control and assignation. For more information, see [Central Auth](./enable-central-auth.md).
