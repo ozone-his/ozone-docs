@@ -14,7 +14,7 @@ mvn clean package
 
 ## Run
 
-First, move the directory where the run scripts are located:
+First, move to the directory where the run scripts are located:
 ```bash
 source target/go-to-scripts-dir.sh
 ```
