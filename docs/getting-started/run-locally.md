@@ -1,13 +1,5 @@
 ## Download and start
 
-!!! info "System Requirements"
-    
-    To run Ozone and its apps smoothly, your environment should meet at least the following requirements:
-
-    - 12 GB of free RAM
-    - 8 core CPU
-    - 25 GB for free disk space
-
 Running the Ozone demo locally takes just three terminal commands:
 
 ```bash
@@ -25,6 +17,14 @@ cd ozone/run/docker/scripts/
 !!! warning ""
 
     :fontawesome-regular-hourglass-half: It may take some time to download and setup Ozone for the first time.
+
+!!! info "System Requirements"
+
+    To run Ozone and its apps smoothly, your environment should meet at least the following requirements:
+
+    - 12 GB of free RAM
+    - 8 core CPU
+    - 25 GB for free disk space
 
 ## Browse
 Once started, the script will output the URLs to access the HIS apps and services:
