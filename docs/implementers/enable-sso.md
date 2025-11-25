@@ -8,12 +8,15 @@ With SSO enabled, all authentication requests are routed through Keycloak. It re
 
 Each application in Ozone HIS integrates with Keycloak using different mechanisms.
 
+!!! note
+    The `ozone-realm.json` file configures the Keycloak (IdP) by defining all client applications that will use Keycloak for authentication. Make sure each application (OpenMRS, Odoo, SENAITE) has a corresponding client entry in this file, including the correct redirect URIs and required settings.
+
 ### OpenMRS (EMR)
 
 OpenMRS integrates with Keycloak for SSO using the [OpenMRS OAuth2 Login Module](https://github.com/openmrs/openmrs-module-oauth2login#openmrs-oauth-20-login-module). This module is included by default but is initially disabled, you can enable it by setting the `oauth2.enabled` property to true in the `oauth2.properties` file.
 
 !!! note
-    Enabling SSO in OpenMRS effectively disables basic authentication, so users will authenticate through the Keycloak login page rather than using traditional username and password prompts.
+     Enabling SSO in OpenMRS effectively disables basic authentication, so users will authenticate through the Keycloak login page rather than using traditional username and password prompts.
 
 #### Configurations
 
@@ -31,9 +34,7 @@ OpenMRS integrates with Keycloak for SSO using the [OpenMRS OAuth2 Login Module]
 
 ### Odoo (ERP)
 
-Odoo integrates with Keycloak using [`auth_oauth`](https://github.com/OCA/server-auth/tree/18.0/auth_oidc) addon by OCA
-community to provide SSO support. However, you can enable it by adding the `auth_oauth` addon to the `ODOO_ADDONS`
-environment variable.
+Odoo integrates with Keycloak using [`auth_oauth`](https://github.com/OCA/server-auth/tree/18.0/auth_oidc) addon by OCA community to provide SSO support. However, you can enable it by adding the `auth_oauth` addon to the `ODOO_ADDONS`environment variable.
 
 #### Configurations:
 
@@ -57,9 +58,6 @@ SENAITE includes native support for SSO, so no additional modules or extensions 
 - `ozone-realm.json` - Located at `<your-distribution>/distro/configs/senaite/keycloak/`. Ensure that the SENAITE client
   is defined in this file with the correct configs and redirect URIs. This file also contains the client ID and secret
   for the SENAITE client.
-
-!!! note
-    The `ozone-realm.json` file configures the Keycloak (IdP) by defining all client applications that will use Keycloak for authentication. Make sure each application (OpenMRS, Odoo, SENAITE) has a corresponding client entry in this file, including the correct redirect URIs and required settings.
 
 ## Run with SSO
 
