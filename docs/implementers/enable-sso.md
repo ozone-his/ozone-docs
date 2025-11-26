@@ -8,14 +8,14 @@ With SSO enabled, all authentication requests are routed through Keycloak. It re
 
 Each application in Ozone HIS integrates with Keycloak using different mechanisms.
 
-!!! note
-    The `ozone-realm.json` file configures the Keycloak (IdP) by defining all client applications that will use Keycloak for authentication. Make sure each application (OpenMRS, Odoo, SENAITE) has a corresponding client entry in this file, including the correct redirect URIs and required settings.
+!!! info "ozone-realm.json"
+    The `ozone-realm.json` file configures Keycloak by defining all client applications that will use Keycloak for authentication. Make sure each application (OpenMRS, Odoo, SENAITE...) has a corresponding client entry in this file, including the correct redirect URIs and required settings.
 
-### OpenMRS (EMR)
+### OpenMRS
 
 OpenMRS integrates with Keycloak for SSO using the [OpenMRS OAuth2 Login Module](https://github.com/openmrs/openmrs-module-oauth2login#openmrs-oauth-20-login-module). This module is included by default but is initially disabled, you can enable it by setting the `oauth2.enabled` property to true in the `oauth2.properties` file.
 
-!!! note
+!!! warning "Basic auth is disabled"
      Enabling SSO in OpenMRS effectively disables basic authentication, so users will authenticate through the Keycloak login page rather than using traditional username and password prompts.
 
 #### Configurations
