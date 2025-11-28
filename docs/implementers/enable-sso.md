@@ -20,48 +20,36 @@ OpenMRS integrates with Keycloak for SSO using the [OpenMRS OAuth2 Login Module]
 
 #### Configurations
 
-- `oauth2.properties` - Located at `<your-distribution>/distro/configs/openmrs/properties/`. This file contains Keycloak
+- `oauth2.properties`: Located at `<your-distribution>/distro/configs/openmrs/properties/`. This file contains Keycloak
   server details, client ID, client secret, and other OAuth2 settings.
-- Environment Variables - Set via Docker Compose environment variables in the `docker-compose-openmrs-sso.yml` file.
-- `ozone-frontend-sso.json` - Located at `<your-distribution>/distro/configs/openmrs/frontend_config/`. This file
-  contains frontend configurations for SSO, which configures `esm-login-app` frontend module to use OAuth2 login
-  provider as well as login and logout URLs.
-- `ozone-realm.json` - Located at `<your-distribution>/distro/configs/openmrs/keycloak/`. Ensure that the OpenMRS client
-  is defined in this file with the correct redirect URIs.
-- `oauth2-login-props.xml` - Located at `distro/configs/openmrs/initializer_config/globalproperties/`. This file
-  contains global properties for the OAuth2 login module. Specifically, it contains the
-  `oauth2login.redirectUriAfterLogin` property, which is used to redirect users to the correct URL after login.
+- Environment Variables: Set via Docker Compose environment variables in the `docker-compose-openmrs-sso.yml` file.
+- `ozone-frontend-sso.json`: Located at `<your-distribution>/distro/configs/openmrs/frontend_config/`. This file
+  contains frontend configurations for SSO, which configures `esm-login-app` frontend module to use OAuth2 login provider as well as login and logout URLs.
+- `ozone-realm.json` - Located at `<your-distribution>/distro/configs/openmrs/keycloak/`. Ensure that the OpenMRS client is defined in this file with the correct redirect URIs.
+- `oauth2-login-props.xml` - Located at `distro/configs/openmrs/initializer_config/globalproperties/`. This file contains global properties for the OAuth2 login module. Specifically, it contains the `oauth2login.redirectUriAfterLogin` property, which is used to redirect users to the correct URL after login.
 
-### Odoo (ERP)
+### Odoo
 
 Odoo integrates with Keycloak using [`auth_oauth`](https://github.com/OCA/server-auth/tree/18.0/auth_oidc) addon by OCA community to provide SSO support. However, you can enable it by adding the `auth_oauth` addon to the `ODOO_ADDONS`environment variable.
 
 #### Configurations:
 
-- `auth.oauth.provider.csv` - Located at `<your-distribution>/configs/odoo/initializer_config/auth_providers/`. This
-  file is used to configure the OAuth2 provider in Odoo. It contains the Keycloak server details, client ID, client
-  secret, and other OAuth2 settings.
-- `ODOO_ADDONS` - Set via Docker Compose environment variables in the `docker-compose-odoo-sso.yml` file to include the
-  `auth_oauth` addon. Alternatively, this can be done by setting the `ODOO_ADDONS` environment variable in the `.env`
-  file.
-- `ozone-realm.json` - Located at `<your-distribution>/distro/configs/odoo/keycloak/`. Ensure that the Odoo client is
-  defined in this file with the correct configs and redirect URIs.
+- `auth.oauth.provider.csv` - Located at `<your-distribution>/configs/odoo/initializer_config/auth_providers/`. This file is used to configure the OAuth2 provider in Odoo. It contains the Keycloak server details, client ID, client secret, and other OAuth2 settings.
+- `ODOO_ADDONS` - Set via Docker Compose environment variables in the `docker-compose-odoo-sso.yml` file to include the `auth_oauth` addon. Alternatively, this can be done by setting the `ODOO_ADDONS` environment variable in the `.env` file.
+- `ozone-realm.json` - Located at `<your-distribution>/distro/configs/odoo/keycloak/`. Ensure that the Odoo client is defined in this file with the correct configs and redirect URIs.
 
-### SENAITE (LIMS)
+### SENAITE
 
 SENAITE includes native support for SSO, so no additional modules or extensions are required. However, you must configure the Keycloak server and set up the necessary client settings in both Keycloak and SENAITE.
 
 #### Configurations
 
-- `client.json` - Located at `<your-distribution>/distro/configs/senaite/oidc/`. This file is used to configure/enable
-  SSO in SENAITE. It contains the Keycloak server details, client ID, client secret, and other OAuth2 settings.
-- `ozone-realm.json` - Located at `<your-distribution>/distro/configs/senaite/keycloak/`. Ensure that the SENAITE client
-  is defined in this file with the correct configs and redirect URIs. This file also contains the client ID and secret
-  for the SENAITE client.
+- `client.json` - Located at `<your-distribution>/distro/configs/senaite/oidc/`. This file is used to configure/enable SSO in SENAITE. It contains the Keycloak server details, client ID, client secret, and other OAuth2 settings.
+- `ozone-realm.json` - Located at `<your-distribution>/distro/configs/senaite/keycloak/`. Ensure that the SENAITE client is defined in this file with the correct configs and redirect URIs. This file also contains the client ID and secret for the SENAITE client.
 
-## Run with SSO
+## Run Ozone with SSO
 
-To run with SSO, you need to:
+To run your distribution with SSO, you need to:
 
 - Set the necessary environment variables. You can do this by exporting directly in your shell (e.g. `export ENABLE_SSO=true`) or set them in a `.env` file. The environment variables set in the `.env` file will be automatically picked up by Docker Compose when you run the Docker Compose files and will be available to all containers.
 Below are the environment variables that you need to set:
