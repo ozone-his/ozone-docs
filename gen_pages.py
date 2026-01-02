@@ -10,14 +10,16 @@ KEYCLOCK_SUPERSET_GITHUB_URL = ""
 OPENMRS_SENAITE_GITHUB_URL = "https://raw.githubusercontent.com/ozone-his/eip-openmrs-senaite/refs/heads/main/senaite-openmrs/src/main/resources/config/application.properties"
 ERPNEXT_OPENMRS_GITHUB_URL = "https://raw.githubusercontent.com/ozone-his/eip-erpnext-openmrs/refs/heads/main/erpnext-openmrs/src/main/resources/config/application.properties"
 
-mkdocs_config_points = {'mkdocs-config-name': 'Name', 'mkdocs-config-description': 'Description',
+mkdocs_config_points = {'mkdocs-config-name': 'Name', 'mkdocs-config-variable': 'Environment variables',
+                        'mkdocs-config-description': 'Description',
                         'mkdocs-config-location': 'Location', 'mkdocs-config-possible-values': 'Possible Values',
                         'mkdocs-config-default-value': 'Default Value'}
 
 mkdocs_block_end_identifier = '# /mkdocs-end'
 
 app_github_dict = {'Odoo-OpenMRS Flows': ODOO_OPENMRS_GITHUB_URL, 'OpenMRS-SENAITE Flows': OPENMRS_SENAITE_GITHUB_URL,
-                   'ERPNext-OpenMRS Flows': ERPNEXT_OPENMRS_GITHUB_URL,'OpenMRS-Orthanc Flows': OPENMRS_ORTHANC_GITHUB_URL}
+                   'ERPNext-OpenMRS Flows': ERPNEXT_OPENMRS_GITHUB_URL,
+                   'OpenMRS-Orthanc Flows': OPENMRS_ORTHANC_GITHUB_URL}
 
 
 def mk_example(example_heading, example_text):
