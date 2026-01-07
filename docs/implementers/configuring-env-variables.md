@@ -1,27 +1,27 @@
 # Configuring Environment Variables
 
-## Environment Variable Overrides in Ozone Distros
+## Environment Variable Overrides in Ozone distributions
 
-Ozone supports hierarchical overriding of environment variables for child and grandchild distros through `.env` files. This allows each distro to customize configuration while still inheriting defaults from its parent.
+Ozone supports hierarchical overriding of environment variables for child and grandchild distributions through `.env` files. This allows each distro to customize configuration while still inheriting defaults from its parent.
 
 ---
 
-## Overriding Environment Variables for a Child Distro
+## Overriding Environment Variables for a Child distribution
 
-To override environment variables for a **child distro of Ozone**:
+To override environment variables for any **Ozone child distribution**:
 
 1. Create a file named `<any_name>.env` inside the `scripts/` directory of the distro.
 2. Rebuild the distro.
 
-After the build completes, Ozone generates a final `concatenated.env` file in the build (target) folder. This file contains all environment variables merged together, including those defined in your custom `.env` file.
+After the build completes, the build Ozone generates a final `concatenated.env` file in the build (target) folder. This file contains all environment variables merged together, including those defined in your custom `.env` file.
 
-If the same variable is defined in multiple `.env` files, the value from the file applied **later** takes precedence.
+If the same variable is defined in multiple `.env` files, the value from the file applied **later** takes precedence. Here, **later** refers to the file belonging to the distribution the lowest in the hierarchy tree.
 
 ---
 
-## Environment Variable Precedence for Grandchild Distros
+## Environment Variable Precedence for Grandchild distributions
 
-If your setup includes a **grandchild distro**, the **order in which `.env` files are concatenated is important**.
+If your setup includes a **grandchild distro** (a distribution that is the child of another child distribution), the **order in which `.env` files are concatenated is important**.
 
 The concatenation order is determined by **lexicographical (dictionary) order of the filenames**.
 
@@ -46,9 +46,9 @@ Assume the following hierarchy:
   - **Ozone-Haiti** (child)
     - **Ozone-HSC** (grandchild)
 
-Recommended `.env` filenames:
+Example of `.env` file names:
 
-| Distro        | `.env` Filename |
+| Distribution | `.env` Filename |
 |--------------|-----------------|
 | Ozone-HSC    | `distro-a.env`  |
 | Ozone-Haiti  | `distro-b.env`  |
