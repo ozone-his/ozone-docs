@@ -13,7 +13,7 @@ To override environment variables for any **Ozone child distribution**:
 1. Create a file named `<any_name>.env` inside the `scripts/` directory of the distro.
 2. Rebuild the distro.
 
-After the build completes, it generates a final concatenated.env file in the build (target) folder. This file contains all environment variables merged together, including those defined in your custom .env file.
+After the build completes, it generates a final `concatenated.env` file in the build (target) folder. This file contains all environment variables merged together, including those defined in your custom `.env` file.
 
 If the same variable is defined in multiple `.env` files, the value from the file applied **later** takes precedence. Here, **later** refers to the file belonging to the distribution the lowest in the hierarchy tree.
 
