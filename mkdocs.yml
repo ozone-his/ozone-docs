@@ -19,6 +19,7 @@ nav:
       - <span style='color:36464e'>Configure Integrations: 'auto-eip-config-points.md'
       - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Enable & Disable Single Sign-On: 'implementers/enable-sso.md'
+      - <span style='color:36464e'/>Enable 2FA: 'implementers/enable-2fa.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Enable & Disable Central Authorization: 'implementers/enable-central-auth.md'
       
     - <span style='color:#141324;font-weight:bold;'>Deploy and Manage</span>:
