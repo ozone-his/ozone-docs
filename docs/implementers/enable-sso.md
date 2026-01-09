@@ -68,8 +68,8 @@ Below are the environment variables that you need to set:
 | `ODOO_CLIENT_SECRET`     | `362b43fe-6c80-41c9-9c0b-a60326480d60`                                | Keycloak client secret for Odoo.                              |
 | `SENAITE_CLIENT_ID`      | `61a4c136-3658-4563-a986-415830551ea3`                                | Keycloak client ID for SENAITE.                               |
 | `SENAITE_CLIENT_SECRET`  | `b70bcd8a-f75d-4598-8ff1-8be5db855fb6`                                | Keycloak client secret for SENAITE.                           |
-| `OAUTH_CLIENT_ID`        | `56ac6ccf-004e-441f-a98b-8de7159f6ce9`                                | Generic OAuth client ID used by frontend auth modules.        |
-| `OAUTH_CLIENT_SECRET`    | `043c6292-4f9b-4c8e-85ed-3172f43ae4ff`                                | Generic OAuth client secret.                                  |
+| `OAUTH_CLIENT_ID`        | `56ac6ccf-004e-441f-a98b-8de7159f6ce9`                                | OAuth client ID used by EIP Clients                           |
+| `OAUTH_CLIENT_SECRET`    | `043c6292-4f9b-4c8e-85ed-3172f43ae4ff`                                | OAuth client secret.                                          |
 | `OAUTH_CLIENT_SCOPE`     | `email,profile,openid`                                                | OAuth scopes requested during authentication.                 |
 | `OAUTH_ACCESS_TOKEN_URL` | `https://auth.example.com/realms/ozone/protocol/openid-connect/token` | Token endpoint URL for obtaining access tokens from Keycloak. |
 
