@@ -54,24 +54,24 @@ To run your distribution with SSO, you need to:
 - Set the necessary environment variables. You can do this by exporting directly in your shell (e.g. `export ENABLE_SSO=true`) or set them in a `.env` file. The environment variables set in the `.env` file will be automatically picked up by Docker Compose when you run the Docker Compose files and will be available to all containers.
 Below are the environment variables that you need to set:
 
-```bash
-ENABLE_SSO=true
-SERVER_SCHEME=https
-O3_HOSTNAME=example.com
-ODOO_HOSTNAME=erp.example.com
-SENAITE_HOSTNAME=lims.example.com
-KEYCLOAK_HOSTNAME=auth.example.com
-OPENMRS_CLIENT_ID=2210d175-7bf0-4628-a2d5-2a2370161ef6
-OPENMRS_CLIENT_SECRET=8FGsdeOPUG7ct2Diisb6A9LWkEzHHxDo
-ODOO_CLIENT_ID=dbe398f0-7095-4230-ba1b-736397301a1c
-ODOO_CLIENT_SECRET=y8PWKgBhIXR1k0qAw8vg3yfeD0zp4FUj
-SENAITE_CLIENT_ID=711a9537-2efb-4ee2-92f4-bfd321f49605
-SENAITE_CLIENT_SECRET=gSeajnyaU5vakcaFrOKWi6VvYRv6W8Zk
-OAUTH_CLIENT_ID=fd0f7f3b-c42f-4613-a9e7-e8ffd720c5a5
-OAUTH_CLIENT_SECRET=ZCURmSmiOqkkEuGRwChcrPBDkioVr0t6
-OAUTH_CLIENT_SCOPE=email,profile,openid
-OAUTH_ACCESS_TOKEN_URL=https://auth.example.com/realms/ozone/protocol/openid-connect/token
-```
+| Environment Variable     | Example value                                                         | Description                                                   |
+|--------------------------|-----------------------------------------------------------------------|---------------------------------------------------------------|
+| `ENABLE_SSO`             | `true`                                                                | Toggle SSO, enable or disable.                                |
+| `SERVER_SCHEME`          | `https`                                                               | Scheme used in generated URLs (`http` or `https`).            |
+| `O3_HOSTNAME`            | `example.com`                                                         | Hostname for the OpenMRS application.                         |
+| `ODOO_HOSTNAME`          | `erp.example.com`                                                     | Hostname for the Odoo application.                            |
+| `SENAITE_HOSTNAME`       | `lims.example.com`                                                    | Hostname for the SENAITE application.                         |
+| `KEYCLOAK_HOSTNAME`      | `auth.example.com`                                                    | Hostname for the Keycloak identity provider.                  |
+| `OPENMRS_CLIENT_ID`      | `dfcbd981-6c46-46f8-8688-8e99166148fa`                                | Keycloak client ID for OpenMRS.                               |
+| `OPENMRS_CLIENT_SECRET`  | `3335594e-57ec-4211-832d-774ce20ace58`                                | Keycloak client secret for OpenMRS.                           |
+| `ODOO_CLIENT_ID`         | `9170108c-fdf0-4d7e-ad0a-f485c98a3390`                                | Keycloak client ID for Odoo.                                  |
+| `ODOO_CLIENT_SECRET`     | `362b43fe-6c80-41c9-9c0b-a60326480d60`                                | Keycloak client secret for Odoo.                              |
+| `SENAITE_CLIENT_ID`      | `61a4c136-3658-4563-a986-415830551ea3`                                | Keycloak client ID for SENAITE.                               |
+| `SENAITE_CLIENT_SECRET`  | `b70bcd8a-f75d-4598-8ff1-8be5db855fb6`                                | Keycloak client secret for SENAITE.                           |
+| `OAUTH_CLIENT_ID`        | `56ac6ccf-004e-441f-a98b-8de7159f6ce9`                                | Generic OAuth client ID used by frontend auth modules.        |
+| `OAUTH_CLIENT_SECRET`    | `043c6292-4f9b-4c8e-85ed-3172f43ae4ff`                                | Generic OAuth client secret.                                  |
+| `OAUTH_CLIENT_SCOPE`     | `email,profile,openid`                                                | OAuth scopes requested during authentication.                 |
+| `OAUTH_ACCESS_TOKEN_URL` | `https://auth.example.com/realms/ozone/protocol/openid-connect/token` | Token endpoint URL for obtaining access tokens from Keycloak. |
 
 !!! note
     The above values are examples. Replace them with your actual domain names and client credentials.
@@ -91,9 +91,19 @@ Alternatively, use the `start-with-sso.sh` or `start-demo-with-sso.sh` scripts p
 
 ## Run Without SSO
 
-To run without SSO, follow the instructions in [here](../getting-started/run-locally.md) to download and start Ozone locally but instead of `start-with-sso.sh` or `start-demo-with-sso.sh`, use `start.sh` or `start-demo.sh` scripts. These scripts will include the correct Docker Compose files, mount required configs & binaries, and set the necessary environment variables. The scripts will exclude the Docker Compose files with the suffix `-sso.yml` and disable any SSO-related configurations.
+To run your distribution without SSO, simply set the `ENABLE_SSO` environment variable to `false` or leave it unset. Then, use the standard Docker Compose files without the SSO-specific files (any file with `-sso` suffix). For example:
 
-If you already have your own Ozone distribution. The steps to run without SSO are similar to running with SSO, but you need to exclude the SSO-specific Docker Compose files and ensure that the `ENABLE_SSO` environment variable is set to `false` or not set at all.
+```bash
+docker-compose -f docker-compose-common.yml -f docker-compose-openmrs.yml -f docker-compose-odoo.yml -f docker-compose-senaite.yml up -d
+```
+
+By not including the SSO-specific Docker Compose files, the applications will use their default authentication mechanisms instead of Keycloak for authentication. This means users will log in directly to each application using their individual login pages. Ozone allows you to easily switch between SSO and non-SSO modes by adjusting the `ENABLE_SSO` environment variable and the Docker Compose files used to start the services. The applications will adapt accordingly based on the presence or absence of SSO configurations.
+
+Ozone comes with default values for all the required environment variables to run without SSO. However, you can still set custom values for other environment variables (like hostnames and passwords) as needed.
+
+Using the provided `start.sh` or `start-demo.sh` scripts will automatically run Ozone without SSO by default. These scripts set the necessary environment variables and include the standard Docker Compose files without SSO configurations. 
+
+It is important to note that Ozone does not support enabling or disabling SSO on-the-fly while the services are running. Changes to the SSO configuration require a rebuild of the distribution with the appropriate settings, then rerun the Docker Compose setup to apply the changes. This doesn't only apply to enabling or disabling SSO but also to any changes in the distribution.
 
 !!! question "Did you know?"
     Ozone {==:oz: Pro==} comes with Central Auth! Without central authentication, user roles from each app are not available in Keycloak. Central Auth enables synchronizing roles from all apps into Keycloak for unified access control and assignation. For more information, see [Central Auth](./enable-central-auth.md).
