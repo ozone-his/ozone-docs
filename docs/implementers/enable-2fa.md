@@ -1,12 +1,12 @@
 # Enable Two-Factor Authentication (2FA)
 
-To enhance the security of your Ozone distribution, you can enable Two-Factor Authentication (2FA) for user accounts. This adds a layer of protection by requiring users to provide a second form of verification during the login process. Ozone comes with Keycloak as the default Identity provider (IdP) solution, which supports 2FA. Key
+To enhance the security of your Ozone distribution, you can enable Two-Factor Authentication (2FA) for user accounts. This adds a layer of protection by requiring users to provide a second form of verification during the login process. Ozone comes with Keycloak as the default Identity provider (IdP) solution, which supports 2FA.
 
 In this section, we will cover the steps to enable 2FA in your Ozone distribution by modifying the Keycloak realm configuration.
 
 ## Overriding Ozone Realm Configuration
 
-By default, 2FA is disabled in Keycloak. To enable it, you need to modify the realm configuration file used by Keycloak in your Ozone distribution. This file is located in the `distro/configs/keycloak/realms/ozone-realm.json` directory of your Ozone distribution. To override the default realm configuration, create a copy of the `ozone-realm.json` file from the `distro/configs/keycloak/realms/` directory and place it in the `configs/keycloak/realms/` directory of your Ozone distribution.
+By default, 2FA is disabled in Keycloak. To enable it, you need to modify the realm configuration file used by Keycloak in your Ozone distribution package. This file is located in the `distro/configs/keycloak/realms/ozone-realm.json` directory of your Ozone distribution. To override the default realm configuration, create a copy of the `ozone-realm.json` file from the `distro/configs/keycloak/realms/` directory and place it in the `configs/keycloak/realms/` directory of your Ozone distribution.
 
 The default Ozone realm configuration file will be overridden by the one in the `configs/keycloak/realms/` directory during the build process. Now, you can proceed to enable 2FA by modifying the copied `ozone-realm.json` file. In the next sections, we will guide you through the necessary changes to enable 2FA.
 
