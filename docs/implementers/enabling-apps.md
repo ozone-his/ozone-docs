@@ -81,6 +81,43 @@ It is also possible to provide an additional `docker-compose-override.yml`[^over
     {==docker-compose-override.yml==}
     ```
 
+Then make sure to update the build instructions of your project to copy the file over in the final directory. To do so, add a new build step in your `pom.xml` as such:
+
+```
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <!-- Copy over the Docker Compose override file -->
+            <id>Copy docker-compose-override.yml</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/run/docker/
+              </outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/scripts</directory>
+                  <includes>
+                    <include>docker-compose-override.yml</include>
+                  </includes>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+```
+
+The name must match the name of your override file.
+See an example of the build step configuration  [here <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/openmrs/openmrs-distro-his/blob/379f0b600493dac04b46b8283f97bc5d9e7aa089/pom.xml#L54-L76)
+
 ### Examples of customizations with `docker-compose-override.yml`
 
 !!! example "Adding OpenMRS frontend configuration files"
@@ -92,3 +129,5 @@ It is also possible to provide an additional `docker-compose-override.yml`[^over
     This bespoke configuration ensures that the MySQL service starts with specific settings tailored for the KenyaHMIS project. It also initializes the database with necessary SQL scripts that update and configure the database schema and data according to the project’s requirements.
 
     See [here <small>:fontawesome-solid-arrow-up-right-from-square:</small>](https://github.com/palladiumkenya/kenyahmis/blob/b24503fd623d6b9c06a94d1af3588c15b463abf6/scripts/docker-compose-override.yml) how this can be done.
+
+
