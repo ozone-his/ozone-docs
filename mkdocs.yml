@@ -19,7 +19,7 @@ nav:
       - <span style='color:36464e'>Branding & White-labelling: 'implementers/branding-apps.md'
       - <span style='color:36464e'>Configure Integrations: 'auto-eip-config-points.md'
       - <span style='color:36464e'>Enable & Disable Apps and Integrations: 'implementers/enabling-apps.md'
-      - <span style='color:#b0b0b0;font-style:italic'/>Enable & Disable Single Sign-On: 'implementers/enable-sso.md'
+      - <span style='color:36464e'/>Enable & Disable Single Sign-On: 'implementers/enable-sso.md'
       - <span style='color:36464e'/>Enable 2FA: 'implementers/enable-2fa.md'
       - <span style='color:#b0b0b0;font-style:italic'/>Enable & Disable Central Authorization: 'implementers/enable-central-auth.md'
       
@@ -33,7 +33,7 @@ nav:
 
   - Functional Users:
     - Overview: 'users/index.md'
-    - "<span style='color:#b0b0b0;font-style:italic'>SSO & Auth</span>": 'users/auth.md'
+    - SSO & Auth: 'users/auth.md'
     - Ozone Flows Guide: 'users/ozoneflows.md'
     - ERPNext–OpenMRS Flows: 'users/erpnext-openmrs.md'
     - Keycloak-Odoo Flows: 'users/keycloak-odoo.md'
