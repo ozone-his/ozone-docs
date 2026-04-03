@@ -14,6 +14,8 @@
         OpenMRS->>Ozone: Lab test orders
         Ozone->>Odoo: Quotations
         Ozone->>Odoo: Order Lines
+        Odoo->>Ozone: Products
+        Ozone->>OpenMRS: Drugs
 ```
 
 ## Flows List
@@ -24,7 +26,7 @@
 |OpenMRS|     Visit     |→|Odoo|    Quotation    |
 |OpenMRS| Billable item |⭆|Odoo|    Quotation    |
 |OpenMRS| Billable item |→|Odoo| Order line |
-
+|Odoo| Products |→|OpenMRS| Drugs |
 
 !!! question "What are the OpenMRS billable items?"
 
@@ -81,4 +83,13 @@ If all order lines are removed from a quotation, the quotation is marked as canc
 ``` mermaid
 flowchart LR
     a["OpenMRS billable item"]-- 1-to-1 -->b["Odoo order line"]
+```
+
+### **5** &nbsp; Odoo Product → OpenMRS Drug
+
+Products in Odoo that belong to the drugs category and have an associated concept dictionary mapping are automatically synchronized into OpenMRS as drug entries.
+
+``` mermaid
+flowchart LR
+    a["Odoo product (in drug category)"]-- 1-to-1 -->b["OpenMRS Drugs"]
 ```
