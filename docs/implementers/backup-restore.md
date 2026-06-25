@@ -111,18 +111,38 @@ export RESTORE="true"
 
     Please avoid hardcoding `RESTORE="true"` in any environment file so that it doesn't persist. This is to avoid re-restoring upon next restart, which could lead to losing data.
 
-Then you need to set a particular value to the `COMPOSE_PROFILES` to inform which app you will restore data from.
-The available values are:
+Then you need to set `COMPOSE_PROFILES` to enable the restore profiles for each application whose data you are restoring.
 
-- `openmrs-restore`
-- `odoo-restore`
-- `senaite-restore`
+### Restore profiles
 
-For example:
+During restore, Ozone runs a one-shot `restore` service that repopulates databases and volumes from a Restic snapshot. Application services must not start until that job completes successfully. If they start too early, they may connect to empty or partially restored data and fail, or interfere with the restore process.
+
+Each `{app}-restore` profile activates a Docker Compose override in `docker-compose-restore.yml` that makes the corresponding service wait for restore to finish by adding:
+
+```yaml
+depends_on:
+  restore:
+    condition: service_completed_successfully
+```
+
+Enable only the profiles for the applications you are restoring. You can combine multiple profiles in a comma-separated list.
+
+The available restore profiles are:
+
+| Profile | Service |
+| --- | --- |
+| `openmrs-restore` | OpenMRS |
+| `odoo-restore` | Odoo |
+| `senaite-restore` | Senaite |
+| `openelis-restore` | OpenELIS (`oe.openelis.org`) |
+| `openelis-fhir-restore` | OpenELIS FHIR (`fhir.openelis.org`) |
+| `keycloak-restore` | Keycloak (SSO only; used with `docker-compose-restore-sso.yml`) |
+
+For example, to restore OpenMRS and Odoo:
+
 ```
 export COMPOSE_PROFILES='openmrs-restore,odoo-restore'
 ```
-
 And run Ozone to proceed with the restore.
 
 Eg, using the standard Start & Stop instructions:
@@ -186,7 +206,7 @@ __Supported Configuration__
 |AWS_ACCESS_KEY_ID| This is used to set the AWS access key id when `RESTIC_REPOSITORY`  is S3 | |
 |AWS_SECRET_ACCESS_KEY| This is used to set the AWS secret when `RESTIC_REPOSITORY`  is S3 | |
 |RESTORE| This variable is only needed when you want to test the restore using the `start.sh`  helper script. It has to be set to true| `export RESTORE="true"`|
-| COMPOSE_PROFILES | Along side env above, you have to enable the restore Docker compose profiles for the services you wish to restore when running with the `start.sh` | `export COMPOSE_PROFILES=openmrs-restore,odoo-restore`|
+| COMPOSE_PROFILES | Along side env above, you have to enable the restore Docker compose profiles for the services you wish to restore when running with the `start.sh` | `export COMPOSE_PROFILES=openmrs-restore,odoo-restore,openelis-restore,openelis-fhir-restore`|
 |RESTIC_KEEP_WEEKLY|How many weeks back we should keep at least one snapshot  | |
 |RESTIC_KEEP_MONTHLY|How many months back we should keep at least one snapshot  | |
 |RESTIC_KEEP_YEARLY| How many years back we should keep at least one snapshot | |
