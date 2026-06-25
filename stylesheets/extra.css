@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "Recoleta"; 
+  font-weight: normal; 
+  font-style: normal;
+  src: url("../fonts/Recoleta.woff2");
+}
+
+@font-face {
+  font-family: "Geist"; 
+  font-weight: normal; 
+  font-style: normal;
+  src: url("../fonts/Geist-Regular.ttf");
+}
+
+:root {
+  --md-primary-fg-color: #3cb393;
+  --md-default-bg-color: #fcf4e5;
+  background:            var(--md-default-bg-color)
+}
+
+body {
+  --md-default-bg-color: #fcf4e5 !important;
+}
+
+footer {
+  --md-footer-bg-color:  #141324;
+}
+
+code {
+  --md-code-bg-color:    #fefaf4 !important;
+}
+
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+    height: 1.5rem;
+}
+
+.md-header__topic  {
+  font-family: "Recoleta"; 
+}
+
+.md-tabs__link {
+  font-family: "Recoleta"; 
+  font-size: 1.75em;
+}
+
+ul li label.md-nav__link span,
+.md-nav__title {
+  font-family: "Recoleta"; 
+  font-size: 1.25em;
+}
+
+.md-typeset .admonition {
+  font-size: 90%;
+}
+
+.md-typeset {
+  font-size: 150%;
+}
+
+.md-typeset .small-title {
+  font-size: 50%;
+  font-weight: 500;
+}
+
+.md-typeset h1 {
+  font-family: "Recoleta"; 
+}
+
+.md-typeset h2 {
+  font-family: "Recoleta"; 
+  font-size: 155%;
+  font-weight: 500;
+}
+
+.md-typeset h3 {
+  font-family: "Recoleta";
+  font-size: 120%;
+  font-weight: 500;
+}
+
+.md-typeset h4 {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 100%;
+  color: #007d79;
+}
+
+.md-typeset h5 {
+  font-size: 120%;
+}
+
+.md-typeset h6 {
+  font-size: 120%;
+}
+
+.secondary {
+    color:grey;
+}
+
+a.secondary {
+    color:grey;
+}
+
+a.secondary:hover {
+    color:var(--md-accent-fg-color)
+}
+
+code {
+  white-space : pre-wrap !important;
+}
