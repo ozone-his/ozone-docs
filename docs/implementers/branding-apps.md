@@ -107,7 +107,7 @@ Let's say you want to change the navbar background color to dark blue and button
 
 ## White-labelling Keycloak
 
-Keycloak controls how several pages look and behave, like the login page, the account page, and password emails. You can change all of these by using Keycloak themes.
+Keycloak controls how several pages look and behave, like the login page, the account page, admin console, and email templates. You can change all of these by using Keycloak themes.
 
 ### Types of Keycloak theme pages
 
