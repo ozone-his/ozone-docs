@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 48 48">
+  <defs>
+    <mask id="bahmni-cutouts" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+      <rect width="48" height="48" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.6" d="M8.5 23.8h15.2l3.7-18.1 5.4 35 3.3-16.9h5.4M8.5 17h14M8.5 31h14"/>
+    </mask>
+  </defs>
+  <path fill="currentColor" mask="url(#bahmni-cutouts)" d="M10.8 4.2 34.4 2c5.9-.5 10.8 3.8 11.4 9.7L48 34.8c.5 5.7-3.6 10.7-9.3 11.3l-25.1 2.4C7.7 49 2.8 44.6 2.3 38.7L.1 15.2C-.4 9.5 3.8 4.8 10.8 4.2Z"/>
+</svg>
