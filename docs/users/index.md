@@ -34,7 +34,7 @@ It is a complete health information system allowing users to customize it by cho
 |:---:|:---:|:---:|:---:|
 |EMR|:openmrs: OpenMRS|`3.5.0`|:material-diamond-stone: Core|
 |EMR|:bahmni: Bahmni (EMR)|`1.1.0`|:material-diamond-stone: Core|
-|LIMS|SENAITE|`2.5.0`|:material-diamond-stone: Core|
+|LIMS|:senaite: SENAITE|`2.5.0`|:material-diamond-stone: Core|
 |ERP|Odoo|`17`|:material-diamond-stone: Core|
 |ERP|:erpnext: ERPNext|`15.12.2`|:material-timer-pause-outline: Legacy|
 |BI|:superset: Apache Superset|`4.0.1`|:material-diamond-stone: Core|
