@@ -12,10 +12,12 @@
         OpenMRS->>Ozone: Visits
         OpenMRS->>Ozone: Drug orders
         OpenMRS->>Ozone: Lab test orders
+        OpenMRS->>Ozone: Radiology ServiceRequest
         Ozone->>Odoo: Quotations
         Ozone->>Odoo: Order Lines
         Odoo->>Ozone: Products
         Ozone->>OpenMRS: Drugs
+        Ozone->>OpenMRS: Create/update FHIR Task
 ```
 
 ## Flows List
@@ -27,6 +29,7 @@
 |OpenMRS| Billable item |⭆|Odoo|    Quotation    |
 |OpenMRS| Billable item |→|Odoo| Order line |
 |Odoo| Products |→|OpenMRS| Drugs |
+|Odoo| Payment status |→|OpenMRS| FHIR 'Task' status |
 
 !!! question "What are the OpenMRS billable items?"
 
@@ -92,4 +95,40 @@ Products in Odoo that belong to the drugs category and have an associated concep
 ``` mermaid
 flowchart LR
     a["Odoo product (in drug category)"]-- 1-to-1 -->b["OpenMRS Drugs"]
+```
+
+### **6** &nbsp; Odoo Payment Status → OpenMRS 'Task' FHIR status
+
+The Odoo payment orders and the payment states are queried and associated to one 'status' value in OpenMRS 'Task' FHIR resource. 
+
+``` mermaid
+flowchart LR
+    a["Odoo<br/>Sale Order + Invoice"]-- 2-to-1 -->b["OpenMRS<br/>FHIR Task"]
+```
+!!! question "What is exactly the processing logic?"
+
+The processing logic is the following: 
+
+    Every polling cycle the processor fetches 'ServiceRequest' resources (that regroups a time window of 7days) from OpenMRS (this is required as the payment confirmation happens in Odoo and never touches the ServiceRequest's own '_LastUpdated'). It then filters it client-side for 'status==ACTIVE' and the radiology concept code. 
+
+    Whether the Task already existed is checked by comparing the Tesk's 'basedOn' reference. 
+    The Odoo sale line search is scoped both by patient and by the specific visit (via 'client_order_ref') and excludes any line created before the ServiceRequest's own 'authoredOn' timestamp (a short tolerance was added for clock skew)
+    
+    Those two additions prevent a payment for one order to from being mistaken for payment of this one. Unless the sale.order state is 'cancel' (Task marked as 'rejected'), the account.move is queried for a fully paid invoice ('payment_state=paid' and 'amount_residual=0'); Once found, the Task is created and/or updated accordingly. 
+
+    
+``` mermaid
+flowchart TD
+    A["Active radiology<br/>ServiceRequest"]
+    --> B["Find Odoo<br/>sale.order.line"]
+
+    B --> C["Read linked<br/>sale.order"]
+
+    C -->|state = cancel| D["Task.status = rejected"]
+
+    C -->|not cancelled| E["Search account.move"]
+
+    E -->|Fully paid| F["Task.status = accepted"]
+    E -->|Not yet paid| G["Task.status = requested"]
+    E -->|Check unavailable| G
 ```
