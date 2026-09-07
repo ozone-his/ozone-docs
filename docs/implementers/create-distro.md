@@ -83,7 +83,7 @@ Use Maven's archetype tools to generate a new Ozone implementation project struc
 ```bash
 mvn org.apache.maven.plugins:maven-archetype-plugin:3.2.1:generate \
       -DarchetypeArtifactId=maven-archetype \
-      -DarchetypeGroupId=com.ozonehis 
+      -DarchetypeGroupId=com.ozonehis
 ```
 
 This will prompt you for several key variables for your Maven project:
@@ -109,6 +109,16 @@ ozone-gruzinia/
 └── pom.xml
 
 ```
+
+!!! warning "Verify your Ozone version"
+
+    Although the Maven archetype configures your project to use the latest released version of Ozone, you may want to verify it.
+    
+    Open the `pom.xml` file in the project root and check the `<version>` value within the `<parent>` section at the top.
+    It should reference the latest Ozone release.
+    
+    If not, you might not be using the most recent published archetype. Delete your current project and re-generate it while adding the `-DarchetypeVersion=<most_recent_ozone_version>` to your Maven command.
+
 
 Congratulations :clap:, you have created your child distribution of Ozone. Note that it does not configure or override anything. It is, at the moment, only plain Ozone.
 Check out our next section to configure your distribution:
