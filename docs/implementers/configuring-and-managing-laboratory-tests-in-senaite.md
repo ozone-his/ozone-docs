@@ -44,5 +44,4 @@ This groups multiple analysis services into predefined panels.
 ## Export SENAITE Configuration and Add to Distro
 
 1. Export **SENAITE: Export Content Structure** configs at http://localhost:8081/senaite/portal_setup/manage_exportSteps
-
 2. Add the data.tar.gz file in the initializer configuration directory of the distro.
