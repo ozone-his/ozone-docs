@@ -24,6 +24,7 @@
 |:---:|:-------------:|:---:|:---:|:---------------:|
 |OpenMRS|    Patient    |→|Odoo|    Customer     |
 |OpenMRS|     Visit     |→|Odoo|    Quotation    |
+|OpenMRS|     Visit     |→|Odoo| Order line |
 |OpenMRS| Billable item |⭆|Odoo|    Quotation    |
 |OpenMRS| Billable item |→|Odoo| Order line |
 |Odoo| Products |→|OpenMRS| Drugs |
@@ -85,7 +86,16 @@ flowchart LR
     a["OpenMRS billable item"]-- 1-to-1 -->b["Odoo order line"]
 ```
 
-### **5** &nbsp; Odoo Product → OpenMRS Drug
+### **5** &nbsp; OpenMRS Visit → Odoo Sale Order Line
+
+Each visit in OpenMRS is synchronized as a sale order line in Odoo. The product name and the sale order line description are both set to the OpenMRS visit type. The unit of measure is days, and the quantity defaults to **1** for every synchronized visit.
+
+``` mermaid
+flowchart LR
+    a["OpenMRS visit"]-- 1-to-1 -->b["Odoo sale order line"]
+```
+
+### **6** &nbsp; Odoo Product → OpenMRS Drug
 
 Products in Odoo that belong to the drugs category and have an associated concept dictionary mapping are automatically synchronized into OpenMRS as drug entries.
 
